@@ -1,0 +1,48 @@
+/*SWITCHER OVERRIDE*/
+.switcher.default{
+    border: none;
+    background: #b3b8c3;
+    color: #FFF;
+    height: 20px;
+    min-width: 40px;
+    font-size: 11px;
+    border-radius: 10px;
+    padding: 1px;
+}
+.switcher.default .slider{
+    background: #f0f3f3;
+    height: 18px;
+    border-radius: 10px;
+    box-shadow: none;
+}
+.switcher.default.is-active{
+    background: #3c8dbc;
+}
+.switcher.default .textNo{
+    color: #fff;
+}
+.kv-align-middle .switcher
+{
+    margin-top: 5px;
+}
+/*END SWITCHER OVERRIDE*/
+
+/*WEBCONSOLE OUTPUT*/
+.alert-console
+{
+    background-color: #333!important; 
+    color: #fff!important; 
+}
+
+.alert-console pre
+{
+    background-color: #333!important;
+    border-width: 0px!important;
+    color: #fff!important;
+    margin: 0px!important;
+    padding: 0px!important;
+
+}
+/*END WEBCONSOLE OUTPUT*/
+
+

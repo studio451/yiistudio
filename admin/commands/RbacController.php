@@ -1,0 +1,98 @@
+<?
+
+namespace admin\commands;
+
+use Yii;
+use yii\console\Controller;
+use yii\helpers\Console;
+
+class RbacController extends Controller {
+
+    public $user_id;
+
+    public function options($actionID) {
+        if ($actionID == 'init') {
+            return [
+                'user_id', 'interactive'
+            ];
+        }
+    }
+
+    public function actionInit() {
+
+
+        $this->stdout("Start rbac initialization...\n");
+       
+        $auth = Yii::$app->authManager;
+
+        //Удалить таблицу assigment, если необходимо
+        $auth->removeAll();
+
+        //Rules
+        $userGroupRule = new \admin\rbac\UserGroupRule;
+        $auth->add($userGroupRule);
+
+        $shopcartOrderRule = new \admin\rbac\UserShopcartOrderRule;
+        $auth->add($shopcartOrderRule);
+        //End rules
+        //Permissions
+        $auth->add($auth->createPermission('admin'));
+        $auth->add($auth->createPermission('admin/api'));
+        foreach (glob(Yii::getAlias('@admin') . DIRECTORY_SEPARATOR . 'modules/*') as $module) {
+            $moduleName = basename($module);
+            //Module permissions
+            $auth->add($auth->createPermission('admin/' . $moduleName));
+        }
+        $auth->add($auth->createPermission('admin/photos'));
+        $auth->add($auth->createPermission('admin/yml/excel/update-items-from-excel-file'));
+        $auth->add($auth->createPermission('admin/system/live-edit'));
+
+        $userShopcartOrderPermission = $auth->createPermission('UserShopcartOrderPermission');
+        $userShopcartOrderPermission->ruleName = $shopcartOrderRule->name;
+        $auth->add($userShopcartOrderPermission);
+        //End permissions
+        //Roles
+        $user = $auth->createRole('User');
+        $user->ruleName = $userGroupRule->name;
+        $auth->add($user);
+        $auth->addChild($user, $userShopcartOrderPermission);
+
+        $catalogUser = $auth->createRole('CatalogUser');
+        $auth->add($catalogUser);
+        $auth->addChild($catalogUser, $user);
+        $auth->addChild($catalogUser, $auth->getPermission('admin'));
+        $auth->addChild($catalogUser, $auth->getPermission('admin/catalog'));
+        $auth->addChild($catalogUser, $auth->getPermission('admin/photos'));
+        $auth->addChild($catalogUser, $auth->getPermission('admin/yml/excel/update-items-from-excel-file'));
+        $auth->addChild($catalogUser, $auth->getPermission('admin/system/live-edit'));
+
+        $shopcartUser = $auth->createRole('ShopcartUser');
+        $auth->add($shopcartUser);
+        $auth->addChild($shopcartUser, $user);
+        $auth->addChild($shopcartUser, $auth->getPermission('admin'));
+        $auth->addChild($shopcartUser, $auth->getPermission('admin/shopcart'));
+
+        $shopcartAdmin = $auth->createRole('ShopcartAdmin');
+        $auth->add($shopcartAdmin);
+        $auth->addChild($shopcartAdmin, $catalogUser);
+        $auth->addChild($shopcartAdmin, $shopcartUser);
+        $auth->addChild($shopcartUser, $auth->getPermission('admin/delivery'));
+        $auth->addChild($shopcartUser, $auth->getPermission('admin/payment'));
+        $auth->addChild($shopcartUser, $auth->getPermission('admin/feedback'));
+        $auth->addChild($shopcartUser, $auth->getPermission('admin/news'));
+        $auth->addChild($shopcartUser, $auth->getPermission('admin/sale'));
+        $auth->addChild($shopcartUser, $auth->getPermission('admin/comment'));
+
+        $superAdmin = $auth->createRole('SuperAdmin');
+        $auth->add($superAdmin); 
+        foreach ($auth->getPermissions() as $permission) {
+            $auth->addChild($superAdmin, $permission);
+        }
+        
+        $auth->assign($superAdmin, $this->user_id);
+
+        //End roles
+        $this->stdout("DONE");
+    }
+
+}

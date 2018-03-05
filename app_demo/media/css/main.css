@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
+
+body {
+    font-size:14px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: 'PT Sans', sans-serif, Arial;
+}
+
+h1,.h1
+{
+    font-size: 26px;
+}
+h2,.h2
+{
+    font-size: 23px;
+}
+h3,.h3
+{
+    font-size: 21px;
+}
+h4,.h4
+{
+    font-size: 19px;
+}

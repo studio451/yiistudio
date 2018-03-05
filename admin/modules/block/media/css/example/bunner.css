@@ -1,0 +1,64 @@
+.banner {
+    width: 100%;
+    background-color: #D62630;
+    padding:20px 0 15px 0;
+}
+.banner .banner-title {
+    text-transform: uppercase;
+    font-family:  Arial;
+    font-size: 32px;
+    line-height: 42px;
+    text-align: center;
+    color: #fff;
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+}
+.banner .banner-title span {
+    font-family: Arial;
+    display: inline-block;
+    vertical-align: top;
+}
+.banner .banner-content {
+    width: 100%;
+    text-align: center;
+    font-size: 0;
+    line-height: 30px;
+    margin-top: 15px;
+}
+.banner .banner-content-text {
+    display: inline-block;
+    vertical-align: top;
+    color: #fff;
+    font-family: Arial;
+    font-size: 18px;
+    padding-right: 15px;                    
+}
+.banner .banner-content-button {
+    display: inline-block;
+    vertical-align: top;
+}
+.banner .banner-content-button a {
+    background: rgba(255,255,255,0);
+    border-radius: 0;
+    border: 1px solid #fff;
+    color: #fff;
+    font-family: Arial;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 5px 57px;
+    font-size: 15px;
+    transition: background .2s ease, color .2s ease, border .2s ease;
+}
+.banner .banner-content-button a:after {
+    content: none;
+}
+.banner .banner-content-button a:hover,
+.banner .banner-content-button a:active {
+    background: rgba(255,255,255,1);
+    border: 1px solid #fff;
+    color: #333;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 5px 57px;
+}

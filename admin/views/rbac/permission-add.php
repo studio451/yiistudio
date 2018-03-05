@@ -1,0 +1,49 @@
+<?
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
+/* @var $this yii\web\View */
+/* @var $model common\models\Links */
+/* @var $form yii\widgets\ActiveForm */
+$this->title = Yii::t('admin/rbac', 'Добавить разрешение');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('admin/rbac', 'Разрешения пользователей'), 'url' => ['permission']];
+$this->params['breadcrumbs'][] = Yii::t('admin/rbac', 'Добавить разрешение');
+?>
+<div class="news-index">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <div class="links-form">
+        <?
+        if (!empty($error)) {
+            ?>
+            <div class="error-summary">
+                <?
+                echo implode('<br>', $error);
+                ?>
+            </div>
+            <?
+        }
+        ?>
+
+        <? $form = ActiveForm::begin(); ?>
+
+        <div class="form-group">
+            <?= Html::label(Yii::t('admin/rbac', 'Текстовое описание')); ?>
+            <?= Html::textInput('description'); ?>
+        </div>
+        <div class="form-group">
+            <?= Html::label(Yii::t('admin/rbac', 'Разрешение пользователя')); ?>
+            <?= Html::textInput('name'); ?>
+            <?= Yii::t('admin/rbac', '<br>* Формат: <strong>module/controller/action</strong><br><strong>site/article</strong> - доступ к странице "site/article"<br><strong>site</strong> - доступ к любым action контроллера "site"'); ?>
+        </div>
+
+        <div class="form-group">
+            <?= Html::submitButton(Yii::t('admin', 'Сохранить'), ['class' => 'btn btn-success']) ?>
+        </div>
+
+        <? ActiveForm::end(); ?>
+
+    </div>
+</div>

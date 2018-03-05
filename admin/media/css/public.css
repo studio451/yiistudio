@@ -1,0 +1,9 @@
+body {
+    background: #1d212a;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.login-box
+{
+        width: 600px!important;
+}

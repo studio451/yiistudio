@@ -1,0 +1,35 @@
+/* Rating */
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    font-size: 14px;
+}
+.rating span.star {
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+}
+.rating span.star:before {
+    content: "\f005";
+    padding-right: 5px;
+    color: #ddd;
+}
+.rating span.star:hover {
+    cursor: pointer;
+}
+.rating span.star:hover:before, .rating span.star:hover~span.star:before {
+    content: "\f005";
+    color: #337ab7;
+}
+
+.rating span.star-hover:before
+{
+    content: "\f005";
+    color: #f36b00;
+}
+.rating span.star-hover:hover:before, .rating span.star-hover:hover~span.star-hover:before
+{
+    content: "\f005";
+    color: #337ab7;
+}
