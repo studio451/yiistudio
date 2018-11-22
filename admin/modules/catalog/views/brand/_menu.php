@@ -17,14 +17,3 @@ $module = $this->context->module->id;
     <li <?= ($action === 'create') ? 'class="active"' : '' ?>><a href="<?= Url::to(['/admin/' . $module . '/brand/create']) ?>"><?= Yii::t('admin', 'Создать бренд') ?></a></li>
 </ul>
 <br>
-<? if ($action === 'edit') : ?>
-    <ul class="nav nav-pills">
-        <li>
-            <a href="<?= $this->context->getReturnUrl(['/admin/' . $module . '/brand']) ?>">
-                <i class="glyphicon glyphicon-chevron-left fs-12"></i>
-                <?= Yii::t('admin/catalog', 'Список брендов') ?>
-            </a>
-        </li>
-    </ul>
-    <br>
-<? endif; ?>

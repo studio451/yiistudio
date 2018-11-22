@@ -27,16 +27,19 @@ class InstallController extends \yii\web\Controller {
     }
 
     public function actionIndex() {
-        if (!$this->checkDbConnection()) {
+        if (!\admin\AdminModule::checkDbConnection()) {
             if (YII_ENV_PROD) {
                 $configFile = str_replace(Yii::getAlias('@webroot'), '', Yii::getAlias('@app')) . '/config/db.php';
             } else {
                 $configFile = str_replace(Yii::getAlias('@webroot'), '', Yii::getAlias('@app')) . '/config/db_dev.php';
             }
-            return $this->showError(Yii::t('admin/install', 'Нет соединения с базой данных. Если база данных не создана, создайте ее. Проверьте настройки: ' . $configFile));
+            
+            $dbName = \admin\AdminModule::getDsnAttribute('dbname', Yii::$app->db->dsn);
+            
+            return $this->showError(Yii::t('admin/install', 'Нет соединения с базой данных <b>'. $dbName.'</b>!<br> Если база данных <b>'. $dbName.'</b> не создана, создайте ее.<br> Также проверьте правильность настроек подключения к базе данных: <b>' . $configFile . '</b>' ));
         }
-        if (\admin\AdminModule::INSTALLED) {
-            return $this->showError(Yii::t('admin/install', \admin\AdminModule::NAME . ' уже установлена. Если вы хотите переустановить ' . \admin\AdminModule::NAME . ' измените значение константы \admin\AdminModule::INSTALLED на "false"'));
+        if (INSTALLED) {
+            return $this->showError(Yii::t('admin/install', \admin\AdminModule::NAME . ' уже установлена.<br> Если вы хотите переустановить ' . \admin\AdminModule::NAME . ' установите значение константы INSTALLED в '. Yii::getAlias('@webroot/index.php') .' равным false!'));
         }
         $installForm = new InstallForm();
 
@@ -65,7 +68,7 @@ class InstallController extends \yii\web\Controller {
 
             WebConsole::rbacMigrate();
             WebConsole::rbacInit(Yii::$app->user->identity->id);
-
+           
             Yii::$app->cache->flush();
 
             return $this->redirect(['/admin/api/install/finish']);
@@ -102,15 +105,8 @@ class InstallController extends \yii\web\Controller {
             ]
         ];
     }
-
-    private function checkDbConnection() {
-        try {
-            Yii::$app->db->open();
-            return true;
-        } catch (\Exception $e) {
-            return false;
-        }
-    }
+    
+    
 
     private function showError($text) {
         return $this->render('error', ['error' => $text]);

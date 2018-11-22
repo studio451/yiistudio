@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use admin\assets\AdminAsset;
 use admin\helpers\AjaxModalPopup;
+use admin\widgets\Alert;
 
 $adminAsset = AdminAsset::register($this);
 
@@ -171,9 +172,7 @@ $moduleName = $this->context->module->id;
                 <section class="content">
                     <div class="row">
                         <div class="col-sm-12">
-                            <? foreach (Yii::$app->session->getAllFlashes() as $key => $message) : ?>
-                                <div class="alert alert-<?= $key ?>"><?= $message ?></div>
-                            <? endforeach; ?>                             
+                            <?= Alert::widget() ?> 
                         </div>
                     </div>                    
                     <div class="row">
@@ -197,11 +196,8 @@ $moduleName = $this->context->module->id;
                     </div>                    
                 </section>               
             </div>
-            <footer class="main-footer">
-                <div class="pull-right hidden-xs">
-                    <?= Yii::t('admin', 'Версия') ?> 0.91
-                </div>
-                &copy; <?= \admin\AdminModule::NAME ?>, <?= date('Y') ?>
+            <footer class="main-footer">                
+                <?= date('Y') ?> <a href="https://yiistudio.ru" target="_blank" title="https://yiistudio.ru"><?= \admin\AdminModule::NAME ?></a> v<?= \admin\AdminModule::VERSION ?> 
             </footer>
         </div>
         <? $this->endBody() ?>

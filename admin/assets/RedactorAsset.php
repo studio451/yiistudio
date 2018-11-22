@@ -4,7 +4,7 @@ namespace admin\assets;
 class RedactorAsset extends \yii\web\AssetBundle
 {
 
-    public $sourcePath = '@admin/assets/redactor';
+    public $sourcePath = '@admin/media/redactor';
     public $depends = ['yii\web\JqueryAsset'];
 
     public function init()

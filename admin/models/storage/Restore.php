@@ -24,6 +24,11 @@ class Restore extends Model
     /**
      * @var bool
      */
+    public $restoreScript = false;
+    
+    /**
+     * @var bool
+     */
     public $preset = null;
 
     /**
@@ -49,7 +54,7 @@ class Restore extends Model
     public function rules()
     {
         return [           
-            [['initData', 'demoData'], 'boolean'],
+            [['initData', 'demoData','restoreScript'], 'boolean'],
             ['preset', 'in', 'range' => array_keys($this->customOptions), 'skipOnEmpty' => true],
         ];
     }
@@ -62,6 +67,7 @@ class Restore extends Model
         return [
             'initData' => Yii::t('admin', 'Добавить данные для инициализации'),
             'demoData' => Yii::t('admin', 'Добавить демо-данные'),
+            'restoreScript' => Yii::t('admin', 'Запустить дополнительный скрипт восстановления (@app/dumps/restore.php)'),
             'preset'  => Yii::t('admin', 'Особые настройки'),
         ];
     }

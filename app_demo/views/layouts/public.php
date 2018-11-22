@@ -147,12 +147,7 @@ NavBar::end();
         <div class="col-md-4">            
             <div>
                 <?= Schema::localBusiness() ?>
-            </div> 
-            <br>
-            <br>
-            &copy; <?= Setting::get('contact_name') ?>, <?= date('Y') ?>
-            <br>
-            <br>
+            </div>
         </div>   
         <div class="col-md-3"> 
             <small><?= Yii::t('app', 'Прайс-лист в Excel') ?></small><br/>
@@ -161,6 +156,16 @@ NavBar::end();
         <div class="col-md-5 text-right">
             <small><?= Yii::t('app', 'Подписаться на рассылку') ?>:</small><br/>
             <?= Subscribe::form() ?>
+        </div>
+    </div>
+    <div class="container mt-30 mb-60">
+        <div class="col-md-4">
+            &copy; <?= Setting::get('contact_name') ?>, <?= date('Y') ?>
+        </div>   
+        <div class="col-md-3">             
+        </div>        
+        <div class="col-md-5 text-right">
+            Мы используем <a href="https://yiistudio.ru" target="_blank" title="https://yiistudio.ru"><?= \admin\AdminModule::NAME ?></a>
         </div>
     </div>
 </footer>

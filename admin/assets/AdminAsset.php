@@ -20,4 +20,4 @@ class AdminAsset extends \admin\components\Asset {
         'yii\bootstrap\BootstrapPluginAsset',
     ];
 
-}
+    }

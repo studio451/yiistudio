@@ -87,7 +87,10 @@ class File extends \admin\components\API
     public function api_pages()
     {
         return $this->_adp ? LinkPager::widget(['pagination' => $this->_adp->pagination]) : '';
-    }
+    }  
+    
+    
+    
 
     private function findFile($id_slug)
     {

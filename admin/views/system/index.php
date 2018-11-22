@@ -40,7 +40,7 @@ if (\admin\AdminModule::VERSION > floatval(Setting::get('admin_version'))) {
         <a href="<?= Url::to(['/admin/system/flush-cache']) ?>" class="btn btn-success btn-block"><i class="fa fa-flash"></i> <?= Yii::t('admin', 'Очистить кеш') ?></a>
     </div>
     <div class="col-md-4">
-        <a href="<?= Url::to(['/admin/system/clear-assets']) ?>" class="btn btn-success btn-block"><i class="fa fa-refresh"></i> <?= Yii::t('admin', 'Обновить файлы ресурсов (.js, .css)') ?></a>
+        <a href="<?= Url::to(['/admin/system/clear-assets']) ?>" class="btn btn-success btn-block"><i class="fa fa-refresh"></i> <?= Yii::t('admin', 'Обновить файлы ресурсов (.js, .css, .png, .jpg, ...)') ?></a>
     </div>
     <div class="col-md-2">        
     </div>
@@ -75,10 +75,19 @@ if (\admin\AdminModule::VERSION > floatval(Setting::get('admin_version'))) {
 </div>
 <div class="row mb-20">
     <div class="col-md-4">
-        <a href="<?= Url::to(['/admin/system/recreate-groups']) ?>" class="btn btn-warning btn-block"><i class="fa fa-refresh"></i> <?= Yii::t('admin', 'Пересоздание крупп элементов каталога') ?></a>
+        <a href="<?= Url::to(['/admin/system/recreate-groups']) ?>" class="btn btn-warning btn-block"><i class="fa fa-refresh"></i> <?= Yii::t('admin', 'Пересоздание групп элементов каталога') ?></a>
     </div>
     <div class="col-md-4">
         <a href="<?= Url::to(['/admin/system/resave-items']) ?>" class="btn btn-warning btn-block"><i class="fa fa-refresh"></i> <?= Yii::t('admin', 'Пересохранение элементов каталога') ?></a>
+    </div>
+    <div class="col-md-4">
+        <?
+        if (YII_DEBUG) {
+            ?>
+            <a href="<?= Url::to(['/admin/system/clear-users-no-order']) ?>" class="btn btn-danger btn-block"><i class="fa fa-close"></i> <?= Yii::t('admin', 'Удалить пользователей, у которых нет заказов') ?></a>
+            <?
+        }
+        ?>
     </div>
 </div>
 <?

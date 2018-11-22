@@ -89,7 +89,7 @@ class Guestbook extends \admin\components\ActiveRecord {
                                 Setting::get('contact_email'), $settings['subjectOnNewPost'], $settings['templateOnNewPost'], [
                             'post' => $this,
                             'link' => Url::to(['/admin/guestbook/a/view', 'id' => $this->primaryKey], true)
-                                ], ['replyToAdminEmail' => true]
+                                ]
                 );
             }
 
@@ -100,7 +100,7 @@ class Guestbook extends \admin\components\ActiveRecord {
                                 $this->email, $settings['subjectNotifyUser'], $settings['templateNotifyUser'], [
                             'post' => $this,
                             'link' => Url::to([$settings['frontendGuestbookRoute']], true)
-                                ], ['replyToAdminEmail' => true]
+                                ]
                 );
             }
 

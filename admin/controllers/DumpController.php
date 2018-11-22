@@ -127,13 +127,13 @@ class DumpController extends \admin\components\Controller {
         ]);
     }
 
-    public function actionRestore($id, $restoreScript = 0) {
+    public function actionRestore($id) {
         if (DEMO) {
             $this->flash('warning', Yii::t('admin', 'Недоступно в демо-версии!'));
             return $this->back();
         }
         $restore = Yii::$app->request->post('Restore');
-        $result = WebConsole::dumpRestore($restore['initData'], $restore['demoData'], $restoreScript, $id);
+        $result = WebConsole::dumpRestore($restore['initData'], $restore['demoData'], $restore['restoreScript'], $id);
         return $this->formatResponse($result, true, true);
     }
 

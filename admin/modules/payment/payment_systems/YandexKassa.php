@@ -1,14 +1,12 @@
 <?
+namespace admin\modules\payment\payment_systems;
+
+use Yii;
 
 /**
  * Class YandexMoneyPaymentSystem
  * @link https://tech.yandex.ru/money/doc/payment-solution/About-docpage/
  */
-
-namespace admin\modules\payment\payment_systems;
-
-use Yii;
-
 class YandexKassa extends \admin\modules\payment\models\Payment {
 
    public function getDataSchema() {

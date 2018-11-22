@@ -23,6 +23,8 @@ $form = ActiveForm::begin([
 
 <?= $form->field($model, 'demoData')->checkbox() ?>
 
+<?= $form->field($model, 'restoreScript')->checkbox() ?>
+
 <? if ($model->hasPresets()): ?>
     <?= $form->field($model, 'preset')->dropDownList($model->getCustomOptions(), ['prompt' => '']) ?>
 <? endif ?>

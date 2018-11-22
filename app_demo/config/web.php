@@ -4,7 +4,7 @@ $config = [
     'layout' => 'public',
     'components' => [
         'request' => [
-            'cookieValidationKey' => 'fSLDMSrhuxvUY36XDQysJ3D02zMbCuTr',
+            'cookieValidationKey' => 'ZsaoMPJLsBO7Ss7ciuj9',
         ],
         'urlManager' => [
             'rules' => [

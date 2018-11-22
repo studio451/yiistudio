@@ -42,6 +42,7 @@ class User extends \admin\components\ActiveRecordData implements \yii\web\Identi
                 ['password', 'required', 'on' => 'create'],
                 ['password', 'safe'],
                 ['access_token', 'default', 'value' => null],
+                ['data', 'safe'],
                 ['status', 'default', 'value' => self::STATUS_ON],
         ];
     }
@@ -80,6 +81,8 @@ class User extends \admin\components\ActiveRecordData implements \yii\web\Identi
         return [
             'email' => Yii::t('admin', 'E-mail'),
             'role' => Yii::t('admin', 'Роль'),
+            'status' => Yii::t('admin', 'Статус'),
+            'password' => Yii::t('admin', 'Пароль'),
         ];
     }
 
@@ -202,9 +205,6 @@ class User extends \admin\components\ActiveRecordData implements \yii\web\Identi
 
     public function getName() {
         return $this->data['name'];
-    }
-    
-    public function getOrganization() {
-        return $this->hasOne(Organization::className(), ['id'=>'organization_id'])->viaTable(UserOrganization::className());
-    } 
+    }   
+
 }

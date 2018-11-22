@@ -7,6 +7,7 @@ use yii\helpers\FileHelper;
 use admin\modules\catalog\models\Category;
 use admin\modules\yml\widgets\Excel;
 use admin\modules\yml\YmlModule;
+
 /**
  *
  * @property integer $id
@@ -20,6 +21,7 @@ class Export extends \admin\components\ActiveRecord {
     public $class = 'admin\modules\yml\external_export\Shop';
     public $brands = [];
     public $categories = [];
+    public $items = [];
     public $to_excel = false;
     public $status = '1';
     public $shop_name;
@@ -41,19 +43,19 @@ class Export extends \admin\components\ActiveRecord {
 
     public function rules() {
         return [
-            [['title', 'shop_name', 'shop_company', 'shop_url', 'all_delivery_options_cost', 'all_delivery_options_days', 'delivery_free_from', 'delivery_options_cost', 'delivery_options_days'], 'required'],
-            ['title', 'unique'],
-            [['class'], 'required'],
-            ['class', 'string', 'max' => 512],
-            ['class', 'checkExists'],
-            ['count', 'integer'],
-            ['count', 'default', 'value' => 0],
-            ['title', 'string', 'max' => 256],
-            ['shop_name', 'string', 'max' => 20],
-            [['shop_url', 'shop_agency', 'shop_email'], 'string', 'max' => 255],
-            [['brands', 'categories', 'status', 'asAttachment'], 'safe'],
-            [['to_excel', 'shop_cpa', 'delivery_free_from', 'all_delivery_options_cost', 'delivery_options_cost'], 'integer'],
-            [['id', 'title'], 'safe'],
+                [['title', 'shop_name', 'shop_company', 'shop_url', 'all_delivery_options_cost', 'all_delivery_options_days', 'delivery_free_from', 'delivery_options_cost', 'delivery_options_days'], 'required'],
+                ['title', 'unique'],
+                [['class'], 'required'],
+                ['class', 'string', 'max' => 512],
+                ['class', 'checkExists'],
+                ['count', 'integer'],
+                ['count', 'default', 'value' => 0],
+                ['title', 'string', 'max' => 256],
+                ['shop_name', 'string', 'max' => 20],
+                [['shop_url', 'shop_agency', 'shop_email'], 'string', 'max' => 255],
+                [['brands', 'categories', 'items', 'status', 'asAttachment'], 'safe'],
+                [['to_excel', 'shop_cpa', 'delivery_free_from', 'all_delivery_options_cost', 'delivery_options_cost'], 'integer'],
+                [['id', 'title'], 'safe'],
         ];
     }
 
@@ -68,9 +70,10 @@ class Export extends \admin\components\ActiveRecord {
             'id' => Yii::t('admin/yml', 'ID'),
             'title' => Yii::t('admin/yml', 'Название выгрузки'),
             'brands' => Yii::t('admin/yml', 'Бренды'),
+            'categories' => Yii::t('admin/yml', 'Категории'),
+            'items' => Yii::t('admin/yml', 'Элементы'),
             'class' => Yii::t('admin/yml', 'Класс'),
             'count' => Yii::t('admin/yml', 'Кол-во загружаемых предложений (0 - загрузить все)'),
-            'categories' => Yii::t('admin/yml', 'Категории'),
             'shop_name' => Yii::t('admin/yml', 'Короткое название магазина (не более 20 символов)'),
             'shop_company' => Yii::t('admin/yml', 'Полное наименование компании, владеющей магазином. Не публикуется, используется для внутренней идентификации'),
             'shop_url' => Yii::t('admin/yml', 'URL главной страницы магазина'),
@@ -99,6 +102,7 @@ class Export extends \admin\components\ActiveRecord {
         $this->class = $data->class;
         $this->count = $data->count;
         $this->categories = $data->categories;
+        $this->items = $data->items;
         $this->to_excel = $data->to_excel;
         $this->status = $data->status;
         $this->shop_name = $data->shop_name;
@@ -113,7 +117,7 @@ class Export extends \admin\components\ActiveRecord {
         $this->delivery_options_cost = $data->delivery_options_cost;
         $this->delivery_options_days = $data->delivery_options_days;
         $this->asAttachment = $data->asAttachment;
- 
+
         parent::afterFind();
     }
 
@@ -124,6 +128,7 @@ class Export extends \admin\components\ActiveRecord {
             'class' => $this->class,
             'count' => $this->count,
             'categories' => $this->categories,
+            'items' => $this->items,
             'to_excel' => $this->to_excel,
             'status' => $this->status,
             'shop_name' => $this->shop_name,
@@ -158,16 +163,29 @@ class Export extends \admin\components\ActiveRecord {
 
     private function listItems() {
         $query = \admin\modules\catalog\models\Item::find()->with(['category'])->orderBy(['brand_id' => SORT_ASC, 'name' => SORT_ASC]);
+
+        $flag = false;
+
         if ($this->status != '') {
             $query->andFilterWhere(['=', 'status', (int) $this->status]);
         }
 
         if (!empty($this->categories)) {
             $query->andFilterWhere(['in', 'category_id', (array) $this->categories]);
+            $flag = true;
         }
 
         if (!empty($this->brands)) {
             $query->andFilterWhere(['in', 'brand_id', (array) $this->brands]);
+            $flag = true;
+        }
+
+        if (!empty($this->items)) {
+            if ($flag == true) {
+                $query->orFilterWhere(['in', 'id', (array) $this->items]);
+            } else {
+                $query->andFilterWhere(['in', 'id', (array) $this->items]);
+            }
         }
 
         $items = $query->all();
@@ -185,15 +203,15 @@ class Export extends \admin\components\ActiveRecord {
     }
 
     public function saveToYmlFile() {
-        
+
         $categories = $this->listCategories();
         $items = $this->listItems();
-        
+
         $file_tmp = Yii::getAlias('@webroot') . '/exports_yml/yml_' . $this->shop_name . '_tmp.xml';
         $file = Yii::getAlias('@webroot') . '/exports_yml/yml_' . $this->shop_name . '.xml';
-        
+
         FileHelper::createDirectory(Yii::getAlias('@webroot') . '/exports_yml', 0777);
-        
+
         file_put_contents($file_tmp, Yii::$app->controller->renderPartial(
                         '@admin/modules/yml/views/export/yml.php', [
                     'xmlHeader' => '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL . '<!DOCTYPE yml_catalog SYSTEM "shops.dtd">' . PHP_EOL,
@@ -232,6 +250,7 @@ class Export extends \admin\components\ActiveRecord {
             'asAttachment' => $this->asAttachment
         ]);
 
-        return $savePath .'/'. $fileName;
+        return $savePath . '/' . $fileName;
     }
+
 }

@@ -17,9 +17,11 @@ class FileObject extends \admin\components\ApiObject
     }
 
     public function getFile(){
-        return Url::to(['/admin/file/download', 'id' => $this->id]);
+        return Url::to(['/download', 'slug' => $this->slug]);
     }
-
+    public function getFilePath(){
+        return Yii::getAlias('@webroot'). DIRECTORY_SEPARATOR . $this->model->file;
+    }
     public function getLink(){
         return Html::a($this->title, $this->file, ['target' => '_blank']);
     }
@@ -36,6 +38,11 @@ class FileObject extends \admin\components\ApiObject
         return Yii::$app->formatter->asDatetime($this->time, 'medium');
     }
 
+    public function updateCounters()
+    {
+        $this->model->updateCounters(['downloads' => 1]);        
+    }  
+    
     public function  getEditLink(){
         return Url::to(['/admin/file/a/edit', 'id' => $this->id]);
     }

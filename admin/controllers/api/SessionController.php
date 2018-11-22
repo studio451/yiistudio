@@ -7,7 +7,7 @@ use Yii;
 /**
  * Session controller
  */
-class SessionController extends \yii\web\Controller {
+class SessionController extends \admin\components\APIController {
 
     public function actionUpdateJson() {
         $key = Yii::$app->request->post('key');

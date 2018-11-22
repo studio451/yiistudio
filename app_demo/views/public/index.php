@@ -125,7 +125,7 @@ $this->params['keywords'] = $page->seo('keywords');
             <div class="col-md-10">
                 <div class="row mb-15">
                     <div class="col-md-12">
-                        <div class="sidebar-header sidebar-header-lg"><a href="<?= Url::to(['/catalog', 'slug' => 'smartfony_apple']) ?>"><?= Yii::t('app', 'Категория из каталога') ?></a></div>
+                        <div class="sidebar-header sidebar-header-lg"><a href="<?= Url::to(['/catalog', 'slug' => 'smartfony_apple']) ?>"><?= Yii::t('app', 'Apple iPhone') ?></a></div>
                         <div class="row"> 
                             <?
                             $counter = 0;

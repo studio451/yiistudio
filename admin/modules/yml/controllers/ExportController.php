@@ -9,6 +9,8 @@ use admin\components\Controller;
 use admin\modules\yml\models\Export;
 use admin\modules\yml\helpers\WebConsole;
 use admin\models\Setting;
+use admin\modules\catalog\models\Item;
+use yii\helpers\Json;
 
 class ExportController extends Controller {
 
@@ -106,6 +108,22 @@ class ExportController extends Controller {
         $model->asAttachment = true;
 
         $model->saveToExcelFile();
+    }
+
+    public function actionItemsJson() {
+
+        $category_id = Yii::$app->request->post('category_id');
+        $brand_id =  Yii::$app->request->post('brand_id');
+
+
+        $items = Item::find()->select(['id', 'name', 'article'])->where(['and', ['category_id' => $category_id],['brand_id' => $brand_id]])->asArray()->all();
+
+
+        echo Json::encode([   
+                'status' => 'success',
+                'items' => $items
+            ]);
+        
     }
 
 }

@@ -71,7 +71,7 @@ class Shop extends \admin\modules\yml\models\Import {
         // Закупочная цена
         $item->base_price = (int) \admin\helpers\Math::round($offer->price_opt / 100 * 85);
         // Цена
-        $item->price = (int) \admin\helpers\Math::round($offer->price);
+        $item->price = (int) \admin\helpers\Math::round($offer->price / 100 * $this->mult);
         // Активность   
         $item->status = 1;
         // Описание

@@ -25,18 +25,25 @@ $photoTemplate = '<tr data-id="{{id}}"><td>{{id}}</td>\
     </td>\
     <td>\
         <div role="group">\
-            <a href="' . Url::to(['/admin/photos/up/{{id}}'] + $linkParams) . '" class="move-up" title="' . Yii::t('admin', 'Переместить вверх') . '"><span class="fa fa-arrow-up"></span></a>&nbsp;
-            <a href="' . Url::to(['/admin/photos/down/{{id}}'] + $linkParams) . '" class="move-down" title="' . Yii::t('admin', 'Переместить вниз') . '"><span class="fa fa-arrow-down"></span></a>&nbsp;&nbsp;
-            <a href="' . Url::to(['/admin/photos/image/{{id}}'] + $linkParams) . '" class="change-image-button" title="' . Yii::t('admin', 'Изменить фото') . '"><span class="fa fa-image"></span></a>&nbsp;&nbsp;
-            <a href="' . Url::to(['/admin/photos/delete/{{id}}'] + $linkParams) . '" class="delete-photo" title="' . Yii::t('admin', 'Удалить фото') . '"><span class="fa fa-times"></span></a>
+            <a href="' . Url::to(['/admin/photos/up/{{id}}'] + $linkParams) . '" class="move-up" title="' . Yii::t('admin', 'Переместить вверх') . '"><span class="fa fa-arrow-up"></span></a>&nbsp;&nbsp;\
+            <a href="' . Url::to(['/admin/photos/down/{{id}}'] + $linkParams) . '" class="move-down" title="' . Yii::t('admin', 'Переместить вниз') . '"><span class="fa fa-arrow-down"></span></a>&nbsp;&nbsp;\
+            <a href="' . Url::to(['/admin/photos/image/{{id}}'] + $linkParams) . '" class="change-image-button" title="' . Yii::t('admin', 'Изменить фото') . '"><span class="fa fa-image"></span></a>&nbsp;&nbsp;\
+            <a href="' . Url::to(['/admin/photos/delete/{{id}}'] + $linkParams) . '" class="delete-photo" title="' . Yii::t('admin', 'Удалить фото') . '"><span class="fa fa-times"></span></a>\
             <input type="file" name="Photo[image]" class="change-image-input hidden">\
         </div>\
     </td>\
 </tr>';
-$this->registerJs("
-var photoTemplate = '{$photoTemplate}';
-", \yii\web\View::POS_HEAD);
+//$this->registerJs("var photoTemplate = '".$photoTemplate."';", \yii\web\View::POS_HEAD);
+?>
+<script>
+    var photoTemplate = '<?=$photoTemplate?>';
+</script>
+<?
+
+
+
 $photoTemplate = str_replace('>\\', '>', $photoTemplate);
+$photoTemplate = str_replace('&nbsp;\\', '&nbsp;', $photoTemplate);
 ?>
 
 

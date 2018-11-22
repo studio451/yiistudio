@@ -13,7 +13,7 @@ $appAsset = Yii::$app->assetManager->getBundle('admin\assets\AdminAsset');
 <div class="login-box">    
     <div class="login-box-body text-center">
         <div class="logo">
-            <a href="https://studio451.ru" target="_blank" title="https://studio451.ru">
+            <a href="https://yiistudio.ru" target="_blank" title="https://yiistudio.ru">
                 <img style="margin: auto" src="<?= $appAsset->baseUrl ?>/img/logo.png" class="img-responsive" alt="<?= \admin\AdminModule::NAME ?>">                    
             </a>
         </div> 

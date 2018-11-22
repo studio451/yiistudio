@@ -1,13 +1,19 @@
 <?
 
 use admin\widgets\Sort;
+use admin\widgets\PageSize;
+use admin\assets\ImageSwapAsset;
+
+$this->registerAssetBundle(ImageSwapAsset::className());
 ?>
 
 <div class="row">
-    <div class="col-sm-5 col-md-6 mb-10">               
-        <?= Sort::widget(['sort' => $sort, 'attributes' => ['price', 'title', 'time'], 'title' => Yii::t('admin', 'Сортировать по') . ':']) ?>
+    <div class="col-sm-7 col-md-7 mb-10">               
+        <?= Sort::widget(['sort' => $sort, 'attributes' => ['price', 'title', 'time'], 'title' => Yii::t('admin', 'Сортировать по') . ':']) ?>  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <?= PageSize::widget(['pagination' => $pagination, 'attributes' => ['36', '72', '144'], 'title' => Yii::t('admin', 'Показывать по') . ':']) ?>
     </div>
-    <div class="col-sm-7 col-md-6 mb-10 text-right text-left-sm">
+    <div class="col-sm-5 col-md-5 mb-10 text-right text-left-sm">
     <?=
     $category->groups_pages(
             [

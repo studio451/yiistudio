@@ -39,21 +39,22 @@ class Item extends \admin\components\ActiveRecord {
 
     public function rules() {
         return [
-            ['price', 'number'],
-            ['base_price', 'number'],
-            [['brand_id', 'name', 'category_id'], 'required'],
-            [['article','type'], 'safe'],
-            [['article','type'], 'trim'],
-            ['article', 'string', 'max' => 128],
-            ['discount', 'integer', 'max' => 99],
-            [['gift','new'], 'integer'],
-            [['status', 'brand_id', 'category_id', 'available', 'time'], 'integer'],
-            ['time', 'default', 'value' => time()],
-            ['slug', 'match', 'pattern' => self::$SLUG_PATTERN, 'message' => Yii::t('admin', 'Код может содержать символы 0-9, a-z и "-" (не более: 128).')],
-            ['slug', 'default', 'value' => null],
-            ['status', 'default', 'value' => self::STATUS_ON],
-            ['description', 'trim'],
-            ['tagNames', 'safe'],
+                ['price', 'number'],
+                ['base_price', 'number'],
+                [['brand_id', 'name', 'category_id'], 'required'],
+                [['article', 'type'], 'safe'],
+                [['article', 'type'], 'trim'],
+                ['article', 'string', 'max' => 128],
+                ['discount', 'integer', 'max' => 99],
+                [['gift', 'new'], 'integer'],
+                [['status', 'brand_id', 'category_id', 'available', 'time'], 'integer'],
+                ['time', 'default', 'value' => time()],
+                ['slug', 'match', 'pattern' => self::$SLUG_PATTERN, 'message' => Yii::t('admin', 'Код может содержать символы 0-9, a-z и "-" (не более: 128).')],
+                ['slug', 'default', 'value' => null],
+                ['status', 'default', 'value' => self::STATUS_ON],
+                ['description', 'trim'],
+                ['tagNames', 'safe'],
+                ['external_manual', 'number'],
         ];
     }
 
@@ -66,6 +67,7 @@ class Item extends \admin\components\ActiveRecord {
             'article' => Yii::t('admin', 'Артикул'),
             'name' => Yii::t('admin', 'Модель'),
             'image' => Yii::t('admin', 'Изобр.'),
+            'image_alt' => Yii::t('admin', 'Алтернативное изобр.'),
             'status' => Yii::t('admin', 'Статус'),
             'description' => Yii::t('admin', 'Описание'),
             'available' => Yii::t('admin/catalog', 'Доступно'),
@@ -77,22 +79,21 @@ class Item extends \admin\components\ActiveRecord {
             'time' => Yii::t('admin', 'Дата'),
             'slug' => Yii::t('admin', 'Код'),
             'tagNames' => Yii::t('admin', 'Теги'),
+            'external_manual' => Yii::t('admin', 'Позиция управляется вручную'),
         ];
     }
 
     public function beforeValidate() {
-        
+
         if (!($category = Category::findOne($this->category_id))) {
             throw new Exception(Yii::t('admin/catalog', "Не найдена категория элемента каталога!"));
         }
 
         $this->type = $category->getFieldOptions('type');
 
-        if(Yii::$app->getModule('admin')->activeModules['catalog']->settings['generateComplexTitle'])
-        {
+        if (Yii::$app->getModule('admin')->activeModules['catalog']->settings['generateComplexTitle']) {
             $this->title = $this->type . ' ' . $this->brand->title . ' ' . $this->name . ' ' . $this->article;
-        }else
-        {
+        } else {
             $this->title = $this->name;
         }
         return parent::beforeValidate();
@@ -143,13 +144,18 @@ class Item extends \admin\components\ActiveRecord {
                 }
                 $this->group_id = $group->primaryKey;
             }
-            
-            $photo = Photo::find()->where(['class' => Item::className(), 'item_id' => $this->id])->sort()->one();
-            if ($photo) {
-                $this->image = $photo->image;
-            }else
-            {
+
+            $photos = Photo::find()->where(['class' => Item::className(), 'item_id' => $this->id])->sort()->all();
+            if (count($photos) > 0) {
+                if ($photos[0]) {
+                    $this->image = $photos[0]->image;
+                }
+                if ($photos[1]) {
+                    $this->image_alt = $photos[1]->image;
+                }
+            } else {
                 $this->image = null;
+                $this->image_alt = null;
             }
 
             return true;
@@ -250,4 +256,23 @@ class Item extends \admin\components\ActiveRecord {
     public function getBrandTitle() {
         return $this->brand->title;
     }
+
+    public function setNewFlag() {
+        if ($this->new) {
+            $this->new = 0;
+        } else {
+            $this->new = 1;
+        }
+        $this->save();
+    }
+    
+    public function setGiftFlag() {
+        if ($this->gift) {
+            $this->gift = 0;
+        } else {
+            $this->gift = 1;
+        }
+        $this->save();
+    }
+
 }

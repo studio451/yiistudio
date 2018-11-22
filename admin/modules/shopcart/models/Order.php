@@ -200,7 +200,7 @@ class Order extends \admin\components\ActiveRecordData {
                                     $this->email, str_replace('##order_id##', $this->id, $settings['subjectNotifyUser']), $settings['templateNotifyUser'], [
                                 'order' => $this,
                                 'link' => Url::to([$settings['frontendShopcartOrderRoute'], 'id' => $this->primaryKey, 'token' => $this->access_token], true),
-                                    ], ['replyToAdminEmail' => true]
+                                    ]
                     );
                 }
             }

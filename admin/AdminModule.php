@@ -1,4 +1,6 @@
 <?
+//Yii Studio 
+//https://yiistudio.ru
 
 namespace admin;
 
@@ -11,9 +13,9 @@ use admin\behaviors\AccessBehavior;
 
 class AdminModule extends \yii\base\Module implements BootstrapInterface {
 
-    const VERSION = 0.91;
-    const NAME = 'Studio451 CMS';
-    const INSTALLED = true;//ВНИМАНИЕ! После установки измените переменную в значение "true"    
+    const VERSION = 0.925;
+    const NAME = 'Yii Studio';
+ 
     
     public $settings;
     public $activeModules;    
@@ -21,7 +23,7 @@ class AdminModule extends \yii\base\Module implements BootstrapInterface {
 
     public function behaviors() {
 
-        if (\admin\AdminModule::INSTALLED) {
+        if (INSTALLED) {
             return [
                 'AccessBehavior' => [
                     'class' => AccessBehavior::className(),
@@ -56,7 +58,7 @@ class AdminModule extends \yii\base\Module implements BootstrapInterface {
         if (Yii::$app->cache === null) {
             throw new \yii\web\ServerErrorHttpException('Необходимо настроить компонент кэширования');
         }
-        if (\admin\AdminModule::INSTALLED) {
+        if (INSTALLED) {
             $this->activeModules = Module::findAllActive();
 
             $modules = [];
@@ -77,7 +79,7 @@ class AdminModule extends \yii\base\Module implements BootstrapInterface {
     }
 
     public function bootstrap($app) {
-        if (\admin\AdminModule::INSTALLED) {
+        if (INSTALLED) {
             if (!$app->user->isGuest && strpos($app->request->pathInfo, 'admin') === false) {
                 if (Yii::$app->user->can('admin')) {
                     $app->on(Application::EVENT_BEFORE_REQUEST, function () use ($app) {
@@ -94,5 +96,29 @@ class AdminModule extends \yii\base\Module implements BootstrapInterface {
     public function renderToolbar() {
         $view = Yii::$app->getView();
         echo $view->render('@admin/views/layouts/toolbar.php');
+    }
+    
+    public static function getDsnAttribute($name, $dsn)
+    {
+        if (preg_match('/' . $name . '=([^;]*)/', $dsn, $match)) {
+            return $match[1];
+        } else {
+            return null;
+        }
+    }
+    public static  function checkDbConnection() {
+        try {
+            Yii::$app->db->open();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+    public static  function checkInstalled() {
+        try {
+            return Yii::$app->db->createCommand("SHOW TABLES LIKE 'admin_%'")->query()->count() > 0 ? true : false;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }

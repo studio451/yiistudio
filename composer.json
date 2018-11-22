@@ -1,16 +1,13 @@
 {
-    "name": "yiisoft/yii2-app-advanced",
-    "description": "Yii 2 Advanced Project Template",
-    "keywords": ["yii2", "framework", "advanced", "project template"],
-    "homepage": "http://www.yiiframework.com/",
+    "name": "studio451/yiistudio",
+    "description": "Yii Studio CMS based on php framework Yii2 and EasyiiCMS (shop, blog and any other your project)",
+    "keywords": ["yii2", "cms", "shop"],
+    "homepage": "https://yiistudio.ru",
     "type": "project",
-    "license": "BSD-3-Clause",
+    "license": "GNU GPL License",
     "support": {
-        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
-        "forum": "http://www.yiiframework.com/forum/",
-        "wiki": "http://www.yiiframework.com/wiki/",
-        "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiisoft/yii2"
+        "wiki": "https://github.com/studio451/yiistudio/wiki",
+        "source": "https://github.com/studio451/yiistudio"
     },
     "minimum-stability": "stable",
     "require": {
@@ -20,7 +17,6 @@
         "yiisoft/yii2-swiftmailer": "^2.0.0",
         "yiisoft/yii2-sphinx": "^2.0.0",
         "yiisoft/yii2-httpclient": "^2.0.3",
-
         "2amigos/yii2-selectize-widget": "^1.0",
         "nnnick/chartjs": "^2.4.0",
         "kartik-v/yii2-krajee-base": "^1.8.7",
@@ -31,12 +27,21 @@
         "kartik-v/yii2-sortable": "^1.2.0",
         "kartik-v/yii2-sortable-input": "^1.1.0",
         "kartik-v/yii2-widget-timepicker": "^1.0.1",
-
         "fortawesome/font-awesome": "^4.7.0",
         "creocoder/yii2-nested-sets": "^0.9.0",
         "phpoffice/phpexcel": "^1.8.1",
         "cwspear/bootstrap-hover-dropdown": "^2.2.1",
-        "paulzi/yii2-adjacency-list": "^2.0"
+        "paulzi/yii2-adjacency-list": "^2.0", 
+        "bower-asset/slick-carousel": "^1.6.0",
+        "bower-asset/animate.css": "^3.5.1",
+        "bower-asset/jquery-animateNumber": "^0.0.14",
+        "bower-asset/fullcalendar": "^3.1",
+        "bower-asset/jquery.splitter": "^0.14",
+        "bower-asset/spritely": "^0.6.8",
+        "bower-asset/moment": "^2.0",
+        "bower-asset/bootstrap-datepicker": "^1.0",
+        "bower-asset/eonasdan-bootstrap-datetimepicker": "^4.17.0",
+        "bower-asset/scrollup": "^2.4.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "^2.0.0",

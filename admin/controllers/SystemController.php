@@ -133,6 +133,11 @@ class SystemController extends \admin\components\Controller {
         $result = \admin\modules\catalog\helpers\WebConsole::catalogResaveItems();
         return $this->formatResponse($result, true, true);
     }     
+    
+    public function actionClearUsersNoOrder() {
+        $result = \admin\modules\shopcart\helpers\WebConsole::catalogClearUsersNoOrder();
+        return $this->formatResponse($result, true, true);
+    }
 
     
     

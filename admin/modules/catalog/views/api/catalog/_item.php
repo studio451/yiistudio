@@ -44,10 +44,17 @@ use yii\widgets\ActiveForm;
                 </div>
             <? } ?>
         </div>
-        <? if ($item->gift) { ?>
+        <? if ($item->new != 0) { ?>
+            <div class="new-sticker">
+                <a href="javascript:void(0);" rel="nofollow" title="<?= Yii::t('admin/sale', 'Новинка!') ?>" class="no-text-decoration с-second">
+                    <i class="fa fa-bookmark fs-20"></i> <?= Yii::t('admin/sale', 'Новинка!') ?>
+                </a>
+            </div>
+        <? } ?>
+        <? if ($item->gift != 0) { ?>
             <div class="gift-sticker">
-                <a href="javascript:void(0);" rel="nofollow" title="<?= Yii::t('admin/sale', 'К этому товару полагается подарок!') ?>" data-url="<?= Url::to(['/sale', 'slug' => $item->gift]) ?>" class="ajaxModalPopup">
-                    <i class="fa fa-gift fs-20 с-second"></i>
+                <a href="javascript:void(0);" rel="nofollow" title="<?= Yii::t('admin/sale', 'К этому товару полагается подарок!') ?>" data-url="<?= Url::to(['/sale', 'slug' => $item->gift]) ?>" class="ajaxModalPopup no-text-decoration с-second">
+                    <i class="fa fa-gift fs-20"></i> <?= Yii::t('admin/sale', 'Подарок!') ?>
                 </a>
             </div>
         <? } ?>

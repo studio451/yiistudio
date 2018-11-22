@@ -230,9 +230,14 @@ class Shopcart extends \admin\components\API {
 
             $user = User::findByUsername(Yii::$app->user->identity->email);
             //Заполняем данные профиля пользователя
-            $user->data['phone'] = $model->phone;
-            $user->data['name'] = $model->name;
-            $user->data['address'] = $address;
+            $data = $user->data;
+            
+            $data['phone'] = $model->phone;
+            $data['name'] = $model->name;
+            $data['address'] = $address;
+            
+            $user->data = $data;    
+            
             $user->save();
 
             //Пользователь авторизован, меняем на его email

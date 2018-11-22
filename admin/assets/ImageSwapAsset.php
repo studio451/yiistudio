@@ -7,13 +7,13 @@ use yii\web\AssetBundle;
 
 class ImageSwapAsset extends AssetBundle
 {
-    public $sourcePath = '@admin/assets/imageSwap';
+    public $sourcePath = '@admin/media/imageSwap';
 
     public $css = [
     ];
 
     public $js = [
-    	'js/imageSwap.js',
+    	'imageSwap.js',
     ];
 
     public $depends = [

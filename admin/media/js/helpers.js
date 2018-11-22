@@ -35,20 +35,20 @@ var Notify = function () {
 $(function () {
 
     window.notify = new Notify();
-   
+
     $(document).on('click', '.ajaxModalPopup', function () {
         var modal_size = 'modal-lg';
-        if($(this).attr('data-modal-size'))
+        if ($(this).attr('data-modal-size'))
         {
             modal_size = $(this).attr('data-modal-size');
         }
-        
+
         var modal_dialog = $('#modal').find('.modal-dialog');
-        
+
         modal_dialog.removeClass('modal-lg');
         modal_dialog.removeClass('modal-sm');
         modal_dialog.addClass(modal_size);
-        
+
         if ($('#modal').data('bs.modal').isShown) {
             $('#modal').find('#modalContent')
                     .load($(this).attr('data-url'));
@@ -168,7 +168,7 @@ function _g_ajax_form_submit(selector, options)
                 {
                     location.reload();
                 }
-                
+
                 if (options.func !== undefined)
                 {
                     options.func(data);

@@ -39,9 +39,16 @@ class ItemController extends Controller {
 
         $filterForm = new FilterForm();
         $filters = [];
+
+        if (Yii::$app->session->has('filters')) {
+            $filters = Yii::$app->session->get('filters');
+        }
+
         if ($filterForm->load(Yii::$app->request->get()) && $filterForm->validate()) {
             $filters = $filterForm->parse($filters);
+            Yii::$app->session->set('filters', $filters);
         }
+
 
         $flat = Category::flat($category->slug);
         $ids[] = $this->id;
@@ -215,7 +222,63 @@ class ItemController extends Controller {
             }
             foreach ($data as $item) {
                 $model = Item::findOne($item);
-                $model->delete();
+                if ($model) {
+                    $model->delete();
+                }
+            }
+
+            echo Json::encode([
+                'status' => 'success'
+            ]);
+        } else {
+            echo Json::encode([
+                'status' => 'error'
+            ]);
+        }
+    }
+    
+    public function actionNewJson() {
+
+        $data = Yii::$app->request->post('data');
+        if (isset($data)) {
+            if (!is_array($data)) {
+                echo Json::encode([
+                    'status' => 'error'
+                ]);
+                return;
+            }
+            foreach ($data as $item) {
+                $model = Item::findOne($item);
+                if ($model) {
+                    $model->setNewFlag();
+                }
+            }
+
+            echo Json::encode([
+                'status' => 'success'
+            ]);
+        } else {
+            echo Json::encode([
+                'status' => 'error'
+            ]);
+        }
+    }
+    
+    public function actionGiftJson() {
+
+        $data = Yii::$app->request->post('data');
+        if (isset($data)) {
+            if (!is_array($data)) {
+                echo Json::encode([
+                    'status' => 'error'
+                ]);
+                return;
+            }
+            foreach ($data as $item) {
+                $model = Item::findOne($item);
+                if ($model) {
+                    $model->setGiftFlag();
+                }
             }
 
             echo Json::encode([

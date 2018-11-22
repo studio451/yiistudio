@@ -127,6 +127,7 @@ $this->render('@admin/modules/catalog/views/api/catalog/_category', [
     'addToCartForm' => $addToCartForm,
     'filterForm' => $filterForm,
     'sort' => $sort,
+    'pagination' => $pagination,
 ])
 ?>
         <? if ($showDescription) { ?>

@@ -35,10 +35,11 @@ class SubscribeController extends \yii\web\Controller {
     public function actionUnsubscribe($email) {
         if ($email && filter_var($email, FILTER_VALIDATE_EMAIL)) {
             Subscriber::deleteAll(['email' => $email]);
-            echo '<h1>' . Yii::t('admin/subscribe', 'Вы успешно отписаны от рассылки!') . '</h1>';
+            Yii::$app->session->setFlash('success', Yii::t('admin/subscribe', 'Вы отписаны от рассылки!'));
         } else {
-            throw new \yii\web\BadRequestHttpException(Yii::t('admin/subscribe', 'E-mail не найден!'));
+            Yii::$app->session->setFlash('error', Yii::t('admin/subscribe', 'E-mail не найден!'));
         }
+        return $this->redirect(['/']);
     }
 
 }

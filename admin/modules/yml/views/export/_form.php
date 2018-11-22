@@ -5,8 +5,12 @@ use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use admin\modules\catalog\models\Brand;
 use admin\modules\catalog\models\Category;
+use admin\modules\catalog\models\Item;
 use admin\modules\yml\YmlModule;
 use yii\web\View;
+use admin\assets\AdminModuleAsset;
+
+AdminModuleAsset::register($this);
 
 $module = $this->context->module->id;
 ?>
@@ -24,32 +28,26 @@ $js[] = "$('#a_YML').on('click', function(){
 $js[] = "$('#a_Excel').on('click', function(){
             $('#export-to_excel').val(1)});";
 $this->registerJs(implode(PHP_EOL, $js), View::POS_READY);
-?>
+?>   
+<?
+$_items = Item::find()->select(['id', 'category_id', 'brand_id'])->where(['in', 'id', (array) $model->items])->asArray()->all();
+?>   
 
 
-<div class='row'>
+
+
+<div class="row mb-30">
     <div class="col-sm-8">
         <?= $form->field($model, 'title') ?>
         <?= $form->field($model, 'class') ?>
-        <div class="row">
-            <div class="col-md-2">
-                <?= $form->field($model, 'status')->dropDownList(['' => Yii::t('admin/yml', '(все)'), '0' => Yii::t('admin', 'не активные'), '1' => Yii::t('admin/yml', 'активные')]) ?>
-            </div>
-            <div class="col-md-2">
-            </div>
-            <div class="col-sm-4">
-                <?= $form->field($model, 'brands')->checkboxList(Brand::listAll('id', 'title'), ['separator' => '<br>']); ?>
-            </div>
-            <div class="col-sm-4">
-                <?= $form->field($model, 'categories')->checkboxList(Category::listAll('id', 'title'), ['separator' => '<br>']); ?>
-            </div>    
-        </div>
+        <?= $form->field($model, 'status')->dropDownList(['' => Yii::t('admin/yml', '(все)'), '0' => Yii::t('admin', 'не активные'), '1' => Yii::t('admin/yml', 'активные')]) ?>
+        <?= $form->field($model, 'count'); ?>        
     </div>
     <div class="col-sm-1">
-        
+
     </div>
     <div class="col-sm-3">
-        <div class="form-group field-esumki-title required">
+        <div class="form-group">
             <label class="control-label">Столбцы в excel</label><br>
             <?
             $count = 0;
@@ -66,13 +64,82 @@ $this->registerJs(implode(PHP_EOL, $js), View::POS_READY);
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-4">
-        <?= $form->field($model, 'count'); ?>
+<div class="row mb-30">
+    <div class="col-sm-12">
+        <small>
+            Укажите бренды, категории или отдельные элементы каталога, которые подлежат выгрузке. При выборе категории и бренда выгружаться будут элементы, которые принадлежат и категории и бренду.
+            <br>
+            Отдельные элементы будут выгружаться, даже если они не пренадлежат бренду или категории. Если бренд или категория не указаны, то будут выгружены все элементы каталога.
+        </small>
     </div>
 </div>
-<br>
-<br>
+<div class="row mb-30">
+    <div class="col-sm-4">
+        <?= $form->field($model, 'brands')->checkboxList(Brand::listAll('id', 'title'), ['separator' => '<br>']); ?>
+    </div>
+    <div class="col-sm-4">
+        <?= $form->field($model, 'categories')->checkboxList(Category::listAll('id', 'title'), ['separator' => '<br>']); ?>
+    </div>
+    <div id="export-catalog" class="col-sm-4">
+        <div class="form-group">
+            <label class="control-label">Отдельные элементы каталога</label><br>
+        </div>
+        <input type="hidden" name="Export[items][]">
+        <?
+        $tree = Category::tree('catalog', true);
+        foreach ($tree->children as $node) {
+            echo $node->title . '<br/>';
+            foreach ($node->children as $node) {
+                echo '&nbsp;&nbsp;&nbsp;' . $node->title . '<br>';
+
+                $subQuery = Item::find()->select('brand_id')->where(['category_id' => $node->id]);
+                $query = Brand::find()->status(Brand::STATUS_ON)->join('INNER JOIN', ['i' => $subQuery], 'i.brand_id = ' . Brand::tableName() . '.id');
+
+                if (!empty($options['where'])) {
+                    $query->andWhere(['is not', 'image', null]);
+                }
+                if (!empty($options['orderBy'])) {
+                    $query->orderBy($options['orderBy']);
+                } else {
+                    $query->orderBy(['title' => SORT_ASC]);
+                }
+                $brands = $query->all();
+                foreach ($brands as $brand) {
+
+                    $str = "";
+                    $expand = "false";
+                    foreach ($_items as $_item) {
+                        if ($_item['category_id'] == $node->id && $_item['brand_id'] == $brand->id) {
+                            $expand = "true";
+                        }
+                    }
+                    if ($expand == "true") {
+                        $str .= '<span>';
+                        $items = Item::find()->select(['id', 'name', 'article'])->where(['and', ['category_id' => $node->id], ['brand_id' => $brand->id]])->asArray()->all();
+                        foreach ($items as $item) {
+                            $checked = "";
+                            foreach ($_items as $_item) {
+                                if ($_item['id'] == $item['id']) {
+                                    $checked = 'checked';
+                                }
+                            }
+                            $str .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input ' . $checked . ' type="checkbox" name="Export[items][]" value="' . $item['id'] . '">' . $item['name'] . ' ' . $item['article'] . '<br>';
+                        }
+                        $str .= '</span>';
+                    } else {
+                        $str .= '<span></span>';
+                    }
+
+
+
+                    echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dotted" data-expand="' . $expand . '" data-category-id="' . $node->id . '" data-brand-id="' . $brand->id . '">' . $brand->title . '<br></span>';
+                    echo $str;
+                }
+            }
+        }
+        ?>
+    </div>
+</div>
 <div class="nav-tabs-custom">
     <ul class="nav nav-tabs">
         <li class="<?= $model->to_excel ? '' : 'active' ?>"><a href="#tab_YML" id="a_YML" data-toggle="tab" aria-expanded="true"><?= Yii::t('admin/yml', 'YML') ?></a></li>

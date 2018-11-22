@@ -24,7 +24,11 @@ $form = ActiveForm::begin([
 <h1 class="mb-20"><?= $model->title ?></h1>
 <? if ($model->external_name) { ?>
     <div class="row mb-20">
-        <div class="col-md-6"><span class="label label-danger"><?= Yii::t('admin/catalog', 'Позиция из внешнего источника') ?>: <?= $model->external_name ?> <?= $model->external_id ?></span> </div>
+        <div class="col-md-6"><span class="label label-warning"><?= Yii::t('admin/catalog', 'Позиция из внешнего источника') ?>: <?= $model->external_name ?> <?= $model->external_id ?></span> </div>
+        <div class="col-md-6 text-right"><?=
+            $form->field($model, 'external_manual')->checkbox();
+            ?>
+        </div>
     </div>
 <? } ?>
 <?
@@ -40,7 +44,7 @@ if ($model->primaryKey) {
                 'data-link' => Url::to(['/admin/catalog/item']),
             ]);
             ?>
-        </div>
+        </div>        
     </div>
     <?
 }
@@ -119,7 +123,8 @@ if ($model->primaryKey) {
     <div class="col-md-3">
         <?= Html::submitButton(Yii::t('admin', 'Сохранить'), ['class' => 'btn btn-primary btn-block']) ?>      
     </div>
-    <div class="col-md-9">
+    <div class="col-md-3">
+        <a href="<?= Url::to(['/admin/' . $module . '/item/delete', 'id' => $model->primaryKey]) ?>" class="btn btn-danger btn-block" title="<?= Yii::t('admin', 'Удалить') ?>"><span class="fa fa-times"></span> <?= Yii::t('admin', 'Удалить') ?></a>
     </div>
 </div>
 <? ActiveForm::end(); ?>

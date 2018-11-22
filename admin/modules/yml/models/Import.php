@@ -34,30 +34,37 @@ class Import extends \admin\components\ActiveRecord {
     public $max_number_of_uploaded_photos = 5;
     //Внешний источник, сброс активности для всех позиций из этого источника
     public $external_name = '';
-
+    //Множитель цены, в процентах
+    public $mult = 100;
+    //Свойство, которое берем в качестве цены из внешнего файла *.yml
+    //(информационное поле, ни на что не влияет)
+    public $yml_price_property = 100;
+    
     public static function tableName() {
         return 'admin_module_yml_import';
     }
 
     public function rules() {
         return [
-            [['title'], 'required'],
-            ['title', 'unique'],
-            [['title', 'external_name'], 'string', 'max' => 256],
-            [['url'], 'required'],
-            ['url', 'string', 'max' => 512],
-            [['class'], 'required'],
-            ['class', 'string', 'max' => 512],
-            ['class', 'checkExists'],
-            ['count', 'integer'],
-            ['count', 'default', 'value' => 0],
-            ['max_number_of_uploaded_photos', 'integer'],
-            ['max_number_of_uploaded_photos', 'default', 'value' => 5],
-            ['percent', 'integer'],
-            ['percent', 'default', 'value' => 100],
-            [['categories', 'asAttachment', 'updateOnly'], 'safe'],
-            [['id', 'title'], 'safe'],
-            [['importFile'], 'file', 'skipOnEmpty' => false, 'extensions' => ['xls', 'xlsx'], 'on' => 'import'],
+                [['title'], 'required'],
+                ['title', 'unique'],
+                [['title', 'external_name'], 'string', 'max' => 256],
+                [['url'], 'required'],
+                ['url', 'string', 'max' => 512],
+                [['class'], 'required'],
+                ['class', 'string', 'max' => 512],
+                ['class', 'checkExists'],
+                ['count', 'integer'],
+                ['count', 'default', 'value' => 0],
+                ['mult', 'integer'],
+                ['mult', 'default', 'value' => 100],
+                ['max_number_of_uploaded_photos', 'integer'],
+                ['max_number_of_uploaded_photos', 'default', 'value' => 5],
+                ['percent', 'integer'],
+                ['percent', 'default', 'value' => 100],
+                [['categories', 'asAttachment', 'updateOnly', 'yml_price_property'], 'safe'],
+                [['id', 'title'], 'safe'],
+                [['importFile'], 'file', 'skipOnEmpty' => false, 'extensions' => ['xls', 'xlsx'], 'on' => 'import'],
         ];
     }
 
@@ -86,6 +93,8 @@ class Import extends \admin\components\ActiveRecord {
             'asAttachment' => Yii::t('admin/yml', 'Загрузить файл .xlsx на локальное устройство'),
             'external_name' => Yii::t('admin/yml', 'Внешний источник, сброс активности для всех позиций из этого источника'),
             'max_number_of_uploaded_photos' => Yii::t('admin/yml', 'Кол-во загружаемых фото (0 - загрузить все)'),
+            'mult' => Yii::t('admin/yml', 'Множитель цены, в процентах'),
+            'yml_price_property' => Yii::t('admin/yml', 'Свойство, которое берем в качестве цены из внешнего файла *.yml (информационное поле, ни на что не влияет)'),
         ];
     }
 
@@ -102,6 +111,8 @@ class Import extends \admin\components\ActiveRecord {
         $this->updateOnly = $data->updateOnly;
         $this->max_number_of_uploaded_photos = $data->max_number_of_uploaded_photos;
         $this->external_name = $data->external_name;
+        $this->mult = $data->mult;
+        $this->yml_price_property = $data->yml_price_property;
         parent::afterFind();
     }
 
@@ -118,6 +129,8 @@ class Import extends \admin\components\ActiveRecord {
             'updateOnly' => $this->updateOnly,
             'max_number_of_uploaded_photos' => $this->max_number_of_uploaded_photos,
             'external_name' => $this->external_name,
+            'mult' => $this->mult,
+            'yml_price_property' => $this->yml_price_property,
         ];
         $this->data = json_encode($data);
 
@@ -199,7 +212,7 @@ class Import extends \admin\components\ActiveRecord {
 
         if ($this->external_name != '') {
             Group::deleteAll(['external_name' => $this->external_name]);
-            Item::updateAll(['status' => Item::STATUS_OFF], ['external_name' => $this->external_name]);
+            Item::updateAll(['status' => Item::STATUS_OFF], ['and', ['external_name' => $this->external_name], ['!=', 'external_manual', 1]]);
         }
 
         $array = Excel::import([
@@ -260,7 +273,7 @@ class Import extends \admin\components\ActiveRecord {
                         }
                     }
 
-                    $item->validate();
+
 
                     $old_item = null;
                     if ($item_id) {
@@ -272,18 +285,40 @@ class Import extends \admin\components\ActiveRecord {
                             $old_item = Item::findOne(['id' => $item_id]);
                         }
                     } else {
-                        $old_item = Item::findOne(['brand_id' =>$item->brand_id, 'category_id' => $item->category_id, 'name' => $item->name, 'article' => $item->article]);                        
+                        $old_item = Item::findOne(['brand_id' => $item->brand_id, 'category_id' => $item->category_id, 'name' => $item->name, 'article' => $item->article]);
                     }
 
                     if ($old_item) {
-                        $old_item->attributes = $item->attributes;
 
+                        $old_gift = $old_item->gift;
+                        $old_new = $old_item->new;
+                        
+                        if ($this->external_name != '' && $old_item->external_manual == 1) {                            
+                            $old_price = $old_item->price;
+                            $old_status = $old_item->status;
+                            
+                            $old_item->attributes = $item->attributes;
+                            
+                            $old_item->price = $old_price;
+                            $old_item->status = $old_status;
+                            
+                            $old_item->external_manual = 1;
+                        } else {
+                            $old_item->attributes = $item->attributes;
+                        }
+
+                        $old_item->gift = $old_gift;
+                        $old_item->new = $old_new;
+                        
                         if (!$old_item->save()) {
                             $error = $row['Наименование'] . ' ' . $row['Бренд'] . ' ' . $row['Модель'] . ' ' . $row['Артикул'] . ' not update';
                         } else {
                             $save_amount++;
                         }
                     } else {
+
+                        $item->validate();
+
                         if (!$item->save()) {
                             $error = $row['Наименование'] . ' ' . $row['Бренд'] . ' ' . $row['Модель'] . ' ' . $row['Артикул'] . ' not saved';
                         } else {

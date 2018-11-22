@@ -9,7 +9,7 @@ use yii\data\Sort;
 
 class CatalogController extends \admin\components\APIController {
 
-    public function actionIndex($slug = 'catalog', $page = 1, $show_all = false) {
+    public function actionIndex($slug = 'catalog', $page = 1, $pageSize = 36) {
 
         $showDescription = true;
         if (!empty(Yii::$app->request->get('page'))) {
@@ -59,6 +59,16 @@ class CatalogController extends \admin\components\APIController {
             'defaultOrder' => $defaultOrder
         ]);
 
+        $pagination = [
+            'defaultPageSize' => 36,
+            'pageSize' => $pageSize,
+            'pageSizeLimit' => [36, 144],
+            'forcePageParam' => false,
+            'pageSizeParam' => 'pageSize',
+            'pageParam' => 'page',
+            'route' => 'catalog/',
+        ];
+
         Yii::$app->session->set('sort', $sort->orders);
 
         $addToCartFormClass = '\\' . APP_NAME . '\models\AddToCartForm';
@@ -68,18 +78,12 @@ class CatalogController extends \admin\components\APIController {
                     'groups' => $category->groups([
                         'sort' => $sort->orders,
                         'filters' => $filters,
-                        'pagination' => [
-                            'defaultPageSize' => 36,
-                            'forcePageParam' => false,
-                            'pageSizeParam' => false,
-                            'pageParam' => 'page',
-                            'route' => 'catalog/',
-                        ],
+                        'pagination' => $pagination,
                     ]),
                     'addToCartForm' => new $addToCartFormClass(),
                     'filterForm' => $filterForm,
                     'sort' => $sort,
-                    'show_all' => $show_all,
+                    'pagination' => $pagination,
                     'showDescription' => $showDescription,
         ]);
     }

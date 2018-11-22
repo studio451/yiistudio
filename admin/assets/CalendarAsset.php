@@ -14,9 +14,9 @@ class CalendarAsset extends AssetBundle {
     public $css = [
         'fullcalendar.min.css',
     ];
-    public $js = [
-        'lib/moment.min.js',
-        'fullcalendar.min.js',        
+    public $js = [        
+        'distr/fullcalendar.min.js',  
+        'distr/gcal.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
@@ -29,10 +29,10 @@ class CalendarAsset extends AssetBundle {
                 
         if(\Yii::$app->language == 'ru-RU')
         {
-            $this->js[] = 'locale/ru.js';
+            $this->js[] = 'distr/locale/ru.js';
         }else
         {
-            $this->js[] = 'locale/en-gb.js';
+            $this->js[] = 'distr/locale/en-gb.js';
         }
         
     }

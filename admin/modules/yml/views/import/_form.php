@@ -49,6 +49,16 @@ $form = ActiveForm::begin([
         </div>
         <div class="row">
             <div class="col-md-4">
+                <?= $form->field($model, 'mult'); ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <?= $form->field($model, 'yml_price_property'); ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
                 <?= $form->field($model, 'count'); ?>
             </div>
         </div>

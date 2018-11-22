@@ -5,7 +5,9 @@ namespace admin\modules\catalog\commands;
 use Yii;
 use yii\console\Controller;
 use admin\modules\catalog\models\Item;
+use admin\modules\catalog\models\Category;
 use admin\modules\catalog\models\Group;
+
 /**
  * Default controller.
  */
@@ -53,7 +55,7 @@ class CatalogController extends Controller {
         $this->stdout(Yii::t('admin', 'Группы элементов пересозданы') . "\n");
         $this->stdout("DONE\n");
     }
-    
+
     public function actionResaveItems() {
 
 
@@ -61,12 +63,12 @@ class CatalogController extends Controller {
 
         $items = Item::find()->all();
         foreach ($items as $item) {
-            if ($item->status == Item::STATUS_ON && $item->available > 0) {
+            if ($item->status == Item::STATUS_ON && $item->available > 0) {              
                 $item->save();
             } else {
                 $item->group_id = NULL;
                 Yii::$app->db->createCommand()->update(Item::tableName(), ['group_id' => $item->group_id], ['id' => $item->id])->execute();
-            }            
+            }
         }
 
         $this->stdout(Yii::t('admin', 'Элементы пересохранены') . "\n");

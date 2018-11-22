@@ -294,12 +294,13 @@ class Comment extends ActiveRecord {
      * @return mixed
      */
     public function getAuthorName() {
-        if ($this->author->hasMethod('getName')) {
-            if ($this->author->getName()) {
-                return $this->author->getName();
+        if ($this->author) {
+            if ($this->author->hasMethod('getName')) {
+                if ($this->author->getName()) {
+                    return $this->author->getName();
+                }
             }
         }
-
         return '';
     }
 

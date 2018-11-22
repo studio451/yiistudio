@@ -150,7 +150,7 @@ class AController extends Controller {
             if (Mail::send(
                             $email, $model->subject, $settings['templateNotifyUser'], [
                         'body' => $model->body,
-                        'link' => Url::to(['/admin/' . $this->module->id . '/send/unsubscribe', 'email' => $email], true),
+                        'link' => Url::to(['/subscribe/unsubscribe', 'email' => $email], true),
                             ]
                     )) {
                 $model->sent++;

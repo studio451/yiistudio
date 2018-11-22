@@ -3,11 +3,12 @@
 namespace admin\modules\catalog\api;
 
 use Yii;
+use yii\helpers\Url;
 use admin\components\API;
+use admin\helpers\Image;
 use admin\models\Photo;
 use admin\modules\catalog\models\Item;
 use admin\modules\catalog\models\Category;
-use yii\helpers\Url;
 
 class ItemObject extends \admin\components\ApiObject {
 
@@ -23,6 +24,7 @@ class ItemObject extends \admin\components\ApiObject {
     public $new;
     public $time;
     public $image;
+    public $image_alt;
     private $_photos;
     private $_group;
     private $_category;
@@ -87,5 +89,12 @@ class ItemObject extends \admin\components\ApiObject {
     
     public function getEditLink() {
         return Url::to(['/admin/catalog/item/edit', 'id' => $this->model->primaryKey]);
+    }
+    
+    public function thumbAlt($width = null, $height = null, $crop = false) {
+        if ($this->image_alt && ($width || $height)) {
+            return Image::thumb($this->image_alt, $width, $height, $crop);
+        }
+        return 'none';
     }
 }

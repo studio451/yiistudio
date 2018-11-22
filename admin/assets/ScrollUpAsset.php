@@ -7,13 +7,10 @@ use yii\web\AssetBundle;
 
 class ScrollUpAsset extends AssetBundle
 {
-    public $sourcePath = '@admin/assets/scrollUp';
-
-    public $css = [
-    ];
+    public $sourcePath = '@vendor/bower/scrollup';
 
     public $js = [
-    	'js/jquery.scrollUp.js',
+    	'dist/jquery.scrollUp.js',
     ];
 
     public $depends = [

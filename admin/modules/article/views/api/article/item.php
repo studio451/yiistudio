@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = $item->model->title;
     <? SlickLightbox::end(); ?>
     <br/>
     <? endif; ?>
+    <br>
 <p>
     <? foreach ($item->tags as $tag) : ?>
         <a rel="nofollow" href="<?= Url::to(['/article', 'slug' => $item->category->slug, 'tag' => $tag]) ?>" class="label label-info"><?= $tag ?></a>

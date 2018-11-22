@@ -18,12 +18,8 @@ class Setting extends \admin\components\ActiveRecord {
     public static function all() {
         return
                     [
-                        ['name' => 'recaptcha_key', 'value' => '', 'title' => Yii::t('admin/install', 'Код ReCaptcha Google')],
-                        ['name' => 'auth_time', 'value' => 604800, 'title' => Yii::t('admin/install', 'Время авторизации')],
-                        ['name' => 'contact_email', 'value' => '', 'title' => Yii::t('admin/install', 'E-mail, с которого рассылаются письма')],
                         ['name' => 'admin_email', 'value' => '', 'title' => Yii::t('admin/install', 'E-mail администратора')],
-                        ['name' => 'recaptcha_secret', 'value' => '', 'title' => Yii::t('admin/install', 'Секретный ключ ReCaptcha Google')],
-                        ['name' => 'toolbar_position', 'value' => 'top', 'title' => Yii::t('admin/install', 'Позиция панели инструментов') . ' ("top" or "bottom")'],
+                        ['name' => 'contact_email', 'value' => '', 'title' => Yii::t('admin/install', 'E-mail, с которого рассылаются письма')], 
                         ['name' => 'contact_url', 'value' => '', 'title' => Yii::t('admin/install', 'URL сайта')],
                         ['name' => 'contact_name', 'value' => '', 'title' => Yii::t('admin/install', 'Название сайта')],
                         ['name' => 'contact_addressLocality', 'value' => '', 'title' => Yii::t('admin/install', 'Населенный пункт')],
@@ -33,15 +29,20 @@ class Setting extends \admin\components\ActiveRecord {
                         ['name' => 'contact_telephone', 'value' => '', 'title' => Yii::t('admin/install', 'Контактный телефон')],
                         ['name' => 'contact_messenger', 'value' => '', 'title' => Yii::t('admin/install', 'Мессенджер')],
                         ['name' => 'contact_skype', 'value' => '', 'title' => Yii::t('admin/install', 'Skype')],
+                        ['name' => 'recaptcha_key', 'value' => '', 'title' => Yii::t('admin/install', 'Код ReCaptcha Google')],
+                        ['name' => 'recaptcha_secret', 'value' => '', 'title' => Yii::t('admin/install', 'Секретный ключ ReCaptcha Google')],
+                        ['name' => 'auth_time', 'value' => 2592000, 'title' => Yii::t('admin/install', 'Время авторизации')],                                                               
+                        ['name' => 'toolbar_position', 'value' => 'top', 'title' => Yii::t('admin/install', 'Позиция панели инструментов') . ' ("top" or "bottom")'],                        
                         ['name' => 'subjectNotifyUserPasswordResetToken', 'value' => Yii::t('admin/install', 'Сброс пароля для ') . '', 'title' => Yii::t('admin/install', 'Тема письма Сброс пароля')],
                         ['name' => 'templateNotifyUserPasswordResetToken', 'value' => '@admin/mail/ru/password_reset_token', 'title' => Yii::t('admin/install', 'Шаблон письма Сброс пароля')],
-                        ['name' => 'generatePasswordRegistration', 'value' => 0, 'title' => Yii::t('admin/install', 'Генерировать пароль при регистрации')],
-                        ['name' => 'subjectNotifyUserRegistration', 'value' => Yii::t('admin/install', 'Регистрация на сайте '), 'title' => Yii::t('admin/install', 'Тема письма Регистрация')], ['name' => 'templateNotifyUserRegistration', 'value' => '@admin/mail/ru/registration', 'title' => Yii::t('admin/install', 'Шаблон письма Регистрация')],
                         ['name' => 'replyToAdminEmail', 'value' => true, 'title' => Yii::t('admin/install', 'Отправлять копии писем на email администратора')],
                         ['name' => 'counter_yandexMetrikaId', 'value' => 0, 'title' => Yii::t('admin/install', 'Идентификатор счетчика Yandex.Metrika')],
                         ['name' => 'counter_googleAnalyticsId', 'value' => 0, 'title' => Yii::t('admin/install', 'Идентификатор счетчика Google Analytics')],
                         ['name' => 'path_dumps', 'value' => Yii::getAlias('@app/dumps'), 'title' => Yii::t('admin/install', 'Путь к дампам')],
-                        ['name' => 'viewFileRegistration', 'value' => '@admin/views/api/user/registration', 'title' => Yii::t('admin/install', 'View-файл регистрации')]
+                        ['name' => 'viewFileRegistration', 'value' => '@admin/views/api/user/registration', 'title' => Yii::t('admin/install', 'View-файл регистрации')],
+                        ['name' => 'enableCaptchaRegistration', 'value' => 0, 'title' => Yii::t('admin/install', 'Запрашивать reCapcha при регистрации')],
+                        ['name' => 'generatePasswordRegistration', 'value' => 0, 'title' => Yii::t('admin/install', 'Генерировать пароль при регистрации')],
+                        ['name' => 'subjectNotifyUserRegistration', 'value' => Yii::t('admin/install', 'Регистрация на сайте '), 'title' => Yii::t('admin/install', 'Тема письма Регистрация')], ['name' => 'templateNotifyUserRegistration', 'value' => '@admin/mail/ru/registration', 'title' => Yii::t('admin/install', 'Шаблон письма Регистрация')],
         ];
     }
 

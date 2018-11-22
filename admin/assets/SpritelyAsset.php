@@ -6,10 +6,10 @@ use yii\web\AssetBundle;
 
 class SpritelyAsset extends AssetBundle {
 
-    public $sourcePath = '@vendor/bower/jquery.spritely';   
+    public $sourcePath = '@vendor/bower/spritely';   
 
     public $js = [
-        'jquery.spritely-0.6.8.js',
+        'src/jquery.spritely.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

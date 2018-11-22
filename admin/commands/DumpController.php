@@ -56,12 +56,12 @@ class DumpController extends Controller {
         $model = new Restore();
 
         $dump_id = $this->dumpId;
+        $model->initData = $this->initData;
+        $model->demoData = $this->demoData;
+        $model->restoreScript = $this->restoreScript;
 
         $dumpName = basename(ArrayHelper::getValue($this->getFileList(), $dump_id));
-        $dumpFile = $this->path . $dumpName;
-
-        $model->initData = $this->initData;        
-        $model->demoData = $this->demoData;
+        $dumpFile = $this->path . $dumpName;       
 
         if ($this->confirm(' ')) {
             $this->stdout("Старт восстановления из бэкапа...\n", 94);
@@ -78,14 +78,21 @@ class DumpController extends Controller {
                 if ($model->demoData) {
                     //При необходимости поместить скрипт с демо-данными
                 }
-                if ($this->restoreScript) {
+                if ($model->restoreScript) {
                     //Выполняет скрипт @app/dumps/restore.php
                     
                     $restoreScript = $this->path . 'restore.php';
                     if(file_exists($restoreScript))
-                    {
+                    { 
+                        $this->stdout("Скрипт ". $restoreScript." запущен...\n", 94);
                         require_once $restoreScript;
+                        $this->stdout("Скрипт ". $restoreScript." выполнен!\n", 94);
+                    }else
+                    {
+                        $this->stdout("Скрипт ". $restoreScript." не найден!\n", 94);
                     }
+                    
+                    
                 }
             }
         }

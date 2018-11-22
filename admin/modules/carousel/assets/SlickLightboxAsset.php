@@ -10,7 +10,7 @@ use yii\web\AssetBundle;
 
 class SlickLightboxAsset extends AssetBundle
 {
-    public $sourcePath = '@bower/slick-lightbox/dist/';
+    public $sourcePath = '@admin/modules/carousel/media/slickLightbox';
 
     public $css = [
         'slick-lightbox.css',

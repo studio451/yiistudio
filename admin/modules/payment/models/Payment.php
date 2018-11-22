@@ -165,7 +165,7 @@ class Payment extends \admin\components\ActiveRecordData {
                     $order->email, str_replace('##order_id##', $order->id, $settings['subjectNotifyUser']), $settings['templateNotifyUser'], [
                     'order' => $order,
                     'link' => Url::to([$settings['frontendShopcartOrderRoute'], 'id' => $order->primaryKey, 'token' => $order->access_token], true),
-                    ], ['replyToAdminEmail' => true]
+                    ]
         );
     }
 

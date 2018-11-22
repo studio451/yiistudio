@@ -65,6 +65,7 @@ $this->params['breadcrumbs'][] = $brand->title;
             'addToCartForm' => $addToCartForm,
             'filterForm' => $filterForm,
             'sort' => $sort,
+            'pagination' => $pagination,
         ])
         ?>
         <? if ($showDescription) { ?>

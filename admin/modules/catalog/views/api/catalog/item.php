@@ -53,15 +53,14 @@ $settings = Yii::$app->getModule('admin')->activeModules['catalog']->settings;
                         <? } ?>
                         <? Slick::end(); ?>
                     </div>
-                <? } ?>
-                <? if ($item->gift) { ?>
-                    <div class="gift-sticker" style="top:14px;left:45px;">
-                        <a href="javascript:void(0);" rel="nofollow" title="<?= Yii::t('admin/sale', 'К этому товару полагается подарок!') ?>" data-url="<?= Url::to(['/sale', 'slug' => $item->gift]) ?>" class="ajaxModalPopup">
-                            <i class="fa fa-gift fs-20 с-second"></i>
+                <? } ?>              
+                <? if ($item->new != 0) { ?>
+                    <div class="new-sticker" style="top:14px;left:45px;">
+                        <a href="javascript:void(0);" rel="nofollow" title="<?= Yii::t('admin/sale', 'Новинка!') ?>" class="no-text-decoration с-second">
+                            <i class="fa fa-bookmark fs-20"></i> <?= Yii::t('admin/sale', 'Новинка!') ?>
                         </a>
                     </div>
                 <? } ?>
-
             </div>
             <div class="col-md-7">
                 <div class="row mb-10">
@@ -217,9 +216,10 @@ $settings = Yii::$app->getModule('admin')->activeModules['catalog']->settings;
                     </div>
                     <div class="col-md-6 mb-10  text-right">
                         <? if ($item->gift) { ?>
-                            <i class="fa fa-gift fs-20 с-second"></i> <a href="javascript:void(0);" rel="nofollow" title="<?= Yii::t('admin/shopcart', 'К этому товару полагается подарок!') ?>" data-url="<?= Url::to(['/sale', 'slug' => $item->gift]) ?>" class="dotted ajaxModalPopup с-second" style="vertical-align: text-bottom;">
-                                <?= Yii::t('admin/shopcart', 'К этому товару полагается подарок!') ?>
+                            <a href="javascript:void(0);" rel="nofollow" title="<?= Yii::t('admin/shopcart', 'К этому товару полагается подарок!') ?>" data-url="<?= Url::to(['/sale', 'slug' => $item->gift]) ?>" class="ajaxModalPopup с-second dotted" style="vertical-align: text-bottom;">
+                                <i class="fa fa-gift fs-20"></i> <?= Yii::t('admin/shopcart', 'К этому товару полагается подарок!') ?>
                             </a>
+                            <br>
                         <? } ?>
                     </div>
                 </div>                
@@ -276,7 +276,7 @@ if ($settings['enableLastViewed']) {
         <div class="col-md-12">
             <?
             echo admin\modules\catalog\widgets\LastViewed::widget([
-                'currentViewedSlug' => $item->slug, 
+                'currentViewedSlug' => $item->slug,
                 'addToCartForm' => $addToCartForm,
             ]);
             ?>

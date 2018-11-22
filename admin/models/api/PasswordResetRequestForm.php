@@ -20,10 +20,10 @@ class PasswordResetRequestForm extends Model {
      */
     public function rules() {
         return [
-            ['email', 'trim'],
-            ['email', 'required'],
-            ['email', 'email'],
-            ['email', 'exist',
+                ['email', 'trim'],
+                ['email', 'required'],
+                ['email', 'email'],
+                ['email', 'exist',
                 'targetClass' => '\admin\models\User',
                 'filter' => ['status' => User::STATUS_ON],
                 'message' => 'There is no user with such email.'
@@ -32,10 +32,11 @@ class PasswordResetRequestForm extends Model {
     }
 
     public function attributeLabels() {
-        return [            
+        return [
             'email' => Yii::t('admin', 'E-mail'),
         ];
     }
+
     /**
      * Sends an email with a link, for resetting the password.
      *
@@ -60,12 +61,9 @@ class PasswordResetRequestForm extends Model {
         }
 
         return Mail::send(
-                        $this->email,
-                Setting::get('subjectNotifyUserPasswordResetToken'),
-                Setting::get('templateNotifyUserPasswordResetToken'), [
+                    $this->email, Setting::get('subjectNotifyUserPasswordResetToken'), Setting::get('templateNotifyUserPasswordResetToken'), [
                     'user' => $user,
-                        ], ['replyToAdminEmail' => true]
-        );
+        ]);
     }
 
 }

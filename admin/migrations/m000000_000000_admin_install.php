@@ -5,7 +5,7 @@ use admin\models;
 
 class m000000_000000_admin_install extends \yii\db\Migration {
 
-    const VERSION = 0.91;
+    const VERSION = 0.925;
 
     public $engine = 'ENGINE=MyISAM DEFAULT CHARSET=utf8';
 

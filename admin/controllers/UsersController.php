@@ -6,19 +6,51 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 use admin\models\User;
 use admin\helpers\WebConsole;
+use admin\models\users\FilterForm;
+use admin\behaviors\StatusController;
+use admin\behaviors\SortableController;
 
 class UsersController extends \admin\components\Controller {
 
+    public function behaviors() {
+        return [
+            [
+                'class' => SortableController::className(),
+                'model' => User::className(),
+            ],
+            [
+                'class' => StatusController::className(),
+                'model' => User::className()
+            ]
+        ];
+    }
+
     public function actionIndex() {
-        $data = new ActiveDataProvider([
-            'query' => User::find()->desc(),
+
+        $filterForm = new FilterForm();
+        $filters = [];
+        if ($filterForm->load(Yii::$app->request->get()) && $filterForm->validate()) {
+            $filters = $filterForm->parse($filters);
+        }
+
+        $query = User::find()->desc();
+        if (array_key_exists('email', $filters)) {
+            $query->andFilterWhere(['like', 'email', $filters['email']]);
+            unset($filters['email']);
+        }
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => ['pageSize' => 50,]
         ]);
         Yii::$app->user->setReturnUrl(['/admin/users']);
 
         return $this->render('index', [
-                    'data' => $data
+                    'dataProvider' => $dataProvider,
+                    'filterForm' => $filterForm,
         ]);
     }
 
@@ -32,7 +64,7 @@ class UsersController extends \admin\components\Controller {
                 return ActiveForm::validate($model);
             } else {
                 if ($model->save()) {
-                    
+
                     Yii::$app->authManager->revokeAll($model->primaryKey);
                     if (Yii::$app->request->post('roles')) {
                         foreach (Yii::$app->request->post('roles') as $role) {
@@ -40,7 +72,7 @@ class UsersController extends \admin\components\Controller {
                             Yii::$app->authManager->assign($new_role, $model->primaryKey);
                         }
                     }
-                    
+
                     $this->flash('success', Yii::t('admin', 'Пользователь создан'));
                     return $this->redirect(['/admin/users']);
                 } else {
@@ -64,7 +96,7 @@ class UsersController extends \admin\components\Controller {
 
         $userFormClass = '\\' . APP_NAME . '\models\UserForm';
         $userForm = new $userFormClass();
-        
+
         if ($model === null) {
             $this->flash('error', Yii::t('admin', 'Запись не найдена'));
             return $this->redirect(['/admin/users']);
@@ -120,20 +152,19 @@ class UsersController extends \admin\components\Controller {
 
     public function actionRbacInit() {
 
-        $result =  WebConsole::rbacInit(Yii::$app->user->identity->id);;
-
+        $result = WebConsole::rbacInit(Yii::$app->user->identity->id);
         return $this->formatResponse($result, true, true);
     }
-    
+
     public function actionLogin($id) {
         if (($model = User::findOne($id))) {
             Yii::$app->user->login($model, 0);
-             return $this->redirect(['/']);
+            return $this->redirect(['/']);
         } else {
             $this->error = Yii::t('admin', 'Запись не найдена');
         }
     }
-    
+
     public function actionData($id) {
 
         $model = User::findOne($id);
@@ -152,6 +183,41 @@ class UsersController extends \admin\components\Controller {
         }
         $this->flash('error', Yii::t('admin', 'Ошибка при обновлении записи. {0}', $model->formatErrors()));
         return $this->redirect(['/admin/users/a/edit', 'id' => $model->id]);
+    }
+
+    public function actionOn($id) {
+        return $this->changeStatus($id, User::STATUS_ON);
+    }
+
+    public function actionOff($id) {
+        return $this->changeStatus($id, User::STATUS_OFF);
+    }
+
+    public function actionDeleteJson() {
+
+        $data = Yii::$app->request->post('data');
+        if (isset($data)) {
+            if (!is_array($data)) {
+                echo Json::encode([
+                    'status' => 'error'
+                ]);
+                return;
+            }
+            foreach ($data as $item) {
+                $model = User::findOne($item);
+                if ($model) {
+                    $model->delete();
+                }
+            }
+
+            echo Json::encode([
+                'status' => 'success'
+            ]);
+        } else {
+            echo Json::encode([
+                'status' => 'error'
+            ]);
+        }
     }
 
 }

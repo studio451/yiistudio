@@ -8,6 +8,11 @@ class Mail
 {
     public static function send($toEmail, $subject, $template, $data = [], $options = [])
     {
+         if($options['replyToAdminEmail'] === false)
+         {
+             return false;
+         }
+        
         if(!filter_var($toEmail, FILTER_VALIDATE_EMAIL) || !$subject || !$template){
             return false;
         }
@@ -22,7 +27,7 @@ class Mail
             $message->setFrom(Setting::get('contact_email'));
         }
 
-        if(Setting::get('replyToAdminEmail') && $options['replyToAdminEmail']){           
+        if(Setting::get('replyToAdminEmail')){
             $message->setTo(Setting::get('admin_email'));
             $message->send();
             $message->setTo($toEmail);

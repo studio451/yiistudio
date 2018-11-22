@@ -12,10 +12,10 @@ class DatePickerAsset extends AssetBundle {
 
     public $sourcePath = '@vendor/bower/bootstrap-datepicker';
     public $css = [
-        'css/bootstrap-datepicker3.min.css',
+        'distr/css/bootstrap-datepicker3.min.css',
     ];
     public $js = [        
-        'js/bootstrap-datepicker.min.js',        
+        'distr/js/bootstrap-datepicker.min.js',        
     ];
     public $depends = [
         'yii\web\YiiAsset',
@@ -28,7 +28,7 @@ class DatePickerAsset extends AssetBundle {
         
         if(\Yii::$app->language == 'ru-RU')
         {
-            $this->js[] = 'locales/bootstrap-datepicker.ru.min.js';
+            $this->js[] = 'distr/locales/bootstrap-datepicker.ru.min.js';
         }
     }
 

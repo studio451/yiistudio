@@ -7,6 +7,7 @@ use yii\base\Model;
 use admin\models\User;
 use admin\helpers\Mail;
 use admin\models\Setting;
+use admin\validators\ReCaptchaValidator;
 
 /**
  * Registration form
@@ -16,7 +17,7 @@ class RegistrationForm extends Model {
     public $email;
     public $name;
     public $password;
-
+    public $reCaptcha;
     /**
      * @inheritdoc
      */
@@ -30,8 +31,13 @@ class RegistrationForm extends Model {
                 ['name', 'string', 'max' => 255],
                 ['name', 'trim'],
                 ['name', 'required'],
-                ['password', 'required', 'on' => !Setting::get('generatePasswordRegistration')],
+                ['password', 'required', 'when' => function() {
+                    return !Setting::get('generatePasswordRegistration');
+                }],
                 ['password', 'string', 'min' => 8],
+                ['reCaptcha', ReCaptchaValidator::className(), 'when' => function($model) {
+                    return Setting::get('enableCaptchaRegistration');
+                }],
         ];
     }
 
@@ -40,6 +46,7 @@ class RegistrationForm extends Model {
             'email' => Yii::t('admin', 'E-mail'),
             'name' => Yii::t('admin', 'Имя'),
             'password' => Yii::t('admin', 'Пароль'),
+            'reCaptcha' => Yii::t('admin', 'Проверка')
         ];
     }
 
@@ -83,8 +90,7 @@ class RegistrationForm extends Model {
                     'email' => $this->email,
                     'password' => $this->password,
                     'contact_url' => Setting::get('contact_url'),
-                        ], ['replyToAdminEmail' => true]
-        );
+                        ]);
     }
 
 }

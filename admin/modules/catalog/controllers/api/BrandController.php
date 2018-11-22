@@ -9,7 +9,7 @@ use yii\data\Sort;
 
 class BrandController extends \admin\components\APIController {
 
-    public function actionIndex($slug = '') {
+    public function actionIndex($slug = '', $page = 1, $pageSize = 36) {
         if ($slug) {
             $showDescription = true;
             if (!empty(Yii::$app->request->get('page'))) {
@@ -43,6 +43,17 @@ class BrandController extends \admin\components\APIController {
                 'defaultOrder' => $defaultOrder
             ]);
 
+            $pagination = [
+                'defaultPageSize' => 36,
+                'pageSize' => $pageSize,
+                'pageSizeLimit' => [36, 144],
+                'forcePageParam' => false,
+                'pageSizeParam' => 'pageSize',
+                'pageParam' => 'page',
+                'route' => 'brand/',
+            ];
+
+
             Yii::$app->session->set('sort', $sort->orders);
 
             $addToCartFormClass = '\\' . APP_NAME . '\models\AddToCartForm';
@@ -51,17 +62,12 @@ class BrandController extends \admin\components\APIController {
                         'groups' => $brand->groups([
                             'sort' => $sort->orders,
                             'filters' => $filters,
-                            'pagination' => [
-                                'defaultPageSize' => 24,
-                                'forcePageParam' => false,
-                                'pageSizeParam' => false,
-                                'pageParam' => 'page',
-                                'route' => 'brand/',
-                            ],
+                            'pagination' => $pagination,
                         ]),
                         'addToCartForm' => new $addToCartFormClass(),
                         'filterForm' => $filterForm,
                         'sort' => $sort,
+                        'pagination' => $pagination,
                         'showDescription' => $showDescription,
             ]);
         } else {

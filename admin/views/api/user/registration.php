@@ -6,6 +6,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use admin\models\Setting;
+use admin\widgets\ReCaptcha;
 
 $this->title = Yii::t('admin', 'Регистрация');
 $this->params['breadcrumbs'][] = $this->title;
@@ -32,6 +33,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= $form->field($registrationForm, 'password')->passwordInput(['autofocus' => $first]) ?>
                         <?
                     }
+                } elseif ($key == 'reCaptcha') {
+                    if (Setting::get('enableCaptchaRegistration')) {
+                        ?>       
+                        <?= $form->field($registrationForm, 'reCaptcha')->widget(ReCaptcha::className()); ?>
+                        <?
+                    }
                 } else {
                     ?>    
                     <?= $form->field($registrationForm, $key)->textInput(['autofocus' => $first]) ?>
@@ -40,12 +47,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 $first = false;
             }
             ?>
-
-
             <div class="form-group">
-                <?= Html::submitButton(Yii::t('admin','Зарегистрироваться'), ['class' => 'btn btn-primary', 'name' => 'registration-button']) ?>
+            <?= Html::submitButton(Yii::t('admin', 'Зарегистрироваться'), ['class' => 'btn btn-primary', 'name' => 'registration-button']) ?>
             </div>
-            <? ActiveForm::end(); ?>
+                <? ActiveForm::end(); ?>
         </div>
     </div>
 </div>
