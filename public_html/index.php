@@ -3,8 +3,9 @@
 //https://yiistudio.ru
 
 //ВНИМАНИЕ!
-//После установки измените на значение true
-defined('INSTALLED') or define('INSTALLED', true);
+//Для установки измените на false
+//После установки измените на true
+defined('INSTALLED') or define('INSTALLED', false);
 
 //Выбор приложения при многосайтовости
 //задаем переменной APP_NAME название папки с кодом приложения 

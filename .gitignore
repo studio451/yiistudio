@@ -21,7 +21,6 @@ Thumbs.db
 /vendor
 
 # composer itself is not needed
-composer.phar
 composer.lock
 
 # Mac DS_Store Files
@@ -35,10 +34,4 @@ phpunit.phar
 # vagrant runtime
 /.vagrant
 
-/public_html/assets
-/public_html/uploads
 /runtime
-/public_html/exports_excel/
-/public_html/exports_yml/
-/public_html/imports_yml/
-/public_html/sitemap_files/
