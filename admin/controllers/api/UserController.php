@@ -8,7 +8,7 @@ use admin\models\api\PasswordResetRequestForm;
 use admin\models\api\ResetPasswordForm;
 use admin\models\Setting;
 
-class UserController extends \admin\components\APIController {
+class UserController extends \yii\web\Controller {
 
     public $layout = 'public';
     public $enableCsrfValidation = false;
