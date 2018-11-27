@@ -93,3 +93,5 @@ info@yiistudio.ru или info@studio451.ru
 **Если вам не хватает какой-то функциональности или нашли ошибку - [пишите](https://yiistudio.ru/contact)!**
 
 Мы будем благодарны, если при использовании этого проекта в своих работах вы оставите ссылку "[Мы используем Yii Studio](https://yiistudio.ru)".
+
+[![Yii2](https://img.shields.io/badge/Powered_by-Yii_Framework-green.svg?style=flat)](https://www.yiiframework.com/)
