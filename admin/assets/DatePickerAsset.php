@@ -18,6 +18,7 @@ class DatePickerAsset extends AssetBundle {
         'distr/js/bootstrap-datepicker.min.js',        
     ];
     public $depends = [
+        'admin\assets\MomentAsset',
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
         'yii\bootstrap\BootstrapPluginAsset',

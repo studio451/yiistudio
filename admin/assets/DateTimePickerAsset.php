@@ -11,7 +11,8 @@ class DateTimePickerAsset extends \yii\web\AssetBundle
         'build/css/bootstrap-datetimepicker.css',        
     ];
     public $depends = [
-        'yii\web\JqueryAsset',
+        'admin\assets\MomentAsset',
+        'yii\web\JqueryAsset',        
         'yii\bootstrap\BootstrapAsset',
         'yii\bootstrap\BootstrapPluginAsset',
     ];

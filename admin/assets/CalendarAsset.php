@@ -19,6 +19,7 @@ class CalendarAsset extends AssetBundle {
         'distr/gcal.min.js',
     ];
     public $depends = [
+        'admin\assets\MomentAsset',
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
         'yii\bootstrap\BootstrapPluginAsset',
