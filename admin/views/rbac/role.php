@@ -7,7 +7,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
-$this->title = Yii::t('admin/rbac', 'Роли пользователей');
+$this->title = Yii::t('admin', 'Роли пользователей');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="news-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('admin/rbac', 'Добавить роль'), ['role-add'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('admin', 'Добавить роль'), ['role-add'], ['class' => 'btn btn-success']) ?>
     </p>
     <?
     $dataProvider = new ArrayDataProvider([
@@ -37,11 +37,11 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => DataColumn::className(),
                 'attribute' => 'name',
-                'label' => Yii::t('admin/rbac', 'Роль')
+                'label' => Yii::t('admin', 'Роль')
             ],
             [
                 'class' => DataColumn::className(),
-                'label' => Yii::t('admin/rbac', 'Разрешения'),
+                'label' => Yii::t('admin', 'Разрешения'),
                 'format' => ['html'],
                 'value' => function($data) {
             return implode('<br>', array_keys(ArrayHelper::map(Yii::$app->authManager->getPermissionsByRole($data->name), 'name', 'name')));
@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => DataColumn::className(),
                 'attribute' => 'description',
-                'label' => Yii::t('admin/rbac', 'Описание')
+                'label' => Yii::t('admin', 'Описание')
             ],
             ['class' => 'yii\grid\ActionColumn',
                 'template' => '{update} {delete}',

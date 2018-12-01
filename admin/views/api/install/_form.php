@@ -21,8 +21,8 @@ use yii\helpers\Url;
 <br>
 <?= $form->field($model, 'recaptcha_key') ?>
 <?= $form->field($model, 'recaptcha_secret') ?>
-<p class="recaptcha-tip"><?= Yii::t('admin/install', 'Подробнее о ReCapcha Google') ?> <a href="https://www.google.com/recaptcha/intro/index.html" target="_blank"> <?= Yii::t('admin/install','здесь') ?></a></p>
+<p class="recaptcha-tip"><?= Yii::t('admin', 'Подробнее о ReCapcha Google') ?> <a href="https://www.google.com/recaptcha/intro/index.html" target="_blank"> <?= Yii::t('admin','здесь') ?></a></p>
 </div>
 <br>
-<?= Html::submitButton(Yii::t('admin/install','Установить'), ['class' => 'btn btn-lg btn-primary btn-block']) ?>
+<?= Html::submitButton(Yii::t('admin','Установить'), ['class' => 'btn btn-lg btn-primary btn-block']) ?>
 <? ActiveForm::end(); ?>

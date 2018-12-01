@@ -56,8 +56,8 @@ $settings = Yii::$app->getModule('admin')->activeModules['catalog']->settings;
                 <? } ?>              
                 <? if ($item->new != 0) { ?>
                     <div class="new-sticker" style="top:14px;left:45px;">
-                        <a href="javascript:void(0);" rel="nofollow" title="<?= Yii::t('admin/sale', 'Новинка!') ?>" class="no-text-decoration с-second">
-                            <i class="fa fa-bookmark fs-20"></i> <?= Yii::t('admin/sale', 'Новинка!') ?>
+                        <a href="javascript:void(0);" rel="nofollow" title="<?= Yii::t('admin/catalog', 'Новинка!') ?>" class="no-text-decoration с-second">
+                            <i class="fa fa-bookmark fs-20"></i> <?= Yii::t('admin/catalog', 'Новинка!') ?>
                         </a>
                     </div>
                 <? } ?>
@@ -128,7 +128,7 @@ $settings = Yii::$app->getModule('admin')->activeModules['catalog']->settings;
                                 <?= Html::submitButton('<i class="fa fa-shopping-cart"></i> Добавить в корзину', ['class' => 'btn btn-primary btn-block']) ?>    
                             </div>
                             <div class="col-md-3 col-sm-3 mb-10 text-right">
-                                <a href="javascript:void(0);" rel="nofollow" title="<?= Yii::t('admin/shopcart', 'Купить в один клик') ?>" data-url="<?= Url::to(['/shopcart/fast', 'id' => $item->id]) ?>" class="dotted ajaxModalPopup"><?= Yii::t('admin/shopcart', 'Купить в один клик') ?></a>
+                                <a href="javascript:void(0);" rel="nofollow" title="<?= Yii::t('admin/catalog', 'Купить в один клик') ?>" data-url="<?= Url::to(['/shopcart/fast', 'id' => $item->id]) ?>" class="dotted ajaxModalPopup"><?= Yii::t('admin/catalog', 'Купить в один клик') ?></a>
                             </div>   
                         <? } else { ?>
                             <div class="col-md-3 col-sm-3 mb-10">
@@ -216,8 +216,8 @@ $settings = Yii::$app->getModule('admin')->activeModules['catalog']->settings;
                     </div>
                     <div class="col-md-6 mb-10  text-right">
                         <? if ($item->gift) { ?>
-                            <a href="javascript:void(0);" rel="nofollow" title="<?= Yii::t('admin/shopcart', 'К этому товару полагается подарок!') ?>" data-url="<?= Url::to(['/sale', 'slug' => $item->gift]) ?>" class="ajaxModalPopup с-second dotted" style="vertical-align: text-bottom;">
-                                <i class="fa fa-gift fs-20"></i> <?= Yii::t('admin/shopcart', 'К этому товару полагается подарок!') ?>
+                            <a href="javascript:void(0);" rel="nofollow" title="<?= Yii::t('admin/catalog', 'К этому товару полагается подарок!') ?>" data-url="<?= Url::to(['/sale', 'slug' => $item->gift]) ?>" class="ajaxModalPopup с-second dotted" style="vertical-align: text-bottom;">
+                                <i class="fa fa-gift fs-20"></i> <?= Yii::t('admin/catalog', 'К этому товару полагается подарок!') ?>
                             </a>
                             <br>
                         <? } ?>

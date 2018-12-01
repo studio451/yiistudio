@@ -4,13 +4,14 @@ $config = [
     'id' => APP_NAME,
     'basePath' => APP_PATH,
     'controllerNamespace' => APP_NAME . '\controllers',
+    'sourceLanguage' => 'ru-RU',
     'language' => 'ru-RU',
-    'aliases' => 
-    [
+    'aliases' =>
+        [
         '@basePath' => BASE_PATH,
         '@app' => APP_PATH,
         '@' . APP_NAME => APP_PATH,
-        '@admin' => ADMIN_PATH,        
+        '@admin' => ADMIN_PATH,
         '@webroot' => BASE_PATH . '/public_html',
     ],
     'modules' => [
@@ -19,7 +20,7 @@ $config = [
         ],
         'gridview' => [
             'class' => '\kartik\grid\Module'
-        ],        
+        ],
         'gii' => 'yii\gii\Module',
         'debug' => 'yii\debug\Module'
     ],
@@ -87,16 +88,20 @@ $config = [
         ],
         'i18n' => [
             'translations' => [
-                'admin/install' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
+                'admin' => [
                     'sourceLanguage' => 'ru-RU',
+                    'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@admin/messages',
                 ],
-                '*' => [
-                    'class' => 'yii\i18n\DbMessageSource',
-                    'sourceMessageTable' => 'admin_translate_source_message',
-                    'messageTable' => 'admin_translate_message',
-                    'enableCaching' => true,
+                'app' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'sourceLanguage' => 'ru-RU',
+                    'basePath' => '@app/messages'
+                ],
+                'yii' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'sourceLanguage' => 'en-US',
+                    'basePath' => '@app/messages'
                 ],
             ],
         ],

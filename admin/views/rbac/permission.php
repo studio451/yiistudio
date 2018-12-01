@@ -5,7 +5,7 @@ use yii\grid\DataColumn;
 use yii\helpers\Url;
 use yii\helpers\Html;
 
-$this->title = Yii::t('admin/rbac', 'Разрешения пользователей');
+$this->title = Yii::t('admin', 'Разрешения пользователей');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="news-index">
@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('admin/rbac', 'Добавить новое правило'), ['permission-add'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('admin', 'Добавить новое правило'), ['permission-add'], ['class' => 'btn btn-success']) ?>
     </p>
 <?
 $dataProvider = new ArrayDataProvider([
@@ -34,12 +34,12 @@ $dataProvider = new ArrayDataProvider([
         [
             'class'     => DataColumn::className(),
             'attribute' => 'name',
-            'label'     => Yii::t('admin/rbac', 'Правило')
+            'label'     => Yii::t('admin', 'Правило')
         ],
         [
             'class'     => DataColumn::className(),
             'attribute' => 'description',
-            'label'     => Yii::t('admin/rbac', 'Описание')
+            'label'     => Yii::t('admin', 'Описание')
         ],
         ['class' => 'yii\grid\ActionColumn',
             'template' => '{update} {delete}',

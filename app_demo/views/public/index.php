@@ -93,7 +93,7 @@ $this->params['keywords'] = $page->seo('keywords');
         </div>
         <div class="row">
             <div class="col-md-2">
-                <h3>Каталог</h3>
+                <h3><?= Yii::t('app', 'Каталог') ?></h3>
                 <div class="row">
                     <div class="col-ss-12 col-xs-6 col-sm-12 col-md-12">
                         <div class="border p-10 pl-20 pr-20 mb-20 bg-first">
@@ -159,4 +159,3 @@ $this->params['keywords'] = $page->seo('keywords');
         </div>
     </div>
 </div>
-

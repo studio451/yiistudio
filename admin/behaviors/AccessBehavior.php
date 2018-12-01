@@ -47,7 +47,7 @@ class AccessBehavior extends AttributeBehavior {
                     Yii::$app->response->redirect($this->redirect_url)->send();
                     exit();
                 } else {
-                    throw new ForbiddenHttpException(Yii::t('admin/rbac', 'У вас недостаточно прав для выполнения данного действия!'));
+                    throw new ForbiddenHttpException(Yii::t('admin', 'У вас недостаточно прав для выполнения данного действия!'));
                 }
             }
         }

@@ -33,8 +33,8 @@ class Sitemap extends \admin\components\ActiveRecord {
 
     public function attributeLabels() {
         return [
-            'class' => Yii::t('admin/yml', 'Класс модели, например: \admin\modules\catalog\models\Item'),
-            'priority' => Yii::t('admin/yml', 'Параметр "priority" - от 0.1 до 1'),                    
+            'class' => Yii::t('admin/sitemap', 'Класс модели, например: \admin\modules\catalog\models\Item'),
+            'priority' => Yii::t('admin/sitemap', 'Параметр "priority" - от 0.1 до 1'),                    
         ];
     }
 

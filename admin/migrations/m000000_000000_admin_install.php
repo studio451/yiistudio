@@ -11,25 +11,6 @@ class m000000_000000_admin_install extends \yii\db\Migration {
 
     public function up() {
 
-        //TRANSLATE
-        $this->createTable(models\TranslateSourceMessage::tableName(), [
-            'id' => $this->primaryKey(),
-            'category' => $this->string(),
-            'message' => $this->text(),
-                ], $this->engine);
-
-        $this->createTable(models\TranslateMessage::tableName(), [
-            'id' => $this->integer()->notNull(),
-            'language' => $this->string(16)->notNull(),            
-            'translation' => $this->text(),
-                ], $this->engine);
-
-        $this->addPrimaryKey('pk_message_id_language', models\TranslateMessage::tableName(), ['id', 'language']);
-        $this->addForeignKey('fk_message_source_message', models\TranslateMessage::tableName(), 'id', models\TranslateSourceMessage::tableName(), 'id', 'CASCADE', 'RESTRICT');
-        $this->createIndex('idx_source_message_category', models\TranslateSourceMessage::tableName(), 'category');
-        $this->createIndex('idx_message_language', models\TranslateMessage::tableName(), 'language');
-
-
         //USERS
         $this->createTable(models\User::tableName(), [
             'id' => 'pk',
@@ -129,9 +110,6 @@ class m000000_000000_admin_install extends \yii\db\Migration {
         $this->dropTable(models\Setting::tableName());
         $this->dropTable(models\Tag::tableName());
         $this->dropTable(models\TagAssign::tableName());
-
-        $this->dropTable(models\TranslateMessage::tableName());
-        $this->dropTable(models\TranslateSourceMessage::tableName());
     }
 
 }

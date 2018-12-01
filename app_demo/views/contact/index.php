@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $page->title;
 
 <div class="row">
     <div class="col-md-6">
-        <h4><?= Yii::t('app', 'Вы можете связаться с нами через форму обратной связи:') ?></h4>
+        <h4><?= Yii::t('app', 'Вы можете связаться с нами через форму обратной связи') ?>:</h4>
         <div class="border p-20">
             <?= Feedback::form() ?>
         </div>

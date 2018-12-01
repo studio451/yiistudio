@@ -65,7 +65,7 @@ class Feedback extends \admin\components\ActiveRecord {
 
     public function attributeLabels() {
         return [
-            'email' => 'E-mail',
+            'email' => Yii::t('admin','E-mail'),
             'name' => Yii::t('admin', 'Имя'),
             'title' => Yii::t('admin', 'Заголовок'),
             'text' => Yii::t('admin', 'Текст'),

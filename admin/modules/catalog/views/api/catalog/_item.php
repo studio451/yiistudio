@@ -46,15 +46,15 @@ use yii\widgets\ActiveForm;
         </div>
         <? if ($item->new != 0) { ?>
             <div class="new-sticker">
-                <a href="javascript:void(0);" rel="nofollow" title="<?= Yii::t('admin/sale', 'Новинка!') ?>" class="no-text-decoration с-second">
-                    <i class="fa fa-bookmark fs-20"></i> <?= Yii::t('admin/sale', 'Новинка!') ?>
+                <a href="javascript:void(0);" rel="nofollow" title="<?= Yii::t('admin/catalog', 'Новинка!') ?>" class="no-text-decoration с-second">
+                    <i class="fa fa-bookmark fs-20"></i> <?= Yii::t('admin/catalog', 'Новинка!') ?>
                 </a>
             </div>
         <? } ?>
         <? if ($item->gift != 0) { ?>
             <div class="gift-sticker">
-                <a href="javascript:void(0);" rel="nofollow" title="<?= Yii::t('admin/sale', 'К этому товару полагается подарок!') ?>" data-url="<?= Url::to(['/sale', 'slug' => $item->gift]) ?>" class="ajaxModalPopup no-text-decoration с-second">
-                    <i class="fa fa-gift fs-20"></i> <?= Yii::t('admin/sale', 'Подарок!') ?>
+                <a href="javascript:void(0);" rel="nofollow" title="<?= Yii::t('admin/catalog', 'К этому товару полагается подарок!') ?>" data-url="<?= Url::to(['/sale', 'slug' => $item->gift]) ?>" class="ajaxModalPopup no-text-decoration с-second">
+                    <i class="fa fa-gift fs-20"></i> <?= Yii::t('admin/catalog', 'Подарок!') ?>
                 </a>
             </div>
         <? } ?>

@@ -1,5 +1,5 @@
 <?
-$this->title = Yii::t('admin/subscribe', 'Просмотр истории рассылки');
+$this->title = Yii::t('admin/news', 'Просмотр истории рассылки');
 ?>
 <?= $this->render('_menu') ?>
 

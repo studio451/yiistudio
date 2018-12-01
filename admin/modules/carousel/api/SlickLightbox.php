@@ -33,8 +33,8 @@ class SlickLightbox extends Widget {
 
         $this->clientOptionsSlick['slidesToShow'] = 1;
         $this->clientOptionsSlick['slidesToScroll'] = 1;
-        $this->clientOptionsSlick['prevArrow'] = '<button type="button" data-role="none" class="slick-prev slick-arrow" aria-label="' . Yii::t('admin/catalog', 'Предыдущий') . '" role="button" style="display: block;"><i class="fa fa-chevron-left"></i></button>';
-        $this->clientOptionsSlick['nextArrow'] = '<button type="button" data-role="none" class="slick-next slick-arrow" aria-label="' . Yii::t('admin/catalog', 'Следующий') . '" role="button" style="display: block;"><i class="fa fa-chevron-right"></i></button>';
+        $this->clientOptionsSlick['prevArrow'] = '<button type="button" data-role="none" class="slick-prev slick-arrow" aria-label="' . Yii::t('admin/carousel', 'Предыдущий') . '" role="button" style="display: block;"><i class="fa fa-chevron-left"></i></button>';
+        $this->clientOptionsSlick['nextArrow'] = '<button type="button" data-role="none" class="slick-next slick-arrow" aria-label="' . Yii::t('admin/carousel', 'Следующий') . '" role="button" style="display: block;"><i class="fa fa-chevron-right"></i></button>';
 
         $this->clientOptions['layouts'] = ['closeButton' => '<button type="button" class="slick-lightbox-close"><i class="fa fa-close"></i></button>'];
         $this->clientOptions['caption'] = 'caption';

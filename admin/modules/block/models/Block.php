@@ -25,7 +25,7 @@ class Block extends \admin\components\ActiveRecord {
 
     public function attributeLabels() {
         return [
-            'text' => Yii::t('admin', ' Текст'),
+            'text' => Yii::t('admin', 'Текст'),
             'assets_css' => Yii::t('admin', 'Подключить *.css'),
             'assets_js' => Yii::t('admin', 'Подключить *.js'),
             'slug' => Yii::t('admin', 'Код'),

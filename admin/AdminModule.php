@@ -1,4 +1,5 @@
 <?
+
 //Yii Studio 
 //https://yiistudio.ru
 
@@ -15,10 +16,9 @@ class AdminModule extends \yii\base\Module implements BootstrapInterface {
 
     const VERSION = 0.925;
     const NAME = 'Yii Studio';
- 
-    
+
     public $settings;
-    public $activeModules;    
+    public $activeModules;
     public $defaultRoute = 'a';
 
     public function behaviors() {
@@ -28,9 +28,9 @@ class AdminModule extends \yii\base\Module implements BootstrapInterface {
                 'AccessBehavior' => [
                     'class' => AccessBehavior::className(),
                     'login_url' => '/user/login',
-                    'rules' => 
+                    'rules' =>
                     [
-                        'admin/rbac' => [['allow' => true, 'roles' => ['SuperAdmin'],],],
+                        'admin' => [['allow' => true, 'roles' => ['SuperAdmin'],],],
                         'admin/logs' => [['allow' => true, 'roles' => ['SuperAdmin'],],],
                         'admin/modules' => [['allow' => true, 'roles' => ['SuperAdmin'],],],
                         'admin/photos' => [['allow' => true, 'roles' => ['SuperAdmin'],],],
@@ -67,6 +67,13 @@ class AdminModule extends \yii\base\Module implements BootstrapInterface {
                 if (is_array($module->settings)) {
                     $modules[$name]['settings'] = $module->settings;
                 }
+
+                //Регистрация переводов для модулей
+                Yii::$app->i18n->translations['admin/' . $name . '*'] = [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'sourceLanguage' => 'ru-RU',
+                    'basePath' => dirname($modules[$name]['class']) . DIRECTORY_SEPARATOR . 'messages',
+                ];
             }
             $this->setModules($modules);
 
@@ -97,16 +104,16 @@ class AdminModule extends \yii\base\Module implements BootstrapInterface {
         $view = Yii::$app->getView();
         echo $view->render('@admin/views/layouts/toolbar.php');
     }
-    
-    public static function getDsnAttribute($name, $dsn)
-    {
+
+    public static function getDsnAttribute($name, $dsn) {
         if (preg_match('/' . $name . '=([^;]*)/', $dsn, $match)) {
             return $match[1];
         } else {
             return null;
         }
     }
-    public static  function checkDbConnection() {
+
+    public static function checkDbConnection() {
         try {
             Yii::$app->db->open();
             return true;
@@ -114,11 +121,13 @@ class AdminModule extends \yii\base\Module implements BootstrapInterface {
             return false;
         }
     }
-    public static  function checkInstalled() {
+
+    public static function checkInstalled() {
         try {
             return Yii::$app->db->createCommand("SHOW TABLES LIKE 'admin_%'")->query()->count() > 0 ? true : false;
         } catch (\Exception $e) {
             return false;
         }
     }
+
 }

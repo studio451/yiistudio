@@ -6,9 +6,9 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\Links */
 /* @var $form yii\widgets\ActiveForm */
 
-$this->title = Yii::t('admin/rbac', 'Новая роль');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('admin/rbac', 'Управление ролями'), 'url' => ['role']];
-$this->params['breadcrumbs'][] = Yii::t('admin/rbac', 'Новая роль');
+$this->title = Yii::t('admin', 'Новая роль');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('admin', 'Управление ролями'), 'url' => ['role']];
+$this->params['breadcrumbs'][] = Yii::t('admin', 'Новая роль');
 ?>
 
 <div class="news-index">
@@ -30,18 +30,18 @@ $this->params['breadcrumbs'][] = Yii::t('admin/rbac', 'Новая роль');
         <? $form = ActiveForm::begin(); ?>
 
         <div class="form-group">
-            <?= Html::label(Yii::t('admin/rbac', 'Название роли')); ?>
+            <?= Html::label(Yii::t('admin', 'Название роли')); ?>
             <?= Html::textInput('name'); ?>
-            <?= Yii::t('admin/rbac', '* только латинские буквы, цифры и _ -'); ?>
+            <?= Yii::t('admin', '* только латинские буквы, цифры и _ -'); ?>
         </div>
 
         <div class="form-group">
-            <?= Html::label(Yii::t('admin/rbac', 'Текстовое описание')); ?>
+            <?= Html::label(Yii::t('admin', 'Текстовое описание')); ?>
             <?= Html::textInput('description'); ?>
         </div>
 
         <div class="form-group">
-            <?= Html::label(Yii::t('admin/rbac', 'Разрешенные доступы')); ?>
+            <?= Html::label(Yii::t('admin', 'Разрешенные доступы')); ?>
             <?= Html::checkboxList('permissions', null, $permissions, ['separator' => '<br>']); ?>
         </div>
 

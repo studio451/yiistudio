@@ -34,6 +34,11 @@
     color: #fff!important; 
 }
 
+.alert-console .close {
+    color: #fff!important;
+    opacity: .7!important;
+}
+
 .alert-console pre
 {
     background-color: #333!important;

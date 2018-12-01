@@ -35,38 +35,9 @@ class Module extends \yii\base\Module {
     ];
 
     public function init() {
-        parent::init();
-
-        $moduleName = self::getModuleName(self::className());
-
-        //self::registerTranslations($moduleName);
-    }
-
-    /**
-     * Registers translations connected to the module
-     * @param $moduleName string
-     */
-    public static function registerTranslations($moduleName) {
-        $moduleClassFile = '';
-        foreach (ModuleModel::findAllActive() as $name => $module) {
-            if ($name == $moduleName) {
-                $moduleClassFile = (new \ReflectionClass($module->class))->getFileName();
-                break;
-            }
-        }
-
-        if ($moduleClassFile) {
-            Yii::$app->i18n->translations['admin/' . $moduleName . '*'] = [
-                'class' => 'yii\i18n\PhpMessageSource',
-                'sourceLanguage' => 'ru-RU',
-                'basePath' => dirname($moduleClassFile) . DIRECTORY_SEPARATOR . 'messages',
-                'fileMap' => [
-                    'admin/' . $moduleName => 'admin.php',
-                ]
-            ];
-        }
-    }
-
+        parent::init();        
+    }    
+    
     /**
      * Module name getter
      *

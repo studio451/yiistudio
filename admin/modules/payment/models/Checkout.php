@@ -26,11 +26,11 @@ class Checkout extends \admin\components\ActiveRecord {
 
     public function renderStatus() {
         if ($this->status == self::CHECKOUT_STATUS_SUCCESS) {
-            return '<span class="label label-success">' . Yii::t('admin/shopcart', 'Успешная оплата') . '</span>';
+            return '<span class="label label-success">' . Yii::t('admin/payment', 'Успешная оплата') . '</span>';
         } elseif ($this->status == self::CHECKOUT_STATUS_ADMIN) {
-            return '<span class="label label-primary">' . Yii::t('admin/shopcart', 'Панель управления') . '</span>';
+            return '<span class="label label-primary">' . Yii::t('admin/payment', 'Панель управления') . '</span>';
         } else {
-            return '<span class="label label-danger">' . Yii::t('admin/shopcart', 'Ошибка оплаты') . '</span>';
+            return '<span class="label label-danger">' . Yii::t('admin/payment', 'Ошибка оплаты') . '</span>';
         }
     }
 

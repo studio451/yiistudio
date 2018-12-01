@@ -54,7 +54,7 @@ use yii\helpers\Url;
                 ?>
             <? } else { ?>
                 <noindex>
-                    <?= Yii::t('admin/shopcart', 'Чтобы оставить комментарий, нужно ') ?> <a rel="nofollow" href="javascript:void(0);" title="<?= Yii::t('admin', 'Войти в личный кабинет') ?>" data-url="<?= Url::to(['/user/login']) ?>" class="dotted ajaxModalPopup"><?= Yii::t('admin', 'войти в личный кабинет') ?></a> <?= Yii::t('admin', 'или') ?> <a rel="nofollow" href="javascript:void(0);" title="<?= Yii::t('admin', 'Зарегистрироваться') ?>" data-url="<?= Url::to(['/user/registration']) ?>" class="dotted ajaxModalPopup"><?= Yii::t('admin', 'зарегистрироваться') ?></a>.
+                    <?= Yii::t('admin/comment', 'Чтобы оставить комментарий, нужно ') ?> <a rel="nofollow" href="javascript:void(0);" title="<?= Yii::t('admin', 'Войти в личный кабинет') ?>" data-url="<?= Url::to(['/user/login']) ?>" class="dotted ajaxModalPopup"><?= Yii::t('admin', 'войти в личный кабинет') ?></a> <?= Yii::t('admin', 'или') ?> <a rel="nofollow" href="javascript:void(0);" title="<?= Yii::t('admin', 'Зарегистрироваться') ?>" data-url="<?= Url::to(['/user/registration']) ?>" class="dotted ajaxModalPopup"><?= Yii::t('admin', 'зарегистрироваться') ?></a>.
                 </noindex>
             <? } ?>
         </div>

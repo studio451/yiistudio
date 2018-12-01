@@ -73,7 +73,7 @@ class Rating extends Widget
         parent::init();
 
         if (empty($this->model)) {
-            throw new InvalidConfigException(Yii::t('admin/rating', 'Свойство "model" должно быть установлено'));
+            throw new InvalidConfigException(Yii::t('admin/comment', 'Свойство "model" должно быть установлено'));
         }
 
         if (empty($this->pjaxContainerId)) {
@@ -81,7 +81,7 @@ class Rating extends Widget
         }
 
         if (empty($this->model->{$this->entityIdAttribute})) {
-            throw new InvalidConfigException(Yii::t('admin/rating', 'Свойство "entityIdAttribute" должно быть установлено'));
+            throw new InvalidConfigException(Yii::t('admin/comment', 'Свойство "entityIdAttribute" должно быть установлено'));
         }
 
         $this->entity = hash('crc32', get_class($this->model));

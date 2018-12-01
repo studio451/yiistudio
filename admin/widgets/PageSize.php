@@ -22,7 +22,7 @@ class PageSize extends Widget {
                 $str = $attribute;
             }else
             {
-                $str = Html::a($attribute, $this->createUrl($attribute), ['title' => Yii::t('admin/helpers','Показывать по ' . $attribute),'rel' => 'nofollow']);
+                $str = Html::a($attribute, $this->createUrl($attribute), ['title' => Yii::t('admin','Показывать по ' . $attribute),'rel' => 'nofollow']);
             }
             if ($first) {
                 if($this->title)

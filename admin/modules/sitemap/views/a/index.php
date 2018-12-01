@@ -2,7 +2,7 @@
 
 use yii\helpers\Url;
 
-$this->title = Yii::t('admin/yml', 'Карта сайта');
+$this->title = Yii::t('admin/sitemap', 'Карта сайта');
 
 $module = $this->context->module->id;
 ?>
@@ -38,7 +38,7 @@ $module = $this->context->module->id;
 <br>
 <div class='row'>
     <div class="col-md-6">
-        <?= Yii::t('admin/sitemap', 'Текущий индексный файл карты сайта:') ?> <a href="<?= Url::to($this->context->module->settings['mainFile'], true) ?>" target="_blank" title="<?= Yii::t('admin/yml', 'Карта сайта') ?>"><?= Url::to($this->context->module->settings['mainFile'], true) ?> <i class="fa fa-external-link"></i></a>
+        <?= Yii::t('admin/sitemap', 'Текущий индексный файл карты сайта:') ?> <a href="<?= Url::to($this->context->module->settings['mainFile'], true) ?>" target="_blank" title="<?= Yii::t('admin/sitemap', 'Карта сайта') ?>"><?= Url::to($this->context->module->settings['mainFile'], true) ?> <i class="fa fa-external-link"></i></a>
     </div>
     <div class="col-md-6 text-right">
         <a href="<?= Url::to(['/admin/' . $module . '/a/generate']) ?>" class="btn btn-success"><?= Yii::t('admin/sitemap', 'Генерировать карту сайта') ?></a>

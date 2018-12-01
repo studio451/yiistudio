@@ -48,7 +48,7 @@ class UserController extends \yii\web\Controller {
         if ($registrationForm->load(Yii::$app->request->post())) {
             if ($user = $registrationForm->registration()) {
                 if (Yii::$app->getUser()->login($user, 3600 * 24 * 30)) {
-                    Yii::$app->session->setFlash('success', Yii::t('admin/user', 'Вы успешно зарегистрированы на сайте'));
+                    Yii::$app->session->setFlash('success', Yii::t('admin', 'Вы успешно зарегистрированы на сайте'));
                     return $this->goBack();
                 }
             }
@@ -68,9 +68,9 @@ class UserController extends \yii\web\Controller {
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->notifyUser()) {
-                Yii::$app->session->setFlash('success', Yii::t('admin/user', 'Проверьте вашу электронную почту для получения дальнейших инструкций по сбросу пароля'));
+                Yii::$app->session->setFlash('success', Yii::t('admin', 'Проверьте вашу электронную почту для получения дальнейших инструкций по сбросу пароля'));
             } else {
-                Yii::$app->session->setFlash('error', Yii::t('admin/user', 'К сожалению, мы не можем сбросить пароль по указанной электронной почте'));
+                Yii::$app->session->setFlash('error', Yii::t('admin', 'К сожалению, мы не можем сбросить пароль по указанной электронной почте'));
             }
         }
 
@@ -87,7 +87,7 @@ class UserController extends \yii\web\Controller {
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', Yii::t('admin/user', 'Новый пароль сохранен'));
+            Yii::$app->session->setFlash('success', Yii::t('admin', 'Новый пароль сохранен'));
 
             return $this->redirect(['/user/login']);
         }
@@ -104,7 +104,7 @@ class UserController extends \yii\web\Controller {
         $registrationForm = new $registrationFormClass();
 
         if (!Yii::$app->user->isGuest) {
-            Yii::$app->session->setFlash('success', Yii::t('admin/user', 'Вы успешно зарегистрированы на сайте'));
+            Yii::$app->session->setFlash('success', Yii::t('admin', 'Вы успешно зарегистрированы на сайте'));
             return $this->goBack();
         } else {
             if (Yii::$app->request->isAjax) {

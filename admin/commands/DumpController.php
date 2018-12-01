@@ -112,11 +112,11 @@ class DumpController extends Controller {
         }
 
         if (!$return_var) {
-            $msg = (!$isRestore) ? Yii::t('admin', "Дамп БД успешно создан!\n") : Yii::t('admin', "Восстановление из бэкапа успешно завершено!\n");
+            $msg = (!$isRestore) ? Yii::t('admin', "Дамп БД успешно создан!")."\n" : Yii::t('admin', "Восстановление из бэкапа успешно завершено!")."\n";
             $this->stdout($msg, 92);
             return true;
         } else {
-            $msg = (!$isRestore) ? Yii::t('admin', "Ошибка при создании дампа БД!\n") : Yii::t('admin', "Ошибка при восстановлении из бэкапа!\n");
+            $msg = (!$isRestore) ? Yii::t('admin', "Ошибка при создании дампа БД!")."\n" : Yii::t('admin', "Ошибка при восстановлении из бэкапа!")."\n";
             $this->stdout($msg . "Команда: " . $command . "\n" . $str_output, 91);
             return false;
         }

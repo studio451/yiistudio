@@ -148,7 +148,7 @@ class AController extends Controller {
             $order->paid_details = 'Статус оплаты заказа изменен в панели управления на "' . $order->getPaidStatusName() . '"';
 
             if ($order->save()) {
-                $this->flash('success', Yii::t('admin/shopcart', 'Статус оплаты заказа изменен'));
+                $this->flash('success', Yii::t('admin/payment', 'Статус оплаты заказа изменен'));
                 Payment::adminProcessCheckout('Статус оплаты заказа изменен на "' . $order->getPaidStatusName() . '"', $order);
             } else {
                 $this->flash('error', Yii::t('admin', 'Ошибка при обновлении записи. {0}', $order->formatErrors()));

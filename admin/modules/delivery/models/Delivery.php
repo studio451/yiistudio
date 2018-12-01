@@ -47,10 +47,10 @@ class Delivery extends \admin\components\ActiveRecord {
             'title' => Yii::t('admin', 'Название'),
             'description' => Yii::t('admin', 'Описание'),
             'slug' => Yii::t('admin', 'Код'),
-            'price' => Yii::t('admin/catalog', 'Цена'),
-            'free_from' => Yii::t('admin/catalog', 'Бесплатно от'),
-            'available_from' => Yii::t('admin/catalog', 'Доступна от'),
-            'need_address' => Yii::t('admin/catalog', 'Нужен адрес'),
+            'price' => Yii::t('admin/delivery', 'Цена'),
+            'free_from' => Yii::t('admin/delivery', 'Бесплатно от'),
+            'available_from' => Yii::t('admin/delivery', 'Доступна от'),
+            'need_address' => Yii::t('admin/delivery', 'Нужен адрес'),
         ];
     }
 

@@ -9,7 +9,7 @@ use yii\helpers\Url;
 <?= $form->field($model, 'password')->passwordInput(['value' => '']) ?>
 
 <?= Html::checkboxList('roles', $user_permit, $roles, ['separator' => '<br>']); ?>
-<span class="text-muted"><?= Yii::t('admin/rbac', 'User - роль по-умолчанию, присваивается всем зарегистрированным пользователям') ?></span>
+<span class="text-muted"><?= Yii::t('admin', 'User - роль по-умолчанию, присваивается всем зарегистрированным пользователям') ?></span>
 <br>
 <br>
 
@@ -19,7 +19,7 @@ use yii\helpers\Url;
 
 <div class="row">
     <div class="col-md-12">        
-        <h3><?= Yii::t('admin/shopcart', 'Дополнительные данные пользователя') ?></h3>
+        <h3><?= Yii::t('admin', 'Дополнительные данные пользователя') ?></h3>
         <hr>            
         <?= Html::beginForm(Url::to(['/admin/users/data', 'id' => $model->id]), 'post') ?>
         <table class="table">

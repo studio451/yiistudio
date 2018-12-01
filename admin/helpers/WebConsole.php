@@ -36,7 +36,7 @@ class WebConsole {
                 $consoleConfig['controllerNamespace'] = $controllerNamespace;
             }
             self::$_console = new \yii\console\Application($consoleConfig);
-            
+
             Yii::$app = $oldApp;
         } else {
             ftruncate(self::$logFileHandler, 0);
@@ -48,14 +48,14 @@ class WebConsole {
     public static function migrate($moduleName) {
         ob_start();
 
-        
-        $erer = Yii::getAlias('@'.APP_NAME.'/migrations/');
+
+        $erer = Yii::getAlias('@' . APP_NAME . '/migrations/');
         $erer1 = Yii::getAlias('@app/migrations/');
         $eeqweqwe1 = Yii::getAlias('@admin/migrations/');
         if ($moduleName == 'admin') {
             self::console()->runAction('migrate', ['migrationPath' => '@admin/migrations/', 'migrationTable' => 'admin_migration', 'interactive' => false]);
         } elseif ($moduleName == 'app') {
-            self::console()->runAction('migrate', ['migrationPath' => '@app/migrations/', 'migrationTable' => 'admin_migration_app' , 'interactive' => false]);
+            self::console()->runAction('migrate', ['migrationPath' => '@app/migrations/', 'migrationTable' => 'admin_migration_app', 'interactive' => false]);
         } else {
             self::console()->runAction('migrate', ['migrationPath' => '@admin/modules/' . $moduleName . '/migrations/', 'migrationTable' => 'admin_migration_' . $moduleName, 'interactive' => false]);
         }
@@ -72,7 +72,7 @@ class WebConsole {
         if ($moduleName == 'admin') {
             self::console()->runAction('migrate/down', ['migrationPath' => '@admin/migrations/', 'migrationTable' => 'admin_migration', 'interactive' => false]);
         } elseif ($moduleName == 'app') {
-            self::console()->runAction('migrate/down', ['migrationPath' => '@app/migrations/', 'migrationTable' => 'admin_migration_app' , 'interactive' => false]);
+            self::console()->runAction('migrate/down', ['migrationPath' => '@app/migrations/', 'migrationTable' => 'admin_migration_app', 'interactive' => false]);
         } else {
             self::console()->runAction('migrate/down', ['migrationPath' => '@admin/modules/' . $moduleName . '/migrations/', 'migrationTable' => 'admin_migration_' . $moduleName, 'interactive' => false]);
         }
@@ -83,10 +83,28 @@ class WebConsole {
         return $result;
     }
 
-    public static function MessageExtract() {
+    public static function MessageExtractAdmin() {
+        ob_start();
+        self::console()->runAction('message/extract', ['@admin/messages/config.php', 'interactive' => false]);
+        $result = file_get_contents(self::$logFile) . "\n" . ob_get_clean();
+        foreach (Yii::$app->getModule('admin')->activeModules as $name => $module) {
+            $message_config = '@admin/modules/' . $name . '/messages/config.php';
+            if (file_exists(Yii::getAlias($message_config))) {
+                ob_start();
+                self::console()->runAction('message/extract', [$message_config, 'interactive' => false]);
+                $result .= file_get_contents(self::$logFile) . "\n" . ob_get_clean();
+            }
+        }
+
+        Yii::$app->cache->flush();
+
+        return $result;
+    }
+
+    public static function MessageExtractApp() {
         ob_start();
 
-        self::console()->runAction('message/extract', ['@admin/config/messages.php', 'interactive' => false]);
+        self::console()->runAction('message/extract', ['@app/messages/config.php', 'interactive' => false]);
 
         $result = file_get_contents(self::$logFile) . "\n" . ob_get_clean();
 

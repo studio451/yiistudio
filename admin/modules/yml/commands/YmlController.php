@@ -73,12 +73,12 @@ class YmlController extends Controller {
             $this->stdout($implementation->url . "\n");
             $this->stdout($implementation->class . "\n");
             $this->stdout("Number of rows:" . $implementation->count . "\n");
-            $this->stdout("Start import to excel file...\n");
+            $this->stdout(Yii::t('admin/yml',"Старт импорта в excel...")."\n");
 
             $fileName = $implementation->saveToExcelFile();
 
             $this->stdout("Excel file created: " . $fileName . "\n");
-            $this->stdout("DONE\n");
+            $this->stdout(Yii::t('admin/yml',"ВЫПОЛНЕНО")."\n");
         } else {
             $this->stdout("Import model not found\n", 91);
         }

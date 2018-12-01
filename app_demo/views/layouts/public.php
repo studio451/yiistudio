@@ -165,7 +165,7 @@ NavBar::end();
         <div class="col-md-3">             
         </div>        
         <div class="col-md-5 text-right">
-            Мы используем <a href="https://yiistudio.ru" target="_blank" title="https://yiistudio.ru"><?= \admin\AdminModule::NAME ?></a>
+            <?= Yii::t('app', 'Мы используем') ?> <a href="https://yiistudio.ru" target="_blank" title="https://yiistudio.ru"><?= \admin\AdminModule::NAME ?></a>
         </div>
     </div>
 </footer>

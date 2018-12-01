@@ -89,7 +89,7 @@ class RbacController extends Controller
                 ]
             );
         } else {
-            throw new BadRequestHttpException(Yii::t('admin/rbac', 'Страница не найдена'));
+            throw new BadRequestHttpException(Yii::t('admin', 'Страница не найдена'));
         }
     }
 
@@ -157,7 +157,7 @@ class RbacController extends Controller
                 'error' => $this->error
             ]);
         } else {
-            throw new BadRequestHttpException(Yii::t('admin/rbac', 'Страница не найдена'));
+            throw new BadRequestHttpException(Yii::t('admin', 'Страница не найдена'));
         }
     }
 
@@ -205,7 +205,7 @@ class RbacController extends Controller
         if ($validator->validate($field)) {
             return true;
         } else {
-            $this->error[] = Yii::t('admin/rbac', 'Значение "{field}" содержит недопустимые символы', ['field' => $field]);
+            $this->error[] = Yii::t('admin', 'Значение "{field}" содержит недопустимые символы', ['field' => $field]);
             return false;
         }
     }
@@ -215,11 +215,11 @@ class RbacController extends Controller
         $role = Yii::$app->authManager->getRole($name);
         $permission = Yii::$app->authManager->getPermission($name);
         if ($permission instanceof Permission) {
-            $this->error[] = Yii::t('admin/rbac', 'Разрешение с таким именем уже существует') . ':' . $name;
+            $this->error[] = Yii::t('admin', 'Разрешение с таким именем уже существует') . ':' . $name;
             return false;
         }
         if ($role instanceof Role) {
-            $this->error[] = Yii::t('admin/rbac', 'Роль с таким именем уже существует') . ':' . $name;
+            $this->error[] = Yii::t('admin', 'Роль с таким именем уже существует') . ':' . $name;
             return false;
         }
         return true;

@@ -6,6 +6,7 @@ $appPath = APP_PATH;
 
 return [
     'id' => 'console',
+    'sourceLanguage' => 'ru-RU',
     'language' => 'ru-RU',
     'basePath' => $adminPath,
     'runtimePath' => $basePath . '/runtime',
@@ -46,18 +47,19 @@ return [
         'i18n' => [
             'translations' => [
                 'admin' => [
+                    'sourceLanguage' => 'ru-RU',
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@admin/messages',
+                ],
+                'app' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'sourceLanguage' => 'ru-RU',
-                    'basePath' => '@admin/messages',
-                    'fileMap' => [
-                        'app' => 'admin.php',
-                    ]
+                    'basePath' => '@app/messages'
                 ],
-                '*' => [
-                    'class' => 'yii\i18n\DbMessageSource',
-                    'sourceMessageTable' => 'admin_translate_source_message',
-                    'messageTable' => 'admin_translate_message',
-                    'enableCaching' => true,
+                'yii' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'sourceLanguage' => 'en-US',
+                    'basePath' => '@app/messages'
                 ],
             ],
         ],

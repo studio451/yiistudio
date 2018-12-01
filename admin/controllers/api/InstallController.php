@@ -17,15 +17,6 @@ class InstallController extends \yii\web\Controller {
 
     public $layout = 'public';
 
-    public function beforeAction($action) {
-        if (parent::beforeAction($action)) {
-            $this->registerI18n();
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public function actionIndex() {
         if (!\admin\AdminModule::checkDbConnection()) {
             if (YII_ENV_PROD) {
@@ -36,10 +27,10 @@ class InstallController extends \yii\web\Controller {
             
             $dbName = \admin\AdminModule::getDsnAttribute('dbname', Yii::$app->db->dsn);
             
-            return $this->showError(Yii::t('admin/install', 'Нет соединения с базой данных <b>'. $dbName.'</b>!<br> Если база данных <b>'. $dbName.'</b> не создана, создайте ее.<br> Также проверьте правильность настроек подключения к базе данных: <b>' . $configFile . '</b>' ));
+            return $this->showError(Yii::t('admin', 'Нет соединения с базой данных <b>'. $dbName.'</b>!<br> Если база данных <b>'. $dbName.'</b> не создана, создайте ее.<br> Также проверьте правильность настроек подключения к базе данных: <b>' . $configFile . '</b>' ));
         }
         if (INSTALLED) {
-            return $this->showError(Yii::t('admin/install', \admin\AdminModule::NAME . ' уже установлена.<br> Если вы хотите переустановить ' . \admin\AdminModule::NAME . ' установите значение константы INSTALLED в '. Yii::getAlias('@webroot/index.php') .' равным false!'));
+            return $this->showError(Yii::t('admin', \admin\AdminModule::NAME . ' уже установлена.<br> Если вы хотите переустановить ' . \admin\AdminModule::NAME . ' установите значение константы INSTALLED в '. Yii::getAlias('@webroot/index.php') .' равным false!'));
         }
         $installForm = new InstallForm();
 
@@ -81,8 +72,8 @@ class InstallController extends \yii\web\Controller {
             $installForm->contact_url = Yii::$app->request->serverName;
             $installForm->contact_name = Yii::$app->request->serverName;
 
-            $installForm->contact_addressLocality = Yii::t('admin/install', 'Москва');
-            $installForm->contact_openingHours = Yii::t('admin/install', '9.00-18.00 (без выходных)');
+            $installForm->contact_addressLocality = Yii::t('admin', 'Москва');
+            $installForm->contact_openingHours = Yii::t('admin', '9.00-18.00 (без выходных)');
             $installForm->contact_openingHoursISO86 = 'Mo-Su 9:00-18:00';
 
             return $this->render('index', [
@@ -93,20 +84,7 @@ class InstallController extends \yii\web\Controller {
 
     public function actionFinish() {
         return $this->render('finish');
-    }
-
-    private function registerI18n() {
-        Yii::$app->i18n->translations['app/install'] = [
-            'class' => 'yii\i18n\PhpMessageSource',
-            'sourceLanguage' => 'ru-RU',
-            'basePath' => '@admin/messages',
-            'fileMap' => [
-                'app/install' => 'install.php',
-            ]
-        ];
-    }
-    
-    
+    }    
 
     private function showError($text) {
         return $this->render('error', ['error' => $text]);
@@ -116,7 +94,7 @@ class InstallController extends \yii\web\Controller {
         $uploadsDir = Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . 'uploads';
         $uploadsDirExists = file_exists($uploadsDir);
         if (($uploadsDirExists && !is_writable($uploadsDir)) || (!$uploadsDirExists && !mkdir($uploadsDir, 0777))) {
-            throw new ServerErrorHttpException(Yii::t('admin/install', 'Папка ' . $uploadsDir . ' не создана. Проверьте разрешения'));
+            throw new ServerErrorHttpException(Yii::t('admin', 'Папка ' . $uploadsDir . ' не создана. Проверьте разрешения'));
         }
     }
 
@@ -134,8 +112,8 @@ class InstallController extends \yii\web\Controller {
             'contact_openingHours' => $installForm->contact_openingHours,
             'contact_openingHoursISO86' => $installForm->contact_openingHoursISO86,
             'contact_telephone' => $installForm->contact_telephone,
-            'subjectNotifyUserPasswordResetToken' => Yii::t('admin/install', 'Сброс пароля для ') . $installForm->contact_url,
-            'subjectNotifyUserRegistration' => Yii::t('admin/install', 'Регистрация на сайте ') . $installForm->contact_url,
+            'subjectNotifyUserPasswordResetToken' => Yii::t('admin', 'Сброс пароля для ') . $installForm->contact_url,
+            'subjectNotifyUserRegistration' => Yii::t('admin', 'Регистрация на сайте ') . $installForm->contact_url,
         ];
 
         Setting::updateSettings($installSettings);

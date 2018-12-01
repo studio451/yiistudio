@@ -60,7 +60,7 @@ class Payment extends \admin\components\ActiveRecordData {
             'title' => Yii::t('admin', 'Название'),
             'description' => Yii::t('admin', 'Описание'),
             'slug' => Yii::t('admin', 'Код'),
-            'class' => Yii::t('admin/yml', 'Класс'),
+            'class' => Yii::t('admin/payment', 'Класс'),
             'available_to' => Yii::t('admin/payment', 'Доступен до'),
             'is_manual' => Yii::t('admin/payment', 'Оплата вручную'),
         ];

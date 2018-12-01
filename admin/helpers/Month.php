@@ -27,35 +27,35 @@ class Month {
 
     public static function listAll() {
         return [
-            1 => Yii::t('app/month', 'Январь'),
-            2 => Yii::t('app/month', 'Февраль'),
-            3 => Yii::t('app/month', 'Март'),
-            4 => Yii::t('app/month', 'Апрель'),
-            5 => Yii::t('app/month', 'Май'),
-            6 => Yii::t('app/month', 'Июнь'),
-            7 => Yii::t('app/month', 'Июль'),
-            8 => Yii::t('app/month', 'Август'),
-            9 => Yii::t('app/month', 'Сентябрь'),
-            10 => Yii::t('app/month', 'Октябрь'),
-            11 => Yii::t('app/month', 'Ноябрь'),
-            12 => Yii::t('app/month', 'Декабрь'),
+            1 => Yii::t('admin', 'Январь'),
+            2 => Yii::t('admin', 'Февраль'),
+            3 => Yii::t('admin', 'Март'),
+            4 => Yii::t('admin', 'Апрель'),
+            5 => Yii::t('admin', 'Май'),
+            6 => Yii::t('admin', 'Июнь'),
+            7 => Yii::t('admin', 'Июль'),
+            8 => Yii::t('admin', 'Август'),
+            9 => Yii::t('admin', 'Сентябрь'),
+            10 => Yii::t('admin', 'Октябрь'),
+            11 => Yii::t('admin', 'Ноябрь'),
+            12 => Yii::t('admin', 'Декабрь'),
         ];
     }
 
     public static function byNumber($number) {
         $month = [
-            1 => Yii::t('app/month', 'Январь'),
-            2 => Yii::t('app/month', 'Февраль'),
-            3 => Yii::t('app/month', 'Март'),
-            4 => Yii::t('app/month', 'Апрель'),
-            5 => Yii::t('app/month', 'Май'),
-            6 => Yii::t('app/month', 'Июнь'),
-            7 => Yii::t('app/month', 'Июль'),
-            8 => Yii::t('app/month', 'Август'),
-            9 => Yii::t('app/month', 'Сентябрь'),
-            10 => Yii::t('app/month', 'Октябрь'),
-            11 => Yii::t('app/month', 'Ноябрь'),
-            12 => Yii::t('app/month', 'Декабрь'),
+            1 => Yii::t('admin', 'Январь'),
+            2 => Yii::t('admin', 'Февраль'),
+            3 => Yii::t('admin', 'Март'),
+            4 => Yii::t('admin', 'Апрель'),
+            5 => Yii::t('admin', 'Май'),
+            6 => Yii::t('admin', 'Июнь'),
+            7 => Yii::t('admin', 'Июль'),
+            8 => Yii::t('admin', 'Август'),
+            9 => Yii::t('admin', 'Сентябрь'),
+            10 => Yii::t('admin', 'Октябрь'),
+            11 => Yii::t('admin', 'Ноябрь'),
+            12 => Yii::t('admin', 'Декабрь'),
         ];
 
         return $month[$number];
