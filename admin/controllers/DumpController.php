@@ -34,6 +34,24 @@ class DumpController extends \admin\components\Controller {
         ];
     }
 
+    public function beforeAction($action) {
+        if (!parent::beforeAction($action))
+            return false;
+
+        //Отключение функциональности в демо-режиме
+        if (DEMO === true) {
+
+            if ($action->id == 'delete' ||
+                    $action->id == 'delete-all' ||
+                    $action->id == 'create') {
+                $this->flash('warning', Yii::t('admin', 'Недоступно в демо-версии!'));
+                $this->back();
+                return false;
+            }
+        }
+        return true;
+    }
+
     public function actionIndex() {
         $dataArray = $this->prepareFileData();
         $model = new Dump($this->customDumpOptions);
@@ -54,9 +72,9 @@ class DumpController extends \admin\components\Controller {
         $info = $this->getDbInfo($dbname);
         try {
             new PDO($info['dsn'], $info['username'], $info['password']);
-            $this->flash('sussess', 'Connection success:');
+            $this->flash('sussess', Yii::t('admin', 'Соединение установлено!'));
         } catch (PDOException $e) {
-            $this->flash('error', 'Connection failed: ' . $e->getMessage());
+            $this->flash('error', Yii::t('admin','Ошибка соединения') . ': ' . $e->getMessage());
         }
 
         return $this->redirect(['index']);
@@ -69,10 +87,6 @@ class DumpController extends \admin\components\Controller {
     }
 
     public function actionDelete($id) {
-        if (DEMO) {
-            $this->flash('warning', Yii::t('admin', 'Недоступно в демо-версии!'));
-            return $this->redirect(['index']);
-        }
         $dumpFile = $this->path . basename(ArrayHelper::getValue($this->getFileList(), $id));
         if (unlink($dumpFile)) {
             $this->flash('success', Yii::t('admin', 'Дамп удален'));
@@ -84,10 +98,6 @@ class DumpController extends \admin\components\Controller {
     }
 
     public function actionDeleteAll() {
-        if (DEMO) {
-            $this->flash('warning', Yii::t('admin', 'Недоступно в демо-версии!'));
-            return $this->redirect(['index']);
-        }
         if (is_array($this->getFileList())) {
             $fail = [];
             foreach ($this->getFileList() as $file) {
@@ -106,10 +116,6 @@ class DumpController extends \admin\components\Controller {
     }
 
     public function actionCreate() {
-        if (DEMO) {
-            $this->flash('warning', Yii::t('admin', 'Недоступно в демо-версии!'));
-            return $this->redirect(['index']);
-        }
         $dump = Yii::$app->request->post('Dump');
         $result = WebConsole::dumpCreate($dump['isArchive'], $dump['schemaOnly']);
 
@@ -128,10 +134,6 @@ class DumpController extends \admin\components\Controller {
     }
 
     public function actionRestore($id) {
-        if (DEMO) {
-            $this->flash('warning', Yii::t('admin', 'Недоступно в демо-версии!'));
-            return $this->back();
-        }
         $restore = Yii::$app->request->post('Restore');
         $result = WebConsole::dumpRestore($restore['initData'], $restore['demoData'], $restore['restoreScript'], $id);
         return $this->formatResponse($result, true, true);

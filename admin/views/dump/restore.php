@@ -19,10 +19,6 @@ $form = ActiveForm::begin([
 
 <?= $form->errorSummary($model) ?>
 
-<?= $form->field($model, 'initData')->checkbox() ?>
-
-<?= $form->field($model, 'demoData')->checkbox() ?>
-
 <?= $form->field($model, 'restoreScript')->checkbox() ?>
 
 <? if ($model->hasPresets()): ?>

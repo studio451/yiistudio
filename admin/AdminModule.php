@@ -42,6 +42,7 @@ class AdminModule extends \yii\base\Module implements BootstrapInterface {
                         'admin/translate' => [['allow' => true, 'roles' => ['SuperAdmin'],],],
                         'admin/user-permissions' => [['allow' => true, 'roles' => ['SuperAdmin'],],],
                         'admin/users' => [['allow' => true, 'roles' => ['SuperAdmin'],],],
+                        'admin/rbac' => [['allow' => true, 'roles' => ['SuperAdmin'],],],
                         'admin/dump' => [['allow' => true, 'roles' => ['SuperAdmin'],],],
                         'admin/user' => [['actions' => ['logout'], 'allow' => true, 'roles' => ['@'],],],
                     ],

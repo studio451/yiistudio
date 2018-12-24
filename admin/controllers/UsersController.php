@@ -15,13 +15,33 @@ use admin\behaviors\SortableController;
 
 class UsersController extends \admin\components\Controller {
 
+    public function beforeAction($action) {
+        if (!parent::beforeAction($action))
+            return false;
+
+        //Отключение функциональности в демо-режиме
+        if (DEMO === true) {
+
+            if ($action->id == 'delete' ||
+                    $action->id == 'rbac-init' ||
+                    ($action->id == 'edit' && Yii::$app->request->isPost) ||
+                    $action->id == 'delete-json' ||
+                    $action->id == 'off') {
+                $this->flash('warning', Yii::t('admin', 'Недоступно в демо-версии!'));
+                $this->back();
+                return false;
+            }
+        }
+        return true;
+    }
+
     public function behaviors() {
         return [
-            [
+                [
                 'class' => SortableController::className(),
                 'model' => User::className(),
             ],
-            [
+                [
                 'class' => StatusController::className(),
                 'model' => User::className()
             ]
@@ -138,10 +158,6 @@ class UsersController extends \admin\components\Controller {
     }
 
     public function actionDelete($id) {
-        if (DEMO) {
-            $this->flash('warning', Yii::t('admin', 'Недоступно в демо-версии!'));
-            return $this->back();
-        }
         if (($model = User::findOne($id))) {
             $model->delete();
         } else {
@@ -151,7 +167,6 @@ class UsersController extends \admin\components\Controller {
     }
 
     public function actionRbacInit() {
-
         $result = WebConsole::rbacInit(Yii::$app->user->identity->id);
         return $this->formatResponse($result, true, true);
     }
