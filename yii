@@ -1,0 +1,43 @@
+#!/usr/bin/env php
+<?php
+
+//Yii Studio console bootstrap file.
+//https://yiistudio.ru
+
+defined('INSTALLED') or define('INSTALLED', true);
+
+//Select application
+defined('APP_NAME') or define('APP_NAME', 'app_demo');
+
+defined('DEMO') or define('DEMO', false);
+defined('APP_CONSOLE') or define('APP_CONSOLE', 'true');
+defined('YII_DEBUG') or define('YII_DEBUG', true);
+defined('YII_ENV') or define('YII_ENV', 'dev');
+
+defined('ADMIN_PATH') or define('ADMIN_PATH', __DIR__ . '/admin');
+defined('BASE_PATH') or define('BASE_PATH', __DIR__);
+defined('APP_PATH') or define('APP_PATH', __DIR__ .'/'.APP_NAME);
+
+
+
+require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/vendor/yiisoft/yii2/Yii.php';
+
+$config = require __DIR__ . '/admin/config/console.php';
+
+$app_console_config_file = __DIR__ . '/' . APP_NAME . '/config/console.php';
+if (file_exists($app_console_config_file))
+{
+    $config = array_merge_recursive($config, require($app_console_config_file));
+}
+
+if (YII_ENV_PROD) {
+    $config = array_merge_recursive($config, require(__DIR__ . '/' . APP_NAME . '/config/db.php'));
+} else {
+    $config = array_merge_recursive($config, require(__DIR__ . '/' . APP_NAME . '/config/db_dev.php'));
+}
+
+
+$application = new yii\console\Application($config);
+$exitCode = $application->run();
+exit($exitCode);
