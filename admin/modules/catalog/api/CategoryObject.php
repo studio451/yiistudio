@@ -77,14 +77,15 @@ class CategoryObject extends \admin\components\ApiObject {
             foreach ($flat as $category) {
                 $ids[] = $category->id;
             }
-
-            $subQuery = Item::find()->select('category_id')->status(Item::STATUS_ON);
-
-            if (!empty($options['brand_id'])) {
-                $subQuery->andFilterWhere(['=', 'brand_id', (int) $options['brand_id']]);
+            if (empty($options['all'])) {
+                $subQuery = Item::find()->select('category_id')->status(Item::STATUS_ON);
+                if (!empty($options['brand_id'])) {
+                    $subQuery->andFilterWhere(['=', 'brand_id', (int) $options['brand_id']]);
+                }
+                $query = Category::find()->where(['in', 'category_id', $ids])->status(Category::STATUS_ON)->join('INNER JOIN', ['i' => $subQuery], 'i.category_id = ' . Category::tableName() . '.id');
+            }  else {
+                $query = Category::find()->where(['in', 'id', $ids])->status(Category::STATUS_ON);            
             }
-
-            $query = Category::find()->where(['in', 'category_id', $ids])->status(Category::STATUS_ON)->join('INNER JOIN', ['i' => $subQuery], 'i.category_id = ' . Category::tableName() . '.id');
 
             if (!empty($options['where'])) {
                 $query->andFilterWhere($options['where']);

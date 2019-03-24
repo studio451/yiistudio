@@ -1,6 +1,6 @@
 <?
 
-namespace app_esumki\controllers;
+namespace app_demo\controllers;
 
 class SubscribeController extends \admin\modules\subscribe\controllers\api\SubscribeController {
     

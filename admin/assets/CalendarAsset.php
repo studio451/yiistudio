@@ -12,11 +12,11 @@ class CalendarAsset extends AssetBundle {
 
     public $sourcePath = '@vendor/bower/fullcalendar';
     public $css = [
-        'fullcalendar.min.css',
+        'dist/fullcalendar.min.css',
     ];
     public $js = [        
-        'distr/fullcalendar.min.js',  
-        'distr/gcal.min.js',
+        'dist/fullcalendar.min.js',  
+        'dist/gcal.min.js',
     ];
     public $depends = [
         'admin\assets\MomentAsset',
@@ -30,10 +30,10 @@ class CalendarAsset extends AssetBundle {
                 
         if(\Yii::$app->language == 'ru-RU')
         {
-            $this->js[] = 'distr/locale/ru.js';
+            $this->js[] = 'dist/locale/ru.js';
         }else
         {
-            $this->js[] = 'distr/locale/en-gb.js';
+            $this->js[] = 'dist/locale/en-gb.js';
         }
         
     }

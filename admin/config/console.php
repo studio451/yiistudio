@@ -1,23 +1,18 @@
 <?
 
-$adminPath = ADMIN_PATH;
-$basePath = BASE_PATH;
-$appPath = APP_PATH;
-
 return [
-    'id' => 'console',
+    'id' => APP_NAME,
+    'basePath' => APP_PATH,
     'sourceLanguage' => 'ru-RU',
     'language' => 'ru-RU',
-    'basePath' => $adminPath,
-    'runtimePath' => $basePath . '/runtime',
-    'vendorPath' => $basePath . '/vendor',
-    'aliases' => 
-    [
-        '@basePath' => $basePath,
-        '@app' => $appPath,
-        '@' . APP_NAME => $appPath,
-        '@admin' => $adminPath,        
-        '@webroot' => $basePath . '/public_html',
+    'aliases' =>
+        [
+        '@basePath' => BASE_PATH,
+        '@app' => APP_PATH,
+        '@' . APP_NAME => APP_PATH,
+        '@admin' => ADMIN_PATH,
+        '@webroot' => BASE_PATH . '/public_html',
+        '@web' => BASE_PATH . '/public_html',
     ],
     'bootstrap' => ['log', 'gii'],
     'controllerNamespace' => 'admin\commands',
@@ -35,6 +30,7 @@ return [
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
+            'cachePath' => BASE_PATH . '/runtime/cache',
         ],
         'log' => [
             'targets' => [
@@ -82,5 +78,5 @@ return [
             ],
         ],
     ],
-    'params' => $params,
+    'params' => [],
 ];

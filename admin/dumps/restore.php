@@ -13,3 +13,14 @@ if (file_exists($uploads_old)) {
     yii\helpers\FileHelper::removeDirectory($uploads_tmp);
 }
 
+//Сбрасываем ресурсы
+foreach (glob(Yii::$app->assetManager->basePath . DIRECTORY_SEPARATOR . '*') as $item) {
+    if (is_link($item)) {
+        unlink($item);
+    } elseif (is_dir($item)) {
+        yii\helpers\FileHelper::removeDirectory($item);
+    } else {
+        unlink($item);
+    }
+}
+

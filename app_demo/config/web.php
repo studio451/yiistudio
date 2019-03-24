@@ -4,7 +4,7 @@ $config = [
     'layout' => 'public',
     'components' => [
         'request' => [
-            'cookieValidationKey' => 'ZsaoMPJLsBO7Ss7ciuj9',
+            'cookieValidationKey' => 'flm8PhB8rbE1hSgf1CNc',
         ],
         'urlManager' => [
             'rules' => [
@@ -15,6 +15,7 @@ $config = [
                 'brand/<slug:[\w-]+>' => 'brand',
                 'news/<slug:[\w-]+>' => 'news',                
                 'gallery/<slug:[\w-]+>' => 'gallery',
+                'sale/<slug:[\w-]+>' => 'sale',
                  [
                     'pattern' => 'blog',
                     'route' => 'article',

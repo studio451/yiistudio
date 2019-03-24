@@ -3,10 +3,8 @@
 namespace admin\commands;
 
 use Yii;
-use yii\console\Controller;
-use yii\helpers\Console;
 
-class RbacController extends Controller {
+class RbacController extends \admin\console\Controller {
 
     public $user_id;
 

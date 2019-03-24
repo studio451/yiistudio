@@ -22,7 +22,7 @@ class SeoTemplate extends \admin\components\ActiveRecord {
 
     public function attributeLabels() {
         return [
-            'slug' => Yii::t('admin', 'Ключ'),
+            'slug' => Yii::t('admin', 'Код'),
             'title' => Yii::t('admin/seo', 'SEO шаблон для title'),
             'h1' => Yii::t('admin/seo', 'SEO шаблон для h1'),
             'description' => Yii::t('admin/seo', 'SEO шаблон для description'),

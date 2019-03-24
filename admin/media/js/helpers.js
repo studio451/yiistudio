@@ -75,12 +75,12 @@ function _g_obj_to_array(obj)
         return obj[key];
     })
 }
-function _g_animate_number(selector, color_id, value, limit)
+function _g_animate_number(selector, color_id, value, limit,duration = 1000, fixed = 2)
 {
     $(selector).animate({num: value - 5}, {
-        duration: 1000,
+        duration: duration,
         step: function (num) {
-            this.innerHTML = (num + 5).toFixed(2);
+            this.innerHTML = (num + 5).toFixed(fixed);
         },
         complete: function () {
             var invert = false;

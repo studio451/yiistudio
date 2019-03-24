@@ -12,7 +12,8 @@ $config = [
         '@app' => APP_PATH,
         '@' . APP_NAME => APP_PATH,
         '@admin' => ADMIN_PATH,
-        '@webroot' => BASE_PATH . '/public_html',
+        '@webroot' => BASE_PATH . '/public_html',   
+        '@web' => BASE_PATH . '/public_html',
     ],
     'modules' => [
         'admin' => [
@@ -52,8 +53,6 @@ $config = [
             ],
         ],
         'assetManager' => [
-            // uncomment the following line if you want to auto update your assets (unix hosting only)
-            //'linkAssets' => true,
             'bundles' => [
                 'yii\web\JqueryAsset' => [
                     'js' => [YII_DEBUG ? 'jquery.js' : 'jquery.min.js'],
@@ -78,7 +77,7 @@ $config = [
         ],
         'user' => [
             'identityClass' => 'admin\models\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => false,
             'authTimeout' => 86400,
             'identityCookie' => ['name' => '_identity-' . APP_NAME, 'httpOnly' => true],
         ],

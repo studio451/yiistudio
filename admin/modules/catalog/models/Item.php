@@ -274,5 +274,14 @@ class Item extends \admin\components\ActiveRecord {
         }
         $this->save();
     }
+    
+    public function setManualFlag() {
+        if ($this->external_manual) {
+            $this->external_manual = 0;
+        } else {
+            $this->external_manual = 1;
+        }
+        $this->save();
+    }
 
 }

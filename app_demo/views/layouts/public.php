@@ -32,7 +32,6 @@ $shopCart .= '</a>';
 
 
 <? $this->beginContent('@admin/views/layouts/base.php'); ?>
-
 <div class="bg-first">
     <div class="container">
         <div class="row">
@@ -126,6 +125,10 @@ NavBar::end();
                 <div class="col-md-12">
                     <?=
                     Breadcrumbs::widget([
+                        'homeLink' => [
+                            'label' => Yii::t('app', 'Главная'),
+                            'url' => ['/'],
+                        ],
                         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                             ], ['class' => 'p-0'])
                     ?>
@@ -151,7 +154,7 @@ NavBar::end();
         </div>   
         <div class="col-md-3"> 
             <small><?= Yii::t('app', 'Прайс-лист в Excel') ?></small><br/>
-            <a class="btn btn-success" href="<?= File::get('price-list')->file ?>"><i class="fa fa-save"></i> <?= Yii::t('app','Скачать прайс-лист') ?></a>
+            <a class="btn btn-success" href="<?= File::get('price-list')->file ?>"><i class="fa fa-save"></i> <?= Yii::t('app', 'Скачать прайс-лист') ?></a>
         </div>        
         <div class="col-md-5 text-right">
             <small><?= Yii::t('app', 'Подписаться на рассылку') ?>:</small><br/>
@@ -160,12 +163,12 @@ NavBar::end();
     </div>
     <div class="container mt-30 mb-60">
         <div class="col-md-4">
-            &copy; <?= Setting::get('contact_name') ?>, <?= date('Y') ?>
+            &copy; <?= Setting::get('contact_name') ?>, 2017 - <?= date('Y') ?>
         </div>   
         <div class="col-md-3">             
         </div>        
         <div class="col-md-5 text-right">
-            <?= Yii::t('app', 'Мы используем') ?> <a href="https://yiistudio.ru" target="_blank" title="https://yiistudio.ru"><?= \admin\AdminModule::NAME ?></a>
+            <?= \admin\AdminModule::renderPromo() ?>
         </div>
     </div>
 </footer>

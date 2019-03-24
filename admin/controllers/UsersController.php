@@ -186,18 +186,20 @@ class UsersController extends \admin\components\Controller {
 
         if ($model === null) {
             $this->flash('error', Yii::t('admin', 'Запись не найдена'));
-            return $this->redirect(['/admin/users/a/edit', 'id' => $model->id]);
+            return $this->redirect(['/admin/users/edit', 'id' => $model->id]);
         }
 
-        if (is_array(Yii::$app->request->post('data'))) {
-            $model->data = Yii::$app->request->post('data');
+        if (is_array(Yii::$app->request->post('User'))) {
+            if (is_array(Yii::$app->request->post('User')[data])) {
+            $model->data = Yii::$app->request->post('User')[data];
             if ($model->save()) {
                 $this->flash('success', Yii::t('admin', 'Дополнительные данные пользователя обновлены'));
                 return $this->redirect(['/admin/users/edit', 'id' => $model->id]);
             }
+            }
         }
         $this->flash('error', Yii::t('admin', 'Ошибка при обновлении записи. {0}', $model->formatErrors()));
-        return $this->redirect(['/admin/users/a/edit', 'id' => $model->id]);
+        return $this->redirect(['/admin/users/edit', 'id' => $model->id]);
     }
 
     public function actionOn($id) {
@@ -213,7 +215,7 @@ class UsersController extends \admin\components\Controller {
         $data = Yii::$app->request->post('data');
         if (isset($data)) {
             if (!is_array($data)) {
-                echo Json::encode([
+                return Json::encode([
                     'status' => 'error'
                 ]);
                 return;
@@ -225,11 +227,11 @@ class UsersController extends \admin\components\Controller {
                 }
             }
 
-            echo Json::encode([
+            return Json::encode([
                 'status' => 'success'
             ]);
         } else {
-            echo Json::encode([
+            return Json::encode([
                 'status' => 'error'
             ]);
         }

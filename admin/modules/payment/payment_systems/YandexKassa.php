@@ -11,7 +11,7 @@ class YandexKassa extends \admin\modules\payment\models\Payment {
 
    public function getDataSchema() {
         return [
-            'shopid' => ['title' => 'Идентификатор магазина', 'value' => 'asdasdadada'],
+            'shopid' => ['title' => 'Идентификатор магазина', 'value' => '111-222-333-444'],
             'scid' => ['title' => 'Номер витрины', 'value' => '123456'],
             'password' => ['title' => 'Пароль магазина', 'value' => '123456'],
             'type' => ['title' => 'Способ оплаты',

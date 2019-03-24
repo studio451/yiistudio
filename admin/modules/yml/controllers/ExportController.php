@@ -119,7 +119,7 @@ class ExportController extends Controller {
         $items = Item::find()->select(['id', 'name', 'article'])->where(['and', ['category_id' => $category_id],['brand_id' => $brand_id]])->asArray()->all();
 
 
-        echo Json::encode([   
+        return Json::encode([   
                 'status' => 'success',
                 'items' => $items
             ]);

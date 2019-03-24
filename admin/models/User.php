@@ -3,7 +3,6 @@
 namespace admin\models;
 
 use Yii;
-use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -62,12 +61,12 @@ class User extends \admin\components\ActiveRecordData implements \yii\web\Identi
             return false;
         }
     }
-    
-     public function beforeDelete() {
+
+    public function beforeDelete() {
         if (parent::beforeDelete()) {
             if ($this->id == Yii::$app->user->identity->id) {
                 return false;
-            }                
+            }
             return true;
         } else {
             return false;
@@ -205,6 +204,39 @@ class User extends \admin\components\ActiveRecordData implements \yii\web\Identi
 
     public function getName() {
         return $this->data['name'];
-    }   
+    }
+
+    public function getPhone() {
+        return $this->data['phone'];
+    }
+
+    public function getAddress() {
+        return $this->data['address'];
+    }
+
+    public function setAvatar($value) {
+        $this->data['avatar'] = $value;
+    }
+
+    public function setName($value) {
+        $this->data['name'] = $value;
+    }
+
+    public function setPhone($value) {
+        $this->data['phone'] = $value;
+    }
+
+    public function setAddress($value) {
+        $this->data['address'] = $value;
+    }
+
+    public function getDataSchema() {
+        return [
+            'avatar' => ['title' =>  Yii::t('admin', 'Аватар'), 'value' => ''],
+            'name' => ['title' =>  Yii::t('admin', 'Имя'), 'value' => ''],
+            'phone' => ['title' =>  Yii::t('admin', 'Телефон'), 'value' => ''],
+            'address' => ['title' =>  Yii::t('admin', 'Адрес'), 'value' => ''],
+        ];
+    }
 
 }

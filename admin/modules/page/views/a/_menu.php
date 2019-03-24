@@ -17,14 +17,3 @@ $module = $this->context->module->id;
     <li <?= ($action === 'create') ? 'class="active"' : '' ?>><a href="<?= Url::to(['/admin/' . $module . '/a/create']) ?>"><?= Yii::t('admin', 'Создать') ?></a></li>
 </ul>
 <br>
-<? if ($action === 'edit') : ?>
-    <ul class="nav nav-pills">
-        <li>
-            <a href="<?= $this->context->getReturnUrl(['/admin/page']) ?>">
-                <i class="glyphicon glyphicon-chevron-left fs-12"></i>
-                <?= Yii::t('admin/page', 'Страницы') ?>
-            </a>
-        </li>
-    </ul>
-    <br>
-<? endif; ?>

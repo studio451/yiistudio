@@ -3,7 +3,6 @@
 namespace admin\commands;
 
 use Yii;
-use yii\console\Controller;
 use yii\helpers\ArrayHelper;
 use yii\base\InvalidConfigException;
 use yii\base\NotSupportedException;
@@ -13,7 +12,7 @@ use admin\models\storage\Dump;
 use admin\models\storage\Restore;
 use admin\models\Setting;
 
-class DumpController extends Controller {
+class DumpController extends \admin\console\Controller {
 
     public $isArchive;
     public $schemaOnly;
@@ -61,40 +60,40 @@ class DumpController extends Controller {
         $model->restoreScript = $this->restoreScript;
 
         $dumpName = basename(ArrayHelper::getValue($this->getFileList(), $dump_id));
-        $dumpFile = $this->path . $dumpName;       
+        $dumpFile = $this->path . $dumpName;
 
-        if ($this->confirm(' ')) {
-            $this->stdout("Старт восстановления из бэкапа...\n", 94);
-            $dbInfo = $this->getDbInfo();
-            $restoreOptions = $model->makeRestoreOptions();
-            $manager = $this->createManager($dbInfo);
-            $restoreCommand = $manager->makeRestoreCommand($dumpFile, $dbInfo, $restoreOptions);
-            Yii::trace(compact('restoreCommand', 'dumpFile', 'restoreOptions'), get_called_class());
+        $this->stdout("Backup start...", 94);
+        $this->stdout("Backup file: " . $dumpFile, 94);
+        $dbInfo = $this->getDbInfo();
+        $restoreOptions = $model->makeRestoreOptions();
+        $manager = $this->createManager($dbInfo);
+        $restoreCommand = $manager->makeRestoreCommand($dumpFile, $dbInfo, $restoreOptions);
+        
+        if ($this->runProcess($restoreCommand, true)) {
 
-            if ($this->runProcess($restoreCommand, true)) {
-                if ($model->initData) {
-                    //При необходимости поместить скрипт для стартовой инициализации                     
-                }
-                if ($model->demoData) {
-                    //При необходимости поместить скрипт с демо-данными
-                }
-                if ($model->restoreScript) {
-                    //Выполняет скрипт @app/dumps/restore.php
-                    
-                    $restoreScript = $this->path . 'restore.php';
-                    if(file_exists($restoreScript))
-                    { 
-                        $this->stdout("Скрипт ". $restoreScript." запущен...\n", 94);
-                        require_once $restoreScript;
-                        $this->stdout("Скрипт ". $restoreScript." выполнен!\n", 94);
-                    }else
-                    {
-                        $this->stdout("Скрипт ". $restoreScript." не найден!\n", 94);
-                    }
-                    
-                    
+
+            if ($model->initData) {
+                //При необходимости поместить скрипт для стартовой инициализации                     
+            }
+            if ($model->demoData) {
+                //При необходимости поместить скрипт с демо-данными
+            }
+            if ($model->restoreScript) {
+                //Выполняет скрипт @app/dumps/restore.php
+
+                $restoreScript = $this->path . 'restore.php';
+                if (file_exists($restoreScript)) {
+                    $this->stdout("Restore script " . $restoreScript . " start...", 94);
+                    require_once $restoreScript;
+                    $this->stdout("Restore script " . $restoreScript . " done!", 94);
+                } else {
+                    $this->stdout("Restore script " . $restoreScript . " not find!", 94);
                 }
             }
+
+            //Сбрасываем кэш БД
+            Yii::$app->cache->flush();
+            $this->stdout("Cache flush complete!", 94);
         }
     }
 
@@ -112,11 +111,11 @@ class DumpController extends Controller {
         }
 
         if (!$return_var) {
-            $msg = (!$isRestore) ? Yii::t('admin', "Дамп БД успешно создан!")."\n" : Yii::t('admin', "Восстановление из бэкапа успешно завершено!")."\n";
+            $msg = (!$isRestore) ? Yii::t('admin', "Дамп БД успешно создан!") . "\n" : Yii::t('admin', "Восстановление из бэкапа успешно завершено!") . "\n";
             $this->stdout($msg, 92);
             return true;
         } else {
-            $msg = (!$isRestore) ? Yii::t('admin', "Ошибка при создании дампа БД!")."\n" : Yii::t('admin', "Ошибка при восстановлении из бэкапа!")."\n";
+            $msg = (!$isRestore) ? Yii::t('admin', "Ошибка при создании дампа БД!") . "\n" : Yii::t('admin', "Ошибка при восстановлении из бэкапа!") . "\n";
             $this->stdout($msg . "Команда: " . $command . "\n" . $str_output, 91);
             return false;
         }

@@ -13,7 +13,7 @@ class CallbackController extends \yii\web\Controller {
         $model->scenario = Feedback::SCENARIO_CALLBACK;
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-
+           
             $model->type = Feedback::TYPE_CALLBACK;
             Yii::$app->response->format = Response::FORMAT_JSON;
             if ($model->save()) {
@@ -22,6 +22,8 @@ class CallbackController extends \yii\web\Controller {
                 return ['success' => false];
             }
         } else {
+            $model->name = Yii::$app->user->identity->name;
+            $model->phone = Yii::$app->user->identity->phone;
             return $this->renderAjax('@admin/modules/feedback/views/api/callback/index', [
                         'model' => $model,
             ]);

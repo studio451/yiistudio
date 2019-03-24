@@ -1,21 +1,29 @@
 .banner {
     width: 100%;
-    background-color: #D62630;
-    padding:20px 0 15px 0;
+    background-color: #f36b00;
+    border: 1px solid #d15c00;
+    padding:15px 0 10px 0;
+}
+.banner-small
+{
+    padding:15px; 
 }
 .banner .banner-title {
     text-transform: uppercase;
-    font-family:  Arial;
-    font-size: 32px;
-    line-height: 42px;
+    font-size: 30px;
+    line-height: 40px;
     text-align: center;
     color: #fff;
     display: inline-block;
     vertical-align: top;
     width: 100%;
 }
+.banner-small .banner-title {
+    font-size: 20px;
+    line-height: 20px;
+}
 .banner .banner-title span {
-    font-family: Arial;
+    /*    font-family: Arial;*/
     display: inline-block;
     vertical-align: top;
 }
@@ -24,15 +32,21 @@
     text-align: center;
     font-size: 0;
     line-height: 30px;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 .banner .banner-content-text {
     display: inline-block;
     vertical-align: top;
     color: #fff;
-    font-family: Arial;
     font-size: 18px;
     padding-right: 15px;                    
+}
+.banner-small .banner-content-text {
+    padding-right: 10px; 
+    padding-right: 10px; 
+    line-height: 16px;
+    font-size: 16px;
+    margin-bottom: 15px;
 }
 .banner .banner-content-button {
     display: inline-block;
@@ -43,13 +57,16 @@
     border-radius: 0;
     border: 1px solid #fff;
     color: #fff;
-    font-family: Arial;
     text-decoration: none;
     white-space: nowrap;
     padding: 5px 57px;
     font-size: 15px;
     transition: background .2s ease, color .2s ease, border .2s ease;
 }
+.banner-small .banner-content-button a {
+    padding: 5px 20px
+}
+
 .banner .banner-content-button a:after {
     content: none;
 }
@@ -63,19 +80,23 @@
     padding: 5px 57px;
 }
 
+.banner-small .banner-content-button a:hover,
+.banner-small .banner-content-button a:active
+{
+    padding: 5px 20px
+}
 
 .nav>li>a.banner {
     width: 100%;
-    background-color: #D62630;
-    border: 1px solid #D62630;
+    background-color: #f36b00;
+    border: 1px solid #d15c00;
     padding: 1px 9px;
-    color: #FFF;
+    color: #fff;
     margin-top: 7px;
     margin-bottom: 7px;
     text-transform: uppercase;
     border-radius: 0px;
 }
 .nav>li>a.banner:hover {
-     color: #333;
-     background-color: #fff;
+    background-color: #ff8500;
 }

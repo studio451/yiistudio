@@ -3,6 +3,8 @@
 namespace admin\modules\catalog\api;
 
 use Yii;
+use admin\models\Tag;
+use admin\models\TagAssign;
 use admin\modules\catalog\models\ItemData;
 use admin\modules\catalog\models\Category;
 use admin\modules\catalog\models\Item;
@@ -168,20 +170,36 @@ class Catalog extends \admin\components\API {
                 unset($filters['category_id']);
             }
 
-            $subQuery2 = Item::find()->select('id, group_id, title, price, time')->groupBy('group_id');
+            $itemQuery = Item::find()->select('id, group_id, title, price, time')->groupBy('group_id');
             if (!empty($filters['price'])) {
                 $price = $filters['price'];
                 if (is_array($price) && count($price) == 2) {
                     if (!$price[0]) {
-                        $subQuery2->andFilterWhere(['<=', 'price', (int) $price[1]]);
+                        $itemQuery->andFilterWhere(['<=', 'price', (int) $price[1]]);
                     } elseif (!$price[1]) {
-                        $subQuery2->andFilterWhere(['>=', 'price', (int) $price[0]]);
+                        $itemQuery->andFilterWhere(['>=', 'price', (int) $price[0]]);
                     } else {
-                        $subQuery2->andFilterWhere(['between', 'price', (int) $price[0], (int) $price[1]]);
+                        $itemQuery->andFilterWhere(['between', 'price', (int) $price[0], (int) $price[1]]);
                     }
                 }
                 unset($filters['price']);
             }
+
+            //Фильтрация по тегу
+            if (!empty($filters['tag'])) {
+
+                $tagQuery = Tag::find()->select('id');
+                $tagQuery->andFilterWhere(['=', 'name', $filters['tag']]);
+
+                $tagAssignQuery = TagAssign::find()->select('item_id as tag_assign_item_id');
+                $tagAssignQuery->andFilterWhere(['=', 'class', 'admin\modules\catalog\models\Item']);
+                $tagAssignQuery->join('INNER JOIN', ['tag' => $tagQuery], 'tag.id = ' . TagAssign::tableName() . '.tag_id');
+
+                $itemQuery->join('INNER JOIN', ['tag_assign' => $tagAssignQuery], 'tag_assign.tag_assign_item_id = ' . Item::tableName() . '.id');
+
+                unset($filters['tag']);
+            }
+
 
             $filters2Applied = 0;
             if (count($filters)) {
@@ -205,10 +223,10 @@ class Catalog extends \admin\components\API {
                     }
                 }
                 if ($filters2Applied) {
-                    $subQuery2->join('INNER JOIN', ['f' => $subQuery], 'f.si = ' . Item::tableName() . '.id');
+                    $itemQuery->join('INNER JOIN', ['f' => $subQuery], 'f.si = ' . Item::tableName() . '.id');
                 }
             }
-            $query->join('INNER JOIN', ['i' => $subQuery2], 'i.group_id = ' . Group::tableName() . '.id');
+            $query->join('INNER JOIN', ['i' => $itemQuery], 'i.group_id = ' . Group::tableName() . '.id');
             $query->orderBy($sort);
         }
 
@@ -235,7 +253,7 @@ class Catalog extends \admin\components\API {
                 }
                 unset($filters['price']);
             }
-            
+
             if (!empty($filters['brand_id'])) {
                 if (is_array($filters['brand_id'])) {
                     $query->andWhere(['in', 'brand_id', $filters['brand_id']]);
@@ -244,15 +262,30 @@ class Catalog extends \admin\components\API {
                 }
                 unset($filters['brand_id']);
             }
-            
+
             if (!empty($filters['category_id'])) {
                 $query->andFilterWhere(['=', 'category_id', (int) $filters['category_id']]);
                 unset($filters['category_id']);
             }
-            
+
             if (!empty($filters['status'])) {
                 $query->andFilterWhere(['=', 'status', (int) $filters['status']]);
                 unset($filters['status']);
+            }
+            
+            //Фильтрация по тегу
+            if (!empty($filters['tag'])) {
+
+                $tagQuery = Tag::find()->select('id');
+                $tagQuery->andFilterWhere(['=', 'name', $filters['tag']]);
+
+                $tagAssignQuery = TagAssign::find()->select('item_id as tag_assign_item_id');
+                $tagAssignQuery->andFilterWhere(['=', 'class', 'admin\modules\catalog\models\Item']);
+                $tagAssignQuery->join('INNER JOIN', ['tag' => $tagQuery], 'tag.id = ' . TagAssign::tableName() . '.tag_id');
+
+                $query->join('INNER JOIN', ['tag_assign' => $tagAssignQuery], 'tag_assign.tag_assign_item_id = ' . Item::tableName() . '.id');
+
+                unset($filters['tag']);
             }
 
             if (count($filters)) {

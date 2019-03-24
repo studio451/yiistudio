@@ -23,9 +23,14 @@ class APIController extends \yii\web\Controller {
         }
                 
         if (parent::beforeAction($action)) {
-            Yii::$app->user->setReturnUrl(Yii::$app->request->url);
+            if(Yii::$app->request->isGet)
+            {
+                Yii::$app->user->setReturnUrl(Yii::$app->request->url);
+            }
             return true;
-        }        
+        }     
+        
+    
     }    
 
 }

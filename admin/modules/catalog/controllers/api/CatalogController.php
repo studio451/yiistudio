@@ -20,6 +20,7 @@ class CatalogController extends \admin\components\APIController {
         $category = Catalog::category($slug);
 
         $filters = null;
+                
         if ($filterForm->load(Yii::$app->request->get()) && $filterForm->validate()) {
             $filters = $filterForm->parse();
         }
@@ -40,6 +41,11 @@ class CatalogController extends \admin\components\APIController {
 
             $filters['brand_id'] = $brand->id;
             $showDescription = false;
+        }
+        
+        if(Yii::$app->request->get('tag') != null)
+        {
+            $filters['tag'] = Yii::$app->request->get('tag');
         }
 
 

@@ -13,9 +13,6 @@ if (file_exists($uploads_old)) {
     yii\helpers\FileHelper::removeDirectory($uploads_tmp);
 }
 
-//Сбрасываем кэш БД
-Yii::$app->cache->flush();
-
 //Сбрасываем ресурсы
 foreach (glob(Yii::$app->assetManager->basePath . DIRECTORY_SEPARATOR . '*') as $item) {
     if (is_link($item)) {

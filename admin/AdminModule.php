@@ -14,7 +14,7 @@ use admin\behaviors\AccessBehavior;
 
 class AdminModule extends \yii\base\Module implements BootstrapInterface {
 
-    const VERSION = 0.925;
+    const VERSION = 0.926;
     const NAME = 'Yii Studio';
 
     public $settings;
@@ -29,7 +29,7 @@ class AdminModule extends \yii\base\Module implements BootstrapInterface {
                     'class' => AccessBehavior::className(),
                     'login_url' => '/user/login',
                     'rules' =>
-                    [
+                        [
                         'admin' => [['allow' => true, 'roles' => ['SuperAdmin'],],],
                         'admin/logs' => [['allow' => true, 'roles' => ['SuperAdmin'],],],
                         'admin/modules' => [['allow' => true, 'roles' => ['SuperAdmin'],],],
@@ -104,6 +104,10 @@ class AdminModule extends \yii\base\Module implements BootstrapInterface {
     public function renderToolbar() {
         $view = Yii::$app->getView();
         echo $view->render('@admin/views/layouts/toolbar.php');
+    }
+
+    public static function renderPromo() {
+        echo Yii::t('admin', 'Мы используем') . ' <a href="https://yiistudio.ru" target="_blank" title="https://yiistudio.ru">' . self::NAME . '</a>';
     }
 
     public static function getDsnAttribute($name, $dsn) {

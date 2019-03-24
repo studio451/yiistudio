@@ -215,7 +215,7 @@ class ItemController extends Controller {
         $data = Yii::$app->request->post('data');
         if (isset($data)) {
             if (!is_array($data)) {
-                echo Json::encode([
+                return Json::encode([
                     'status' => 'error'
                 ]);
                 return;
@@ -227,11 +227,11 @@ class ItemController extends Controller {
                 }
             }
 
-            echo Json::encode([
+            return Json::encode([
                 'status' => 'success'
             ]);
         } else {
-            echo Json::encode([
+            return Json::encode([
                 'status' => 'error'
             ]);
         }
@@ -242,10 +242,9 @@ class ItemController extends Controller {
         $data = Yii::$app->request->post('data');
         if (isset($data)) {
             if (!is_array($data)) {
-                echo Json::encode([
+                return Json::encode([
                     'status' => 'error'
                 ]);
-                return;
             }
             foreach ($data as $item) {
                 $model = Item::findOne($item);
@@ -254,11 +253,11 @@ class ItemController extends Controller {
                 }
             }
 
-            echo Json::encode([
+            return Json::encode([
                 'status' => 'success'
             ]);
         } else {
-            echo Json::encode([
+            return Json::encode([
                 'status' => 'error'
             ]);
         }
@@ -269,10 +268,9 @@ class ItemController extends Controller {
         $data = Yii::$app->request->post('data');
         if (isset($data)) {
             if (!is_array($data)) {
-                echo Json::encode([
+                return Json::encode([
                     'status' => 'error'
                 ]);
-                return;
             }
             foreach ($data as $item) {
                 $model = Item::findOne($item);
@@ -281,16 +279,42 @@ class ItemController extends Controller {
                 }
             }
 
-            echo Json::encode([
+            return Json::encode([
                 'status' => 'success'
             ]);
         } else {
-            echo Json::encode([
+            return Json::encode([
                 'status' => 'error'
             ]);
         }
     }
 
+    public function actionManualJson() {
+
+        $data = Yii::$app->request->post('data');
+        if (isset($data)) {
+            if (!is_array($data)) {
+                return Json::encode([
+                    'status' => 'error'
+                ]);
+            }
+            foreach ($data as $item) {
+                $model = Item::findOne($item);
+                if ($model) {
+                    $model->setManualFlag();
+                }
+            }
+
+            return Json::encode([
+                'status' => 'success'
+            ]);
+        } else {
+            return Json::encode([
+                'status' => 'error'
+            ]);
+        }
+    }
+    
     public function actionUp($id, $category_id) {
         return $this->move($id, 'up', ['category_id' => $category_id]);
     }
