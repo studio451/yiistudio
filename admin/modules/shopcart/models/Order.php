@@ -9,7 +9,7 @@ use admin\models\Setting;
 use admin\validators\EscapeValidator;
 use yii\helpers\Url;
 
-class Order extends \admin\components\ActiveRecordData {
+class Order extends \admin\base\ActiveRecordData {
 
     const PAID_STATUS_NOT_PAID = 0;
     const PAID_STATUS_PAID = 1;

@@ -66,7 +66,7 @@ if (count($group->items)) {
             <div class="row">
                 <div class="col-md-5 col-xs-5">
                     <p class="form-control-static">
-                        <strong><?= $item->price ?> <i class="fa fa-rub"></i>
+                        <strong><?= $item->price ?> <i class="fas fa-ruble-sign"></i>
                             <? if ($item->discount) { ?>
                                 <del class="small"><?= $item->oldPrice ?></del>
                             <? } ?>

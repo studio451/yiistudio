@@ -7,7 +7,7 @@ $module = $this->context->module->id;
 ?>
 <ul class="nav nav-pills">
     <li <?= ($action === 'index') ? 'class="active"' : '' ?>>
-        <a href="<?= $this->context->getReturnUrl(['/admin/' . $module . '/import']) ?>">
+        <a href="<?= Url::to('/admin/' . $module . '/import') ?>">
             <? if ($action === 'edit') : ?>
                 <i class="fa fa-chevron-left fs-12"></i>
             <? endif; ?>

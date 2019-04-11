@@ -5,7 +5,7 @@ use yii\data\ActiveDataProvider;
 
 use admin\models\api\LoginForm;
 
-class LogsController extends \admin\components\Controller
+class LogsController extends \admin\base\admin\Controller
 {
     public function actionIndex()
     {

@@ -5,14 +5,13 @@ namespace admin\modules\payment\controllers;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\widgets\ActiveForm;
-use admin\components\Controller;
+
 use admin\modules\payment\models\Payment;
 use admin\modules\shopcart\models\Order;
-
 use admin\behaviors\SortableController;
 use admin\behaviors\StatusController;
 
-class AController extends Controller {
+class AController extends \admin\base\admin\Controller {
 
     public function behaviors() {
         return [
@@ -130,7 +129,7 @@ class AController extends Controller {
             $model->save();
             $this->flash('success', Yii::t('admin', 'Установлены настройки по-умолчанию'));
         }
-        return $this->back();
+        return $this->goBack();
     }
 
     public function actionProcess($id) {

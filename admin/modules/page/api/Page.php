@@ -7,12 +7,12 @@ use admin\helpers\Data;
 use admin\modules\page\models\Page as PageModel;
 
 /**
- * Page module API
+ * Page module Api
  * @package admin\modules\page\api
  *
  * @method static PageObject get(mixed $id_slug) Get page object by id or slug
  */
-class Page extends \admin\components\API {
+class Page extends \admin\base\Api {
 
     private $_pages = [];
 

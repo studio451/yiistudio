@@ -5,7 +5,7 @@ use Yii;
 use admin\modules\catalog\models\Item;
 use admin\validators\EscapeValidator;
 
-class Good extends \admin\components\ActiveRecord
+class Good extends \admin\base\ActiveRecord
 {
     public static function tableName()
     {

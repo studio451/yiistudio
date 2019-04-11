@@ -4,7 +4,7 @@ namespace admin\modules\news\controllers\api;
 
 use admin\modules\news\api\News;
 
-class NewsController extends \admin\components\APIController {
+class NewsController extends \admin\base\api\Controller {
 
     public function actionIndex($slug = '', $tag = null) {
         if ($slug) {

@@ -5,7 +5,7 @@ namespace admin\modules\catalog\models;
 use Yii;
 use admin\modules\sitemap\behaviors\SitemapBehavior;
 
-class Category extends \admin\components\CategoryModel {
+class Category extends \admin\base\CategoryModel {
 
     static $fieldTypes = [
         'string' => 'String',

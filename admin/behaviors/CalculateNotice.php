@@ -20,7 +20,7 @@ class CalculateNotice extends \yii\base\Behavior
 
     public function updateNotice()
     {
-        $moduleName = \admin\components\Module::getModuleName(get_class($this->owner));
+        $moduleName = \admin\base\Module::getModuleName(get_class($this->owner));
         if(($module = Module::findOne(['name' => $moduleName]))){
             $module->notice = call_user_func($this->callback);
             $module->update();

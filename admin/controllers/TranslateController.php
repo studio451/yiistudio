@@ -5,7 +5,7 @@ namespace admin\controllers;
 use admin\helpers\WebConsole;
 
 
-class TranslateController extends \admin\components\Controller
+class TranslateController extends \admin\base\admin\Controller
 {    
     public function actionIndex() {
         return $this->render('index');

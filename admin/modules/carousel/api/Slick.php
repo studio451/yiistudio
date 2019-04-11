@@ -41,7 +41,7 @@ class Slick extends Widget {
         if ($this->lightbox) {
             $this->clientOptions['slidesToShow'] = 1;
             $this->clientOptions['slidesToScroll'] = 1;
-            $layouts['closeButton'] = '<button type="button" class="slick-lightbox-close"><i class="fa fa-close"></i></button>';
+            $layouts['closeButton'] = '<button type="button" class="slick-lightbox-close"><i class="fa fa-times"></i></button>';
             $options = Json::encode($this->clientOptions);
             $layouts = Json::encode($layouts);
             $js[] = 'jQuery("#' . $id . '").slickLightbox({itemSelector: "> div > div > a",mainitem:"#mainitem",layouts:' . $layouts . ', slick:' . $options . '});';

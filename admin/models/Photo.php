@@ -4,7 +4,7 @@ namespace admin\models;
 use Yii;
 use admin\behaviors\SortableModel;
 
-class Photo extends \admin\components\ActiveRecord
+class Photo extends \admin\base\ActiveRecord
 {
     const PHOTO_MAX_WIDTH = 1900;
     

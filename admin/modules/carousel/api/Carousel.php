@@ -2,20 +2,20 @@
 namespace admin\modules\carousel\api;
 
 use Yii;
-use admin\components\API;
+use admin\base\Api;
 use admin\helpers\Data;
 use admin\modules\carousel\models\Carousel as CarouselModel;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
 /**
- * Carousel module API
+ * Carousel module Api
  * @package admin\modules\carousel\api
  * @method static string widget(int $width, int $height, array $clientOptions = []) Bootstrap carousel widget
  * @method static array items() array of all Carousel items as CarouselObject objects. Useful to create carousel on other widgets.
  */
 
-class Carousel extends API
+class Carousel extends Api
 {
     public $clientOptions = ['interval' => 5000];
 
@@ -67,7 +67,7 @@ class Carousel extends API
             'items' => $items
         ]);
 
-        return LIVE_EDIT ? API::liveEdit($widget, Url::to(['/admin/carousel']), 'div') : $widget;
+        return LIVE_EDIT ? Api::liveEdit($widget, Url::to(['/admin/carousel']), 'div') : $widget;
     }
 
     public function api_items()

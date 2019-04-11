@@ -3,12 +3,12 @@
 namespace admin\modules\sale\api;
 
 use Yii;
-use admin\components\API;
+use admin\base\Api;
 use admin\models\Photo;
 use admin\modules\sale\models\Sale as SaleModel;
 use yii\helpers\Url;
 
-class SaleObject extends \admin\components\ApiObject {
+class SaleObject extends \admin\base\ApiObject {
 
     public $slug;
     public $image;
@@ -22,7 +22,7 @@ class SaleObject extends \admin\components\ApiObject {
     }
 
     public function getShort() {
-        return LIVE_EDIT ? API::liveEdit($this->model->short, $this->editLink) : $this->model->short;
+        return LIVE_EDIT ? Api::liveEdit($this->model->short, $this->editLink) : $this->model->short;
     }
 
     public function getBigBanner() {
@@ -58,7 +58,7 @@ class SaleObject extends \admin\components\ApiObject {
     }
 
     public function getText() {
-        return LIVE_EDIT ? API::liveEdit($this->model->text, $this->editLink, 'div') : $this->model->text;
+        return LIVE_EDIT ? Api::liveEdit($this->model->text, $this->editLink, 'div') : $this->model->text;
     }
 
     public function getTags() {

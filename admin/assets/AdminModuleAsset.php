@@ -4,7 +4,7 @@ namespace admin\assets;
 
 use Yii;
 
-class AdminModuleAsset extends \admin\components\Asset {
+class AdminModuleAsset extends \admin\base\Asset {
 
     public $depends = [
         'admin\assets\AdminAsset',

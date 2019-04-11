@@ -1,7 +1,7 @@
 <?
 namespace admin\modules\carousel;
 
-class CarouselModule extends \admin\components\Module
+class CarouselModule extends \admin\base\Module
 {
     public $settings = [
         'enableTitle' => true,

@@ -5,14 +5,14 @@ namespace admin\modules\yml\controllers;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\widgets\ActiveForm;
-use admin\components\Controller;
+use yii\helpers\Json;
+
 use admin\modules\yml\models\Export;
 use admin\modules\yml\helpers\WebConsole;
 use admin\models\Setting;
 use admin\modules\catalog\models\Item;
-use yii\helpers\Json;
 
-class ExportController extends Controller {
+class ExportController extends \admin\base\admin\Controller {
 
     public function actionIndex() {
         $data = new ActiveDataProvider([

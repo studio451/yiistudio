@@ -4,7 +4,7 @@ namespace admin\modules\payment\models;
 
 use Yii;
 
-class Checkout extends \admin\components\ActiveRecord {
+class Checkout extends \admin\base\ActiveRecord {
 
     const CHECKOUT_STATUS_ERROR = 0;
     const CHECKOUT_STATUS_SUCCESS = 1;
@@ -48,7 +48,7 @@ class Checkout extends \admin\components\ActiveRecord {
 <div class = "modal-dialog modal-lg" role = "document">
 <div class = "modal-content">
 <div class = "modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-fw fa-close"></i></button>
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-fw fa-times"></i></button>
 <h4 class = "modal-title">' . Yii::$app->formatter->asDatetime($this->time, 'short')
                 . ' ' . $this->renderStatus() . '<br>' . $this->description . '</h4>
 </div>

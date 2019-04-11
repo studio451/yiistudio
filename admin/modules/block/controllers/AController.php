@@ -5,10 +5,9 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\widgets\ActiveForm;
 
-use admin\components\Controller;
 use admin\modules\block\models\Block;
 
-class AController extends Controller
+class AController extends \admin\base\admin\Controller
 {
     public function actionIndex()
     {

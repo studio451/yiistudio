@@ -6,7 +6,7 @@ use Yii;
 use admin\behaviors\SluggableBehavior;
 use admin\modules\seo\behaviors\SeoTextBehavior;
 
-class Brand extends \admin\components\ActiveRecord {
+class Brand extends \admin\base\ActiveRecord {
 
     const STATUS_OFF = 0;
     const STATUS_ON = 1;

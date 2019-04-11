@@ -4,7 +4,7 @@ namespace admin\modules\shopcart\api;
 
 use admin\modules\catalog\api\ItemObject;
 
-class GoodObject extends \admin\components\ApiObject {
+class GoodObject extends \admin\base\ApiObject {
 
     public $order_id;
     public $item_id;

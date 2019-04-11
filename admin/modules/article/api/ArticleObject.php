@@ -3,13 +3,13 @@
 namespace admin\modules\article\api;
 
 use Yii;
-use admin\components\API;
+use admin\base\Api;
 use admin\models\Photo;
 use admin\modules\article\models\Item;
 use yii\helpers\Url;
 use admin\modules\article\models\Category;
 
-class ArticleObject extends \admin\components\ApiObject {
+class ArticleObject extends \admin\base\ApiObject {
 
     /** @var  string */
     public $slug;
@@ -25,15 +25,15 @@ class ArticleObject extends \admin\components\ApiObject {
     private $_category;
 
     public function getTitle() {
-        return LIVE_EDIT ? API::liveEdit($this->model->title, $this->editLink) : $this->model->title;
+        return LIVE_EDIT ? Api::liveEdit($this->model->title, $this->editLink) : $this->model->title;
     }
 
     public function getShort() {
-        return LIVE_EDIT ? API::liveEdit($this->model->short, $this->editLink) : $this->model->short;
+        return LIVE_EDIT ? Api::liveEdit($this->model->short, $this->editLink) : $this->model->short;
     }
 
     public function getText() {
-        return LIVE_EDIT ? API::liveEdit($this->model->text, $this->editLink, 'div') : $this->model->text;
+        return LIVE_EDIT ? Api::liveEdit($this->model->text, $this->editLink, 'div') : $this->model->text;
     }
 
     public function getCategory() {

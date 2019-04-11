@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $page->title;
                 <div class="col-md-10">                    
                     <?= Html::a($item->title, ['/catalog/item', 'category' => $item->category->slug, 'slug' => $item->slug]) ?>
                     <br>
-                    <strong><?= $item->price ?> <i class="fa fa-rub"></i>
+                    <strong><?= $item->price ?> <i class="fas fa-ruble-sign"></i>
                         <? if ($item->discount) { ?>
                             <del class="small"><?= $item->oldPrice ?></del>
                         <? } ?>

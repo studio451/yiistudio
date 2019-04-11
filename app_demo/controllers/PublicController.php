@@ -2,7 +2,7 @@
 
 namespace app_demo\controllers;
 
-class PublicController extends \admin\components\APIController {
+class PublicController extends \admin\base\api\Controller {
 
     public function actions() {
         return [

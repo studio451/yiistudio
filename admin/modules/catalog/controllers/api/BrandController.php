@@ -7,7 +7,7 @@ use admin\modules\catalog\api\Catalog;
 use yii\web\NotFoundHttpException;
 use yii\data\Sort;
 
-class BrandController extends \admin\components\APIController {
+class BrandController extends \admin\base\api\Controller {
 
     public function actionIndex($slug = '', $page = 1, $pageSize = 36) {
         if ($slug) {

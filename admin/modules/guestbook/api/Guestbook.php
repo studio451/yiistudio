@@ -11,7 +11,7 @@ use admin\modules\guestbook\models\Guestbook as GuestbookModel;
 use admin\widgets\ReCaptcha;
 
 /**
- * Guestbook module API
+ * Guestbook module Api
  * @package admin\modules\guestbook\api
  *
  * @method static string form(array $options = []) Returns fully worked standalone html form.
@@ -22,7 +22,7 @@ use admin\widgets\ReCaptcha;
  * @method static \stdClass pagination() returns yii\data\Pagination object.
  */
 
-class Guestbook extends \admin\components\API
+class Guestbook extends \admin\base\Api
 {
     private $_adp;
     private $_last;

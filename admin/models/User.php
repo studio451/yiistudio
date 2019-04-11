@@ -8,7 +8,7 @@ use yii\behaviors\TimestampBehavior;
 /**
  * User model
  */
-class User extends \admin\components\ActiveRecordData implements \yii\web\IdentityInterface {
+class User extends \admin\base\ActiveRecordData implements \yii\web\IdentityInterface {
 
     const STATUS_OFF = 0;
     const STATUS_ON = 1;

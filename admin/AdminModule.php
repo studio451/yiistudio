@@ -89,13 +89,15 @@ class AdminModule extends \yii\base\Module implements BootstrapInterface {
     public function bootstrap($app) {
         if (INSTALLED) {
             if (!$app->user->isGuest && strpos($app->request->pathInfo, 'admin') === false) {
-                if (Yii::$app->user->can('admin')) {
-                    $app->on(Application::EVENT_BEFORE_REQUEST, function () use ($app) {
-                        $request = Yii::$app->request;
-                        if (!$request->isAjax) {
-                            $app->getView()->on(View::EVENT_BEGIN_BODY, [$this, 'renderToolbar']);
-                        }
-                    });
+                if (strpos($app->request->pathInfo, 'debug') === false) {
+                    if (Yii::$app->user->can('admin')) {
+                        $app->on(Application::EVENT_BEFORE_REQUEST, function () use ($app) {
+                            $request = Yii::$app->request;
+                            if (!$request->isAjax) {
+                                $app->getView()->on(View::EVENT_BEGIN_BODY, [$this, 'renderToolbar']);
+                            }
+                        });
+                    }
                 }
             }
         }

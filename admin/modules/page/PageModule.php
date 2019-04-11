@@ -3,7 +3,7 @@ namespace admin\modules\page;
 
 use Yii;
 
-class PageModule extends \admin\components\Module
+class PageModule extends \admin\base\Module
 {
     public static $installConfig = [
         'title' => [

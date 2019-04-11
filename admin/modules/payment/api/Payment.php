@@ -7,11 +7,11 @@ use yii\base\Exception;
 use admin\modules\payment\models\Payment as PaymentModel;
 
 /**
- * Payment module API
+ * Payment module Api
  * @package admin\modules\payment\api
  *
  */
-class Payment extends \admin\components\API {
+class Payment extends \admin\base\Api {
 
     public function api_renderCheckoutForm($orderObject) {
         if ($orderObject->model->isNotPaid()) {

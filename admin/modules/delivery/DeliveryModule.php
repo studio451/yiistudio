@@ -1,7 +1,7 @@
 <?
 namespace admin\modules\delivery;
 
-class DeliveryModule extends \admin\components\Module
+class DeliveryModule extends \admin\base\Module
 {
     public static $installConfig = [
         'title' => [

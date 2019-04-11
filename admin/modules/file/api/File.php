@@ -7,7 +7,7 @@ use admin\modules\file\models\File as FileModel;
 use yii\widgets\LinkPager;
 
 /**
- * File module API
+ * File module Api
  * @package admin\modules\file\api
  *
  * @method static FileObject get(mixed $id_slug) Get a file by id or slug
@@ -17,7 +17,7 @@ use yii\widgets\LinkPager;
  * @method static \stdClass pagination() returns yii\data\Pagination object.
  */
 
-class File extends \admin\components\API
+class File extends \admin\base\Api
 {
     private $_adp;
     private $_last;

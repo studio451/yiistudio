@@ -1,7 +1,7 @@
 <?
 namespace admin\modules\catalog\models;
 
-class ItemData extends \admin\components\ActiveRecord
+class ItemData extends \admin\base\ActiveRecord
 {
 
     public static function tableName()

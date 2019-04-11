@@ -9,7 +9,7 @@ use yii\widgets\LinkPager;
 use admin\modules\news\models\News as NewsModel;
 
 /**
- * News module API
+ * News module Api
  * @package admin\modules\news\api
  *
  * @method static NewsObject get(mixed $id_slug) Get news object by id or slug
@@ -17,7 +17,7 @@ use admin\modules\news\models\News as NewsModel;
  * @method static mixed last(int $limit = 1) Get last news
  * @method static \stdClass pagination() returns yii\data\Pagination object.
  */
-class News extends \admin\components\API {
+class News extends \admin\base\Api {
 
     private $_adp;
     private $_items;

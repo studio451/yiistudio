@@ -12,7 +12,7 @@ $form = ActiveForm::begin([
 <?= $form->field($model, 'slug') ?>
 <br>
 <br>
-##title## - <?= Yii::t('admin/seo', 'Заголовок API объекта') ?><br>
+##title## - <?= Yii::t('admin/seo', 'Заголовок Api объекта') ?><br>
 ##strtolower()## - <?= Yii::t('admin/seo', 'Привести к нижнему регистру') ?>
 <br>
 <br>

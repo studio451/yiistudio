@@ -12,7 +12,7 @@ use admin\modules\delivery\models\Delivery;
 use admin\modules\payment\models\Payment;
 use admin\models\User;
 
-class Shopcart extends \admin\components\API {
+class Shopcart extends \admin\base\Api {
 
     private $_order;
     private $_orders;

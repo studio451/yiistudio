@@ -1,6 +1,6 @@
 <?
 
-use admin\widgets\DateTimePicker;
+use kartik\datetime\DateTimePicker;
 use admin\helpers\Image;
 use admin\widgets\TagsInput;
 use yii\helpers\Html;

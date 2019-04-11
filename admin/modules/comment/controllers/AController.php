@@ -3,7 +3,6 @@
 namespace admin\modules\comment\controllers;
 
 use Yii;
-use admin\components\Controller;
 use yii\web\NotFoundHttpException;
 use admin\modules\comment\models\Comment;
 
@@ -12,7 +11,7 @@ use admin\modules\comment\models\Comment;
  *
  * @package admin\modules\comment\controllers
  */
-class AController extends Controller
+class AController extends \admin\base\admin\Controller
 {
     /**
      * @var string search class name for searching

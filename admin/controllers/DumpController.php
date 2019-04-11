@@ -17,7 +17,7 @@ use admin\models\storage\Restore;
 use admin\helpers\WebConsole;
 use admin\models\Setting;
 
-class DumpController extends \admin\components\Controller {
+class DumpController extends \admin\base\admin\Controller {
 
     public function behaviors() {
         return [
@@ -45,7 +45,7 @@ class DumpController extends \admin\components\Controller {
                     $action->id == 'delete-all' ||
                     $action->id == 'create') {
                 $this->flash('warning', Yii::t('admin', 'Недоступно в демо-версии!'));
-                $this->back();
+                $this->goBack();
                 return false;
             }
         }

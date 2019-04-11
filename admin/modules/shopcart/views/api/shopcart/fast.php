@@ -20,7 +20,7 @@ use yii\helpers\Url;
                     <? if ($good->discount) : ?>
                         <del class="text-muted"><small><?= $good->oldPrice ?></small></del>
                     <? endif; ?>
-                            <?= $good->price ?> <i class="fa fa-rub"></i>                    
+                            <?= $good->price ?> <i class="fas fa-ruble-sign"></i>                    
                 </h3>
             </div>
         <? endforeach; ?>

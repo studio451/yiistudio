@@ -7,7 +7,7 @@ use yii\widgets\ActiveForm;
 use admin\modules\seo\widgets\SeoTextForm;
 use admin\modules\seo\widgets\SeoTemplateForm;
 use admin\widgets\Redactor;
-use admin\widgets\DateTimePicker;
+use kartik\datetime\DateTimePicker;
 
 $class = $this->context->categoryClass;
 $settings = $this->context->module->settings;
@@ -58,9 +58,6 @@ if ($model->id) {
         <?= $form->field($model, 'time')->widget(DateTimePicker::className()); ?>
     </div>
 </div>
-<?= SeoTextForm::widget(['model' => $model]) ?>
-<?= SeoTemplateForm::widget(['model' => $model]) ?>
-
 <? if (in_array('description', $model->attributes())) { ?>
     <?=
     $form->field($model, 'description')->widget(Redactor::className(), [
@@ -69,8 +66,12 @@ if ($model->id) {
             'fileUpload' => Url::to(['/admin/redactor/upload', 'dir' => 'catalog'], true),
         ]
     ])
-    ?>
-<? } ?>
+    ?>       
+<? } ?>  
+<?= SeoTextForm::widget(['model' => $model]) ?>
+<?= SeoTemplateForm::widget(['model' => $model]) ?>
+
+
 
 <?= Html::submitButton(Yii::t('admin', 'Сохранить'), ['class' => 'btn btn-primary']) ?>
 <? ActiveForm::end(); ?>

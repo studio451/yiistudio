@@ -3,11 +3,10 @@
 namespace admin\modules\catalog\controllers;
 
 use Yii;
-use admin\components\CategoryController;
 use admin\modules\catalog\models\Category;
 use admin\helpers\Color;
 
-class AController extends CategoryController {
+class AController extends \admin\base\admin\CategoryController {
 
     public $categoryClass = 'admin\modules\catalog\models\Category';
     public $moduleName = 'catalog';

@@ -1074,7 +1074,7 @@
 					if (this.opts.linebreaks)
 					{
 						var $next = $formatted.next().next();
-						if ($next.size() != 0 && $next[0].tagName === 'BR')
+						if ($next.length != 0 && $next[0].tagName === 'BR')
 						{
 							$next.remove();
 						}
@@ -1460,7 +1460,7 @@
 						if (this.start) return;
 						if (this.rtePaste) return;
 
-						if ($(e.target).closest('.redactor-editor, .redactor-toolbar, .redactor-dropdown').size() !== 0)
+						if ($(e.target).closest('.redactor-editor, .redactor-toolbar, .redactor-dropdown').length !== 0)
 						{
 							return;
 						}
@@ -2108,8 +2108,8 @@
 					html = html.replace(new RegExp('</li><br\\s?/?>', 'gi'), '</li>');
 
 					// remove empty attributes
-					html = html.replace(/<(.*?)rel="\s*?"(.*?[^>]?)>/gi, '<$1$2">');
-					html = html.replace(/<(.*?)style="\s*?"(.*?[^>]?)>/gi, '<$1$2">');
+                    html = html.replace(/<(.*?)rel="\s*?"(.*?[^>]?)>/gi, '<$1$2>');
+                    html = html.replace(/<(.*?)style="\s*?"(.*?[^>]?)>/gi, '<$1$2>');
 					html = html.replace(/="">/gi, '>');
 					html = html.replace(/""">/gi, '">');
 					html = html.replace(/"">/gi, '">');
@@ -3620,7 +3620,7 @@
 					var last = this.$editor.children().last();
 					this.$editor.focus();
 
-					if (last.size() === 0) return;
+					if (last.length === 0) return;
 					if (this.utils.isEmpty(this.$editor.html()))
 					{
 
@@ -5653,7 +5653,7 @@
 						if (this.utils.browser('mozilla'))
 						{
 							var td = $(this.keydown.current).closest('td', this.$editor[0]);
-							if (td.size() !== 0 && td.text() !== '')
+							if (td.length !== 0 && td.text() !== '')
 							{
 								e.preventDefault();
 								return false;
@@ -6433,7 +6433,7 @@
 						$children.find('br').remove();
 						$children.append(this.selection.getMarkerAsHtml());
 
-						if (this.opts.linebreaks && this.utils.browser('mozilla') && $children.size() == 2 && this.utils.isEmpty($children.eq(1).text()))
+						if (this.opts.linebreaks && this.utils.browser('mozilla') && $children.length == 2 && this.utils.isEmpty($children.eq(1).text()))
 						{
 							$children.eq(1).remove();
 						}
@@ -6910,7 +6910,7 @@
 							inValues = typeof observe['in'] != 'undefined' ? observe['in'] : false,
 							outValues = typeof observe['out'] != 'undefined' ? observe['out'] : false;
 
-						if ($current.closest(element).size() > 0)
+						if ($current.closest(element).length > 0)
 						{
 							this.observe.setDropdownProperties($item, inValues, outValues);
 						}
@@ -7728,6 +7728,12 @@
 					{
 						var node2 = this.selection.getMarker(2);
 						this.selection.setMarker(this.range, node2, false);
+						// concrete5 start - https://github.com/concrete5/concrete5/issues/5406
+						if (this.utils.browser('webkit'))
+						{
+						    this.caret.set(node1, 0, node2, 0);
+						}
+						// concrete5 end
 					}
 
 					this.savedSel = this.$editor.html();

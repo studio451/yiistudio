@@ -5,11 +5,11 @@ namespace admin\modules\sitemap\controllers;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\widgets\ActiveForm;
-use admin\components\Controller;
+
 use admin\modules\sitemap\models\Sitemap;
 use admin\modules\sitemap\helpers\WebConsole;
 
-class AController extends Controller {
+class AController extends \admin\base\admin\Controller {
 
     public function actionIndex() {
         $data = new ActiveDataProvider([

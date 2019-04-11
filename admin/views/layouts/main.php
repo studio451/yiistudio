@@ -34,7 +34,7 @@ $moduleName = $this->context->module->id;
                 </a>
 
                 <nav class="navbar navbar-static-top">
-                    <a href="javascript:void(0);" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <a href="javascript:void(0);" class="sidebar-toggle  fa fa-bars" data-toggle="offcanvas" role="button">
                         <span class="sr-only"> <?= Yii::t('admin', 'Свернуть/Развернуть') ?></span>
                     </a>
                     <div class="navbar-custom-menu">
@@ -99,7 +99,7 @@ $moduleName = $this->context->module->id;
                                         <?
                                         foreach ($module->settings['__submenu_module'] as $submenu) {
                                             ?>
-                                            <li class="<?= (($moduleName == $module->name && $this->context->id == $submenu['id']) ? 'active' : '') ?>"><a href="<?= $submenu['url'] ?>"><i class="fa fa-circle-o"></i><?= $submenu['label'] ?></a></li> 
+                                            <li class="<?= (($moduleName == $module->name && $this->context->id == $submenu['id']) ? 'active' : '') ?>"><a href="<?= $submenu['url'] ?>"><i class="fa fa-circle"></i><?= $submenu['label'] ?></a></li> 
                                             <?
                                         }
                                         ?>
@@ -130,14 +130,14 @@ $moduleName = $this->context->module->id;
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li class="<?= (($moduleName == 'admin' && $this->context->id == 'users') ? 'active' : '') ?>"><a href="<?= Url::to(['/admin/users']) ?>"><i class="fa fa-circle-o"></i><?= Yii::t('admin', 'Пользователи') ?></a></li> 
-                                    <li class="<?= (($moduleName == 'admin' && $this->context->id == 'rbac' && $this->context->action->id == 'role') ? 'active' : '') ?>"><a href="<?= Url::to(['/admin/rbac/role']) ?>"><i class="fa fa-circle-o"></i><?= Yii::t('admin', 'Роли пользователей') ?></a></li> 
-                                    <li class="<?= (($moduleName == 'admin' && $this->context->id == 'rbac' && $this->context->action->id == 'permission') ? 'active' : '') ?>"><a href="<?= Url::to(['/admin/rbac/permission']) ?>"><i class="fa fa-circle-o"></i><?= Yii::t('admin', 'Разрешения пользователей') ?></a></li> 
+                                    <li class="<?= (($moduleName == 'admin' && $this->context->id == 'users') ? 'active' : '') ?>"><a href="<?= Url::to(['/admin/users']) ?>"><i class="fa fa-circle"></i><?= Yii::t('admin', 'Пользователи') ?></a></li> 
+                                    <li class="<?= (($moduleName == 'admin' && $this->context->id == 'rbac' && $this->context->action->id == 'role') ? 'active' : '') ?>"><a href="<?= Url::to(['/admin/rbac/role']) ?>"><i class="fa fa-circle"></i><?= Yii::t('admin', 'Роли пользователей') ?></a></li> 
+                                    <li class="<?= (($moduleName == 'admin' && $this->context->id == 'rbac' && $this->context->action->id == 'permission') ? 'active' : '') ?>"><a href="<?= Url::to(['/admin/rbac/permission']) ?>"><i class="fa fa-circle"></i><?= Yii::t('admin', 'Разрешения пользователей') ?></a></li> 
                                 </ul>
                             </li>
                             <li class="<?= ($moduleName == 'admin' && $this->context->id == 'system') ? 'active' : '' ?>">
                                 <a href="<?= Url::to(['/admin/system']) ?>">
-                                    <i class="fa fa-hdd-o"></i>
+                                    <i class="fa fa-hdd"></i>
                                     <span> <?= Yii::t('admin', 'Система') ?></span> 
                                 </a>
                             </li>

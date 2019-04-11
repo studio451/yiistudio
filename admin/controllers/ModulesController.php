@@ -12,8 +12,8 @@ use admin\models\Module;
 use admin\behaviors\SortableController;
 use admin\behaviors\StatusController;
 
-class ModulesController extends \admin\components\Controller {
-
+class ModulesController extends \admin\base\admin\Controller {
+   
     public function behaviors() {
         return [
             [
@@ -31,7 +31,6 @@ class ModulesController extends \admin\components\Controller {
         $data = new ActiveDataProvider([
             'query' => Module::find()->sort(),
         ]);
-        Yii::$app->user->setReturnUrl('/admin/modules');
 
         return $this->render('index', [
                     'data' => $data
@@ -69,7 +68,8 @@ class ModulesController extends \admin\components\Controller {
             $this->flash('error', Yii::t('admin', 'Запись не найдена'));
             return $this->redirect(['/admin/modules']);
         }
-
+        
+        
         if ($model->load(Yii::$app->request->post())) {
             if (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
@@ -97,6 +97,8 @@ class ModulesController extends \admin\components\Controller {
             return $this->redirect(['/admin/modules']);
         }
 
+        Yii::$app->user->setReturnUrl(Yii::$app->request->url);
+        
         if (Yii::$app->request->post('Settings')) {
             $model->setSettings(Yii::$app->request->post('Settings'));
             if ($model->save()) {
@@ -121,7 +123,7 @@ class ModulesController extends \admin\components\Controller {
         } else {
             $this->flash('error', Yii::t('admin', 'Запись не найдена'));
         }
-        return $this->back();
+        return $this->goBack();
     }
 
     public function actionCopy($id) {

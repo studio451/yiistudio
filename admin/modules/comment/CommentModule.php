@@ -9,7 +9,7 @@ use Yii;
  *
  * @package admin\modules\comment
  */
-class CommentModule extends \admin\components\Module
+class CommentModule extends \admin\base\Module
 {
     public $settings = [
         'commentModelClass' => 'admin\modules\comment\models\Comment',

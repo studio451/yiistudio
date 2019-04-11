@@ -57,13 +57,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'buttons' =>
                 [
                     'update' => function ($url, $model) {
-                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Url::toRoute(['role-update', 'name' => $model->name]), [
+                        return Html::a('<span class="glyphicon glyphicon-pen"></span>', Url::toRoute(['role-update', 'name' => $model->name]), [
                                     'title' => Yii::t('admin', 'Обновить'),
                                     'data-pjax' => '0',
                         ]);
                     },
                             'delete' => function ($url, $model) {
-                        return Html::a('<span class="fa fa-close"></span>', Url::toRoute(['role-delete', 'name' => $model->name]), [
+                        return Html::a('<span class="fa fa-times"></span>', Url::toRoute(['role-delete', 'name' => $model->name]), [
                                     'title' => Yii::t('admin', 'Удалить'),
                                     'data-confirm' => Yii::t('admin', 'Вы уверены, что хотите удалить этот элемент?'),
                                     'data-method' => 'post',

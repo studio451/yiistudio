@@ -11,7 +11,7 @@ use admin\modules\shopcart\models\Order;
 use admin\helpers\Mail;
 use admin\models\Setting;
 
-class Payment extends \admin\components\ActiveRecordData {
+class Payment extends \admin\base\ActiveRecordData {
 
     const STATUS_OFF = 0;
     const STATUS_ON = 1;

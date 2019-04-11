@@ -2,12 +2,12 @@
 namespace admin\modules\news\api;
 
 use Yii;
-use admin\components\API;
+use admin\base\Api;
 use admin\models\Photo;
 use admin\modules\news\models\News as NewsModel;
 use yii\helpers\Url;
 
-class NewsObject extends \admin\components\ApiObject
+class NewsObject extends \admin\base\ApiObject
 {
     public $slug;
     public $image;
@@ -21,11 +21,11 @@ class NewsObject extends \admin\components\ApiObject
     }
 
     public function getShort(){
-        return LIVE_EDIT ? API::liveEdit($this->model->short, $this->editLink) : $this->model->short;
+        return LIVE_EDIT ? Api::liveEdit($this->model->short, $this->editLink) : $this->model->short;
     }
 
     public function getText(){
-        return LIVE_EDIT ? API::liveEdit($this->model->text, $this->editLink, 'div') : $this->model->text;
+        return LIVE_EDIT ? Api::liveEdit($this->model->text, $this->editLink, 'div') : $this->model->text;
     }
 
     public function getTags(){

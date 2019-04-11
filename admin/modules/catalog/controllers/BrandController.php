@@ -6,15 +6,12 @@ use Yii;
 use admin\behaviors\StatusController;
 use yii\web\UploadedFile;
 use yii\data\ActiveDataProvider;
-use yii\helpers\Html;
-use admin\components\Controller;
-use admin\modules\catalog\models\Category;
 use admin\modules\catalog\models\Brand;
 use admin\helpers\Image;
 use admin\behaviors\SortableDateController;
 use yii\widgets\ActiveForm;
 
-class BrandController extends Controller {
+class BrandController extends \admin\base\admin\Controller {
 
     public function behaviors() {
         return [
@@ -120,7 +117,7 @@ class BrandController extends Controller {
                 $this->flash('error', Yii::t('admin', 'Ошибка при обновлении записи. {0}', $model->formatErrors()));
             }
         }
-        return $this->back();
+        return $this->goBack();
     }
 
     public function actionDelete($id) {

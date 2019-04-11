@@ -1,7 +1,7 @@
 <?
 namespace admin\modules\feedback;
 
-class FeedbackModule extends \admin\components\Module
+class FeedbackModule extends \admin\base\Module
 { 
     public $settings = [
         'mailAdminOnNewFeedback' => true,        

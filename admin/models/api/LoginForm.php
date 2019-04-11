@@ -5,7 +5,7 @@ namespace admin\models\api;
 use Yii;
 use admin\models\User;
 use admin\models\Setting;
-use admin\components\ActiveRecord;
+use admin\base\ActiveRecord;
 
 use admin\validators\EscapeValidator;
 

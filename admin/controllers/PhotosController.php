@@ -10,7 +10,7 @@ use admin\helpers\Image;
 use admin\models\Photo;
 use admin\behaviors\SortableController;
 
-class PhotosController extends \admin\components\Controller {
+class PhotosController extends \admin\base\admin\Controller {
 
     public function behaviors() {
         return [

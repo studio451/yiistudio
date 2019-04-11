@@ -55,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <? endforeach; ?>
         <tr>
             <td colspan="5" class="text-right">
-                <h4><?= Yii::t('admin/shopcart', 'Стоимость {goods_total_count} товара(ов):', ['goods_total_count' => $goods_total_count]) ?> <?= $order->cost ?> <i class="fa fa-rub"></i></h4>
+                <h4><?= Yii::t('admin/shopcart', 'Стоимость {goods_total_count} товара(ов):', ['goods_total_count' => $goods_total_count]) ?> <?= $order->cost ?> <i class="fas fa-ruble-sign"></i></h4>
             </td>
         </tr>
     </tbody>
@@ -131,7 +131,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <tbody>
                 <tr>
                     <td>
-<?= $order->deliveryDetails ?> - <?= $order->deliveryCost ?> <i class="fa fa-rub"></i>
+<?= $order->deliveryDetails ?> - <?= $order->deliveryCost ?> <i class="fas fa-ruble-sign"></i>
                     </td>            
                 </tr>                    
             </tbody>
@@ -158,7 +158,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <div class="row">
     <div class="col-md-12 text-right">
-        <h4><?= Yii::t('admin/shopcart', 'ИТОГО стоимость заказа (с учетом доставки): ') ?> <?= $order->totalCost ?> <i class="fa fa-rub"></i></h4>
+        <h4><?= Yii::t('admin/shopcart', 'ИТОГО стоимость заказа (с учетом доставки): ') ?> <?= $order->totalCost ?> <i class="fas fa-ruble-sign"></i></h4>
         <br>
 <?= Payment::renderCheckoutForm($order) ?>
     </div>

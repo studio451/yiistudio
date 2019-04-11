@@ -41,7 +41,7 @@ $module = $this->context->module->id;
                     <td><?= $item->phone ?></td>
                     <td><?= $item->name ?></td>
                     <td><?= $item->address ?></td>
-                    <td><?= $item->totalCost ?> <i class="fa fa-rub"></i></td>
+                    <td><?= $item->totalCost ?> <i class="fas fa-ruble-sign"></i></td>
                     <td>                            
                         <a href="<?= Url::to(['/admin/' . $module . '/a/delete', 'id' => $item->primaryKey]) ?>" class="text-red" title="<?= Yii::t('admin', 'Удалить запись') ?>"><span class="fa fa-times"></span></a>
                     </td>

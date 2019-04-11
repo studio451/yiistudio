@@ -1,7 +1,7 @@
 <?
 namespace admin\modules\guestbook;
 
-class GuestbookModule extends \admin\components\Module
+class GuestbookModule extends \admin\base\Module
 {
     public $settings = [
         'enableTitle' => false,

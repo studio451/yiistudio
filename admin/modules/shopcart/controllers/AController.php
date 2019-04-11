@@ -4,11 +4,11 @@ namespace admin\modules\shopcart\controllers;
 
 use Yii;
 use yii\data\ActiveDataProvider;
-use admin\components\Controller;
+
 use admin\modules\shopcart\models\Good;
 use admin\modules\shopcart\models\Order;
 
-class AController extends Controller {
+class AController extends \admin\base\admin\Controller {
 
     public $all = 0;
     public $pending = 0;
@@ -43,7 +43,6 @@ class AController extends Controller {
     }
     
     public function actionProcessed() {
-        $this->setReturnUrl();
         return $this->render('index', [
                     'data' => new ActiveDataProvider([
                         'query' => Order::find()->with('goods')->status(Order::STATUS_PROCESSED)->desc(),
@@ -53,7 +52,6 @@ class AController extends Controller {
     }
 
     public function actionSent() {
-        $this->setReturnUrl();
         return $this->render('index', [
                     'data' => new ActiveDataProvider([
                         'query' => Order::find()->with('goods')->status(Order::STATUS_SENT)->desc(),
@@ -63,7 +61,6 @@ class AController extends Controller {
     }
 
     public function actionCompleted() {
-        $this->setReturnUrl();
         return $this->render('index', [
                     'data' => new ActiveDataProvider([
                         'query' => Order::find()->with('goods')->status(Order::STATUS_COMPLETED)->desc()
@@ -72,7 +69,6 @@ class AController extends Controller {
     }
 
     public function actionFails() {
-        $this->setReturnUrl();
         return $this->render('index', [
                     'data' => new ActiveDataProvider([
                         'query' => Order::find()->with('goods')->where(['in', 'status', [Order::STATUS_DECLINED, Order::STATUS_ERROR, Order::STATUS_RETURNED]])->desc()
@@ -81,7 +77,6 @@ class AController extends Controller {
     }
 
     public function actionBlank() {
-        $this->setReturnUrl();
         return $this->render('index', [
                     'data' => new ActiveDataProvider([
                         'query' => Order::find()->with('goods')->status(Order::STATUS_BLANK)->desc()

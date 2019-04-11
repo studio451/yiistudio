@@ -5,12 +5,12 @@ namespace admin\modules\yml\controllers;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\widgets\ActiveForm;
-use admin\components\Controller;
-use admin\modules\yml\models\Import;
-use admin\modules\yml\helpers\WebConsole;
 use yii\web\UploadedFile;
 
-class ImportController extends Controller {
+use admin\modules\yml\models\Import;
+use admin\modules\yml\helpers\WebConsole;
+
+class ImportController extends \admin\base\admin\Controller {
 
     public function actionIndex() {
         $data = new ActiveDataProvider([

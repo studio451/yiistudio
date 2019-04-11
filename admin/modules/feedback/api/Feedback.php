@@ -11,14 +11,14 @@ use admin\widgets\ReCaptcha;
 
 
 /**
- * Feedback module API
+ * Feedback module Api
  * @package admin\modules\feedback\api
  *
  * @method static string form(array $options = []) Returns fully worked standalone html form.
  * @method static array save(array $attributes) If you using your own form, this function will be useful for manual saving feedback's.
  */
 
-class Feedback extends \admin\components\API
+class Feedback extends \admin\base\Api
 {
     private $_defaultFormOptions = [
         'errorUrl' => '',

@@ -3,7 +3,6 @@
 namespace admin\controllers;
 
 use Yii;
-use admin\components\Controller;
 use yii\web\BadRequestHttpException;
 use yii\rbac\Role;
 use yii\rbac\Permission;
@@ -11,7 +10,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\validators\RegularExpressionValidator;
 
-class RbacController extends Controller
+class RbacController extends \admin\base\admin\Controller
 {
     public $error;
     protected $pattern4Role = '/^[a-zA-Z0-9_-]+$/';

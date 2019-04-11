@@ -2,7 +2,7 @@
 
 namespace admin\modules\payment;
 
-class PaymentModule extends \admin\components\Module {
+class PaymentModule extends \admin\base\Module {
 
     public $settings = [
         'notifyAdmin' => true,
@@ -21,7 +21,7 @@ class PaymentModule extends \admin\components\Module {
             'en' => 'Payment',
             'ru' => 'Способы оплаты',
         ],
-        'icon' => 'usd',
+        'icon' => 'money-bill-alt',
         'order_num' => 103,
     ];
 

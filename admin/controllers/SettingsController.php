@@ -6,14 +6,13 @@ use yii\data\ActiveDataProvider;
 use yii\widgets\ActiveForm;
 use admin\models\Setting;
 
-class SettingsController extends \admin\components\Controller
+class SettingsController extends \admin\base\admin\Controller
 {
     public function actionIndex()
     {
         $data = new ActiveDataProvider([
             'query' => Setting::find()->where(['>=', 'visibility', Yii::$app->user->can("SuperAdmin") ? Setting::VISIBLE_ROOT : Setting::VISIBLE_ALL]),
         ]);
-        Yii::$app->user->setReturnUrl('/admin/settings');
 
         return $this->render('index', [
             'data' => $data
@@ -95,6 +94,6 @@ class SettingsController extends \admin\components\Controller
         } else {
             $this->flash('error', Yii::t('admin', 'Ошибка при обновлении настроек'));
         }
-        return $this->back();
+        return $this->goBack();
     }
 }

@@ -6,12 +6,11 @@ use yii\data\ActiveDataProvider;
 use yii\widgets\ActiveForm;
 use yii\web\UploadedFile;
 
-use admin\components\Controller;
 use admin\modules\file\models\File;
 use admin\helpers\Upload;
 use admin\behaviors\SortableController;
 
-class AController extends Controller
+class AController extends \admin\base\admin\Controller
 {
     public function behaviors()
     {

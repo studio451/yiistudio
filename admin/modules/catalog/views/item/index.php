@@ -110,7 +110,7 @@ GridView::widget([
                     $str .= '<span class="label label-warning">' . $model->external_name . ' ' . $model->external_id . '</span>';
                 }
                 if ($model->external_manual == 1) {
-                    $str .= ' <i class="fa fa-hand-stop-o text-red" title="'. Yii::t('admin/catalog', 'Позиция управляется вручную').'"></i>';
+                    $str .= ' <i class="fa fa-hand-stop text-red" title="'. Yii::t('admin/catalog', 'Позиция управляется вручную').'"></i>';
                 }
                 return $str;
             },
@@ -160,7 +160,7 @@ GridView::widget([
     <div class="col-md-2">
         <?= GridSelectedRowsAction::widget(['grid_id' => 'grid_item', 'buttonOptions' => ['class' => 'btn btn-success btn-block', 'content' => '<i class="fa fa-bookmark"></i> ' . Yii::t('admin', 'Флаг "Новинка" отмеченным'), 'title' => Yii::t('admin', 'Флаг "Новинка"')], 'action' => Url::to(['/admin/catalog/item/new-json'])]); ?>
         <?= GridSelectedRowsAction::widget(['grid_id' => 'grid_item', 'buttonOptions' => ['class' => 'btn btn-success btn-block', 'content' => '<i class="fa fa-gift"></i> ' . Yii::t('admin', 'Флаг "Подарок" отмеченным'), 'title' => Yii::t('admin', 'Флаг "Подарок"')], 'action' => Url::to(['/admin/catalog/item/gift-json'])]); ?>
-        <?= GridSelectedRowsAction::widget(['grid_id' => 'grid_item', 'buttonOptions' => ['class' => 'btn btn-warning btn-block', 'content' => '<i class="fa fa-hand-stop-o"></i> ' . Yii::t('admin', 'Управление вручную отмеченным'), 'title' => Yii::t('admin', 'Управление вручную')], 'action' => Url::to(['/admin/catalog/item/manual-json'])]); ?>
+        <?= GridSelectedRowsAction::widget(['grid_id' => 'grid_item', 'buttonOptions' => ['class' => 'btn btn-warning btn-block', 'content' => '<i class="fa fa-hand-stop"></i> ' . Yii::t('admin', 'Управление вручную отмеченным'), 'title' => Yii::t('admin', 'Управление вручную')], 'action' => Url::to(['/admin/catalog/item/manual-json'])]); ?>
         <?= GridSelectedRowsAction::widget(['grid_id' => 'grid_item', 'buttonOptions' => ['class' => 'btn btn-danger btn-block', 'content' => '<i class="fa fa-times"></i> ' . Yii::t('admin', 'Удалить отмеченные'), 'title' => Yii::t('admin', 'Удалить отмеченные')], 'action' => Url::to(['/admin/catalog/item/delete-json'])]); ?>
     </div>   
     <div class="col-md-2">

@@ -1,7 +1,7 @@
 <?
 namespace admin\modules\article;
 
-class ArticleModule extends \admin\components\Module
+class ArticleModule extends \admin\base\Module
 {
     public $settings = [
         'categoryThumb' => true,
@@ -20,7 +20,7 @@ class ArticleModule extends \admin\components\Module
             'en' => 'Articles',
             'ru' => 'Статьи',
         ],
-        'icon' => 'pencil',
+        'icon' => 'pen',
         'order_num' => 200,
     ];
 }

@@ -9,14 +9,14 @@ use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 
 /**
- * Subscribe module API
+ * Subscribe module Api
  * @package admin\modules\subscribe\api
  *
  * @method static string form(array $options = []) Returns fully working standalone html form.
  * @method static array save(array $attributes) If you are using your own form, this function will be useful for manual saving of subscribers.
  */
 
-class Subscribe extends \admin\components\API
+class Subscribe extends \admin\base\Api
 {
     private $_defaultFormOptions = [
         'errorUrl' => '',

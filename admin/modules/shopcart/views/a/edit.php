@@ -29,7 +29,7 @@ $("#order-status").change(function(){
 <?= $this->render('_menu') ?>
 <div class="row">
     <div class="col-md-6">
-        <h3><?= Yii::t('admin/shopcart', 'Данные заказа') ?> <i class="fa fa-file-text-o"></i></h3>
+        <h3><?= Yii::t('admin/shopcart', 'Данные заказа') ?> <i class="fa fa-file-text"></i></h3>
         <hr>
         <?= Html::beginForm(Url::to(['/admin/shopcart/a/edit', 'id' => $order->id]), 'post', ['class' => 'form-horizontal']) ?>
         <? if ($order->status != Order::STATUS_BLANK) : ?>
@@ -169,10 +169,10 @@ $("#order-status").change(function(){
             <td><?= $good->discount ?></td>
             <td>
                 <? if ($good->discount) { ?>
-                    <b><?= round($good->price * (1 - $good->discount / 100)) ?> <i class="fa fa-rub"></i></b>
+                    <b><?= round($good->price * (1 - $good->discount / 100)) ?> <i class="fas fa-ruble-sign"></i></b>
         <strike><small class="text-muted"><?= $good->price ?></small></strike>
     <? } else { ?>
-        <b><?= $good->price ?> <i class="fa fa-rub"></i></b>
+        <b><?= $good->price ?> <i class="fas fa-ruble-sign"></i></b>
     <? } ?>
     </td>
     <td><a href="<?= Url::to(['/admin/' . $module . '/goods/delete', 'id' => $good->primaryKey]) ?>" class="fa fa-times text-red" title="<?= Yii::t('admin', 'Удалить запись') ?>"></a></td>
@@ -180,7 +180,7 @@ $("#order-status").change(function(){
 <? } ?>
 </tbody>
 </table>
-<h4 class="text-right"><?= Yii::t('admin/shopcart', 'Стоимость {goods_total_count} товара(ов):', ['goods_total_count' => $goods_total_count]) ?> <?= $order->cost ?> <i class="fa fa-rub"></i></h4>
+<h4 class="text-right"><?= Yii::t('admin/shopcart', 'Стоимость {goods_total_count} товара(ов):', ['goods_total_count' => $goods_total_count]) ?> <?= $order->cost ?> <i class="fas fa-ruble-sign"></i></h4>
 
 <?
 //Дополнительные данные заказа
@@ -232,19 +232,19 @@ if ($str) {
     <div class="col-md-12">
         <h3><?= Yii::t('admin/shopcart', 'Служба доставки') ?> <i class="fa fa-truck"></i></h3>
         <hr>
-        <?= $order->delivery_details ?> - <?= $order->delivery_cost ?> <i class="fa fa-rub"></i>        
+        <?= $order->delivery_details ?> - <?= $order->delivery_cost ?> <i class="fas fa-ruble-sign"></i>        
     </div>    
 </div>
 <div class="row">
     <div class="col-md-12 text-right">
-        <h3><?= Yii::t('admin/shopcart', 'Итого стоимость заказа: ') ?> <?= $order->totalCost ?> <i class="fa fa-rub"></i></h3>
+        <h3><?= Yii::t('admin/shopcart', 'Итого стоимость заказа: ') ?> <?= $order->totalCost ?> <i class="fas fa-ruble-sign"></i></h3>
     </div>
 </div>
 
 <?= Html::beginForm(Url::to(['/admin/shopcart/a/export-to-excel', 'id' => $order->id]), 'post') ?>
 <div class="row">
     <div class="col-md-12">
-        <?= Html::submitButton('<span class="fa fa-file-excel-o"></span> ' . Yii::t('admin', 'Экспорт заказа в excel файл'), ['class' => 'btn btn-primary btn-success']) ?>       
+        <?= Html::submitButton('<span class="fa fa-file-excel"></span> ' . Yii::t('admin', 'Экспорт заказа в excel файл'), ['class' => 'btn btn-primary btn-success']) ?>       
     </div>
 </div>
 <?= Html::endForm() ?>      

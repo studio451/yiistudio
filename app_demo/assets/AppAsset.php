@@ -2,7 +2,7 @@
 
 namespace app_demo\assets;
 
-class AppAsset extends \admin\components\Asset {
+class AppAsset extends \admin\base\Asset {
 
     public $sourcePath = '@app/media';
     public $css = [

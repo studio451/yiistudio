@@ -57,20 +57,20 @@ $this->params['breadcrumbs'][] = $page->title;
                                 <? if ($good->discount) : ?>
                                     <del class="text-muted"><small><?= $good->oldPrice ?></small></del>
                                 <? endif; ?>
-                                        <?= $good->price ?> <i class="fa fa-rub"></i>
+                                        <?= $good->price ?> <i class="fas fa-ruble-sign"></i>
                             </td>
-                            <td class="text-center"><?= $good->price * $good->count ?> <i class="fa fa-rub"></td>
+                            <td class="text-center"><?= $good->price * $good->count ?> <i class="fas fa-ruble-sign"></td>
                             <td><a href="javascript:void(0);" title="<?= Yii::t('admin', 'Удалить наименование') ?>" data-remove-id="<?= $good->id ?>" class="shopcart_remove_button"><i class="fa fa-times text-danger"></i></a></td>
                         </tr>
                     <? endforeach; ?>
                     <tr>
                         <td colspan="6" class="text-right">
-                            <h4><?= Yii::t('admin/shopcart', 'Стоимость {goods_total_count} товара(ов):', ['goods_total_count' => $goods_total_count]) ?> <?= Shopcart::cost() ?> <i class="fa fa-rub"></i></h4>                            
+                            <h4><?= Yii::t('admin/shopcart', 'Стоимость {goods_total_count} товара(ов):', ['goods_total_count' => $goods_total_count]) ?> <?= Shopcart::cost() ?> <i class="fas fa-ruble-sign"></i></h4>                            
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <a href="javascript:void(0);" style="display:none" title="<?= Yii::t('admin', 'Пересчитать') ?>" data-url="<?= Url::to(['/user/login']) ?>" class="btn btn-success pull-right" id="shopcart_refresh_button"><i class="fa fa-refresh"></i> <?= Yii::t('admin', 'Пересчитать') ?></a>
+            <a href="javascript:void(0);" style="display:none" title="<?= Yii::t('admin', 'Пересчитать') ?>" data-url="<?= Url::to(['/user/login']) ?>" class="btn btn-success pull-right" id="shopcart_refresh_button"><i class="fa fa-redo"></i> <?= Yii::t('admin', 'Пересчитать') ?></a>
             <?= Html::endForm() ?>           
         </div>           
     </div>

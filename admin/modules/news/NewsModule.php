@@ -1,7 +1,7 @@
 <?
 namespace admin\modules\news;
 
-class NewsModule extends \admin\components\Module
+class NewsModule extends \admin\base\Module
 {
     public $settings = [
         'enableThumb' => true,

@@ -13,7 +13,7 @@ use admin\models\users\FilterForm;
 use admin\behaviors\StatusController;
 use admin\behaviors\SortableController;
 
-class UsersController extends \admin\components\Controller {
+class UsersController extends \admin\base\admin\Controller {
 
     public function beforeAction($action) {
         if (!parent::beforeAction($action))
@@ -28,7 +28,7 @@ class UsersController extends \admin\components\Controller {
                     $action->id == 'delete-json' ||
                     $action->id == 'off') {
                 $this->flash('warning', Yii::t('admin', 'Недоступно в демо-версии!'));
-                $this->back();
+                $this->goBack();
                 return false;
             }
         }
@@ -66,7 +66,6 @@ class UsersController extends \admin\components\Controller {
             'query' => $query,
             'pagination' => ['pageSize' => 50,]
         ]);
-        Yii::$app->user->setReturnUrl(['/admin/users']);
 
         return $this->render('index', [
                     'dataProvider' => $dataProvider,

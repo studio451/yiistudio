@@ -2,13 +2,13 @@
 namespace admin\modules\gallery\api;
 
 use yii\data\ActiveDataProvider;
-use admin\components\API;
+use admin\base\Api;
 use admin\models\Photo;
 use admin\modules\gallery\models\Category;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 
-class CategoryObject extends \admin\components\ApiObject
+class CategoryObject extends \admin\base\ApiObject
 {
     public $slug;
     public $image;
@@ -19,7 +19,7 @@ class CategoryObject extends \admin\components\ApiObject
     private $_photos;
 
     public function getTitle(){
-        return LIVE_EDIT ? API::liveEdit($this->model->title, $this->editLink) : $this->model->title;
+        return LIVE_EDIT ? Api::liveEdit($this->model->title, $this->editLink) : $this->model->title;
     }
 
     public function pages($options = []){

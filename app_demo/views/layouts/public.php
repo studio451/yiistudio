@@ -39,7 +39,7 @@ $shopCart .= '</a>';
                 <ul class="nav nav-pills">
                     <li>
                         <a href="#" title="Телефон"><i class="fa fa-phone"></i> <strong><?= Setting::get('contact_telephone') ?></strong>
-                            <span title="<?= Yii::t('app', 'Заказ обратного звонка') ?> " data-url="<?= Url::to(['/callback']) ?>" class="ajaxModalPopup dotted"><?= Yii::t('app', 'Заказать звонок!') ?></span>
+                            <span title="<?= Yii::t('app', 'Заказ обратного звонка') ?> " data-url="<?= Url::to(['/callback']) ?>" data-modal-size="modal-sm" class="ajaxModalPopup dotted"><?= Yii::t('app', 'Заказать звонок!') ?></span>
                         </a>               
                     </li>
                     <li>
@@ -58,9 +58,9 @@ $shopCart .= '</a>';
             <div class="col-md-2">
                 <div class="pull-right">
                     <ul class="nav nav-pills">
-                        <li><a rel="nofollow" href="http://vk.com"><i class="fa fa-vk"></i></a></li>
-                        <li><a rel="nofollow" href="http://twitter.com"><i class="fa fa-twitter"></i></a></li>
-                        <li><a rel="nofollow" href="http://facebook.com"><i class="fa fa-facebook"></i></a></li>
+                        <li><a rel="nofollow" href="http://vk.com"><i class="fab fa-vk"></i></a></li>
+                        <li><a rel="nofollow" href="http://twitter.com"><i class="fab fa-twitter"></i></a></li>
+                        <li><a rel="nofollow" href="http://facebook.com"><i class="fab fa-facebook"></i></a></li>
                     </ul>
                 </div>
             </div>

@@ -4,7 +4,7 @@ namespace admin\modules\catalog\models;
 
 use Yii;
 
-class Group extends \admin\components\ActiveRecord {
+class Group extends \admin\base\ActiveRecord {
 
     const STATUS_OFF = 0;
     const STATUS_ON = 1;

@@ -15,7 +15,7 @@ use admin\models\Photo;
 use admin\modules\yml\widgets\Excel;
 use admin\modules\yml\YmlModule;
 
-class Import extends \admin\components\ActiveRecord {
+class Import extends \admin\base\ActiveRecord {
 
     /**
      * @var array

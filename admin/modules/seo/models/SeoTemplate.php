@@ -4,7 +4,7 @@ namespace admin\modules\seo\models;
 
 use Yii;
 
-class SeoTemplate extends \admin\components\ActiveRecord {
+class SeoTemplate extends \admin\base\ActiveRecord {
 
     public static function tableName() {
         return 'admin_module_seo_template';

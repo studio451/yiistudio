@@ -15,7 +15,7 @@ use admin\modules\yml\YmlModule;
  * @property string $data
  *
  */
-class Export extends \admin\components\ActiveRecord {
+class Export extends \admin\base\ActiveRecord {
 
     public $count = 0;
     public $class = 'admin\modules\yml\external_export\Shop';

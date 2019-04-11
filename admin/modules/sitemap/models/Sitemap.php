@@ -11,7 +11,7 @@ use Yii;
  * @property string $data
  *
  */
-class Sitemap extends \admin\components\ActiveRecord {
+class Sitemap extends \admin\base\ActiveRecord {
 
     /**
      * @var

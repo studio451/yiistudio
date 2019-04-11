@@ -1,7 +1,7 @@
 <?
 namespace admin\modules\seo\models;
 
-class SeoTemplateAssign extends \admin\components\ActiveRecord
+class SeoTemplateAssign extends \admin\base\ActiveRecord
 {
     public static function tableName()
     {

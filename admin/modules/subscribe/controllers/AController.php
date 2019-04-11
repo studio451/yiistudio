@@ -6,13 +6,13 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-use admin\components\Controller;
+
 use admin\modules\subscribe\models\Subscriber;
 use admin\modules\subscribe\models\History;
 use admin\helpers\Mail;
 use admin\behaviors\StatusController;
 
-class AController extends Controller {
+class AController extends \admin\base\admin\Controller {
 
     public function behaviors() {
         return [
@@ -33,8 +33,6 @@ class AController extends Controller {
     }
 
     public function actionHistory() {
-        $this->setReturnUrl();
-
         $data = new ActiveDataProvider([
             'query' => History::find()->desc(),
         ]);

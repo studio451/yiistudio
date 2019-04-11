@@ -7,7 +7,7 @@ use yii\web\NotFoundHttpException;
 use admin\modules\catalog\api\Catalog;
 use yii\data\Sort;
 
-class CatalogController extends \admin\components\APIController {
+class CatalogController extends \admin\base\api\Controller {
 
     public function actionIndex($slug = 'catalog', $page = 1, $pageSize = 36) {
 

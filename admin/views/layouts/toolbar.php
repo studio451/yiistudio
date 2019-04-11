@@ -25,10 +25,10 @@ if (YII_DEBUG)
     {
 ?> 
     <a class="admin-toolbar text-center" title="<?= Yii::t('admin', 'Очистить кеш') ?>" style="<?= Setting::get('toolbar_position') ?>:115px;" href="<?= Url::to(['/admin/system/flush-cache']) ?>" >
-        <i class="fa fa-flash"></i>
+        <i class="fa fa-fire-alt"></i>
     </a>
     <a class="admin-toolbar text-center" title="<?= Yii::t('admin', 'Обновить файлы ресурсов (.js, .css, .png, .jpg, ...)') ?>" style="<?= Setting::get('toolbar_position') ?>:170px;" href="<?= Url::to(['/admin/system/clear-assets']) ?>" >
-        <i class="fa fa-refresh"></i>
+        <i class="fa fa-redo"></i>
     </a>
     <a class="admin-toolbar text-center" title="<?= Yii::t('admin', 'Включена отладка') ?>" style="<?= Setting::get('toolbar_position') ?>:225px;" href="<?= Url::to(['/debug']) ?>" >
         <span style="color:#FFCC33"><i class="fa fa-exclamation-triangle"></i><span>

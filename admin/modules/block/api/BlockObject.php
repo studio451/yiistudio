@@ -2,11 +2,11 @@
 namespace admin\modules\block\api;
 
 use Yii;
-use admin\components\API;
+use admin\base\Api;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-class BlockObject extends \admin\components\ApiObject
+class BlockObject extends \admin\base\ApiObject
 {
     public $slug;
 
@@ -14,7 +14,7 @@ class BlockObject extends \admin\components\ApiObject
         if($this->model->isNewRecord){
             return $this->createLink;
         } else {
-            return LIVE_EDIT ? API::liveEdit($this->model->text, $this->editLink, 'div') : $this->model->text;
+            return LIVE_EDIT ? Api::liveEdit($this->model->text, $this->editLink, 'div') : $this->model->text;
         }
     }
 

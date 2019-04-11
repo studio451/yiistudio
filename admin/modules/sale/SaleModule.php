@@ -1,7 +1,7 @@
 <?
 namespace admin\modules\sale;
 
-class SaleModule extends \admin\components\Module
+class SaleModule extends \admin\base\Module
 {
     public $settings = [
         'enableThumb' => true,

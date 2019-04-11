@@ -91,8 +91,8 @@ $form = ActiveForm::begin([
         <?= Html::submitButton(Yii::t('admin', 'Сохранить'), ['class' => 'btn btn-primary']) ?>
     </div>
     <div class="col-md-6 text-right">
-        <a class="btn btn-success" href="<?= Url::to(['/admin/' . $module . '/import/execute', 'id' => $model->primaryKey]) ?>" title="<?= Yii::t('admin', 'Выполнить импорт в excel') ?>"><span class="fa fa-file-excel-o"></span> <?= Yii::t('admin', 'Выполнить импорт в excel') ?></a>
-        <a class="btn btn-danger" href="<?= Url::to(['/admin/' . $module . '/import/execute', 'id' => $model->primaryKey, 'full' => 1]) ?>" title="<?= Yii::t('admin', 'Выполнить импорт') ?>"><span class="fa fa-file-excel-o"></span> <?= Yii::t('admin', 'Выполнить импорт') ?></a>
+        <a class="btn btn-success" href="<?= Url::to(['/admin/' . $module . '/import/execute', 'id' => $model->primaryKey]) ?>" title="<?= Yii::t('admin', 'Выполнить импорт в excel') ?>"><span class="fa fa-file-excel"></span> <?= Yii::t('admin', 'Выполнить импорт в excel') ?></a>
+        <a class="btn btn-danger" href="<?= Url::to(['/admin/' . $module . '/import/execute', 'id' => $model->primaryKey, 'full' => 1]) ?>" title="<?= Yii::t('admin', 'Выполнить импорт') ?>"><span class="fa fa-file-excel"></span> <?= Yii::t('admin', 'Выполнить импорт') ?></a>
     </div>
 </div>
 <? ActiveForm::end(); ?>

@@ -2,11 +2,11 @@
 namespace admin\modules\gallery\api;
 
 use Yii;
-use admin\components\API;
+use admin\base\Api;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-class PhotoObject extends \admin\components\ApiObject
+class PhotoObject extends \admin\base\ApiObject
 {
     public $image;
     public $description;
@@ -19,7 +19,7 @@ class PhotoObject extends \admin\components\ApiObject
             'title' => $this->description,
             'data-caption' => $this->description,
         ]);
-        return LIVE_EDIT ? API::liveEdit($a, $this->editLink) : $a;
+        return LIVE_EDIT ? Api::liveEdit($a, $this->editLink) : $a;
     }
 
     public function getEditLink(){

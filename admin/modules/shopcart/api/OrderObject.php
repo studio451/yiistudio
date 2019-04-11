@@ -5,7 +5,7 @@ namespace admin\modules\shopcart\api;
 use Yii;
 use admin\modules\shopcart\models\Good;
 
-class OrderObject extends \admin\components\ApiObject {
+class OrderObject extends \admin\base\ApiObject {
 
     public $name;
     public $address;

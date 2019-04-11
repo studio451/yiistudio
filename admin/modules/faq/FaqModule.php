@@ -3,7 +3,7 @@ namespace admin\modules\faq;
 
 use Yii;
 
-class FaqModule extends \admin\components\Module
+class FaqModule extends \admin\base\Module
 {
     public static $installConfig = [
         'title' => [

@@ -4,7 +4,7 @@ namespace admin\modules\yml;
 
 use Yii;
 
-class YmlModule extends \admin\components\Module {
+class YmlModule extends \admin\base\Module {
 
     public $settings = [
         'additionalFields' => 'color:Цвет:15::cdf9fb,country:Страна:10::cdf9fb,weight:Вес:8::cdf9fb,dimensions:Размеры (ШхВхГ):15::cdf9fb,material:Материал:11::cdf9fb,volume:Объем:7::cdf9fb',

@@ -1,7 +1,7 @@
 <?
 namespace admin\modules\shopcart;
 
-class ShopcartModule extends \admin\components\Module
+class ShopcartModule extends \admin\base\Module
 {
     public $settings = [
         'notifyAdmin' => true,

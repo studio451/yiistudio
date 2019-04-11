@@ -5,7 +5,7 @@ namespace admin\modules\sale\controllers\api;
 use Yii;
 use admin\modules\sale\api\Sale;
 
-class SaleController extends \admin\components\APIController {
+class SaleController extends \admin\base\api\Controller {
 
     public function actionIndex($slug = '', $tag = null) {
         if ($slug) {

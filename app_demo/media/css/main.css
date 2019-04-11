@@ -24,3 +24,85 @@ h4,.h4
 {
     font-size: 19px;
 }
+
+.demo-toolbar
+{
+    font-family: Arial;
+    position: fixed;
+    z-index: 2147483647;
+    right: 5px;
+    top: 5px;
+    background-color: #484848;
+    padding:10px 10px;
+    color: #fff;
+    opacity: .9;
+    -webkit-transition: background 200ms linear;
+    -moz-transition: background 200ms linear;
+    -o-transition: background 200ms linear;
+    transition: background 200ms linear;
+    -webkit-backface-visibility: hidden;
+}
+.demo-toolbar:hover, .demo-toolbar a:hover
+{
+    background-color: #444;
+    opacity: 1;
+}
+.demo-toolbar a 
+{
+    color: #fff;
+}
+.demo-toolbar .nav > li > a{
+    padding: 3px 5px;
+}
+.demo-toolbar a:hover  ,.demo-toolbar .nav-pills > li > a:hover 
+{
+    text-decoration: underline;
+}
+
+.demo-toolbar-login
+{
+    text-align: right; 
+    margin-top:10px;
+    padding-top:15px;
+    border-top: 1px dashed #fff;
+}
+.demo-toolbar-login-attention
+{
+    text-align: center; 
+    margin-top:10px;
+    color:#FFCC33;
+    font-size:16px;
+}
+
+@media (min-width: 0px) and (max-width:  767px){
+    .admin-toolbar
+    {
+
+    }
+    .demo-toolbar
+    {
+        font-family: Arial;        
+        position: fixed;
+        z-index: 2147483647;
+        top:auto!important;
+        left: 5px;
+        bottom: 5px;
+        padding:10px 10px;
+        font-size:12px;
+    }
+    .demo-toolbar .nav
+    {
+        display:none;
+    }
+    .demo-toolbar-login
+    {
+        text-align: center; 
+        margin-top:5px;
+        padding-top:10px;
+    }
+    .demo-toolbar-login-attention
+    {
+        text-align: center; 
+        margin-top:5px;
+    }
+}

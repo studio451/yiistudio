@@ -7,7 +7,7 @@ use admin\models\Photo;
 use admin\modules\gallery\models\Category;
 
 /**
- * Gallery module API
+ * Gallery module Api
  * @package admin\modules\gallery\api
  *
  * @method static CategoryObject category(mixed $id_slug) Get gallery category by id or slug
@@ -19,7 +19,7 @@ use admin\modules\gallery\models\Category;
  * @method static \stdClass pagination() returns yii\data\Pagination object.
  */
 
-class Gallery extends \admin\components\API
+class Gallery extends \admin\base\Api
 {
     private $_cats;
     private $_photos;

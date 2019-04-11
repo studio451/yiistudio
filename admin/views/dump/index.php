@@ -75,7 +75,7 @@ GridView::widget([
                     ]);
                 },
                         'delete' => function ($url, $model) {
-                    return Html::a('<span class="fa fa-close"></span>', [
+                    return Html::a('<span class="fa fa-times"></span>', [
                                 'delete',
                                 'id' => $model['id'],
                                     ], [

@@ -4,7 +4,7 @@ namespace admin\models;
 use Yii;
 use admin\validators\EscapeValidator;
 
-class SearchText extends \admin\components\ActiveRecord
+class SearchText extends \admin\base\ActiveRecord
 {
     public static function tableName()
     {

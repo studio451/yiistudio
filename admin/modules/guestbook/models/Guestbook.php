@@ -10,7 +10,7 @@ use admin\validators\ReCaptchaValidator;
 use admin\validators\EscapeValidator;
 use yii\helpers\Url;
 
-class Guestbook extends \admin\components\ActiveRecord {
+class Guestbook extends \admin\base\ActiveRecord {
 
     const STATUS_OFF = 0;
     const STATUS_ON = 1;

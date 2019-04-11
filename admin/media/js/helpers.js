@@ -52,12 +52,12 @@ $(function () {
         if ($('#modal').data('bs.modal').isShown) {
             $('#modal').find('#modalContent')
                     .load($(this).attr('data-url'));
-            document.getElementById('modalHeader').innerHTML = '<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-fw fa-close"></i></button><h4>' + $(this).attr('title') + '</h4>';
+            document.getElementById('modalHeader').innerHTML = '<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-fw fa-times"></i></button><h4>' + $(this).attr('title') + '</h4>';
         } else {
             $('#modal').modal('show')
                     .find('#modalContent')
                     .load($(this).attr('data-url'));
-            document.getElementById('modalHeader').innerHTML = '<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-fw fa-close"></i></button><h4>' + $(this).attr('title') + '</h4>';
+            document.getElementById('modalHeader').innerHTML = '<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-fw fa-times"></i></button><h4>' + $(this).attr('title') + '</h4>';
         }
     });
 });

@@ -2,10 +2,9 @@
 
 namespace admin\modules\gallery\controllers;
 
-use admin\components\CategoryController;
 use admin\modules\gallery\models\Category;
 
-class AController extends CategoryController {
+class AController extends \admin\base\admin\CategoryController {
 
     public $categoryClass = 'admin\modules\gallery\models\Category';
     public $moduleName = 'gallery';

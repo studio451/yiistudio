@@ -1,17 +1,17 @@
 <?
 namespace admin\modules\faq\api;
 
-use admin\components\API;
+use admin\base\Api;
 use yii\helpers\Url;
 
-class FaqObject extends \admin\components\ApiObject
+class FaqObject extends \admin\base\ApiObject
 {
     public function getQuestion(){
-        return LIVE_EDIT ? API::liveEdit($this->model->question, $this->editLink) : $this->model->question;
+        return LIVE_EDIT ? Api::liveEdit($this->model->question, $this->editLink) : $this->model->question;
     }
 
     public function getAnswer(){
-        return LIVE_EDIT ? API::liveEdit($this->model->answer, $this->editLink) : $this->model->answer;
+        return LIVE_EDIT ? Api::liveEdit($this->model->answer, $this->editLink) : $this->model->answer;
     }
 
     public function  getEditLink(){

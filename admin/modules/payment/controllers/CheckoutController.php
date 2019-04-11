@@ -4,10 +4,10 @@ namespace admin\modules\payment\controllers;
 
 use Yii;
 use yii\data\ActiveDataProvider;
-use admin\components\Controller;
+
 use admin\modules\payment\models\Checkout;
 
-class CheckoutController extends Controller {
+class CheckoutController extends \admin\base\admin\Controller {
 
     public function actionIndex() {
         $data = new ActiveDataProvider([

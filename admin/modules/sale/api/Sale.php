@@ -8,7 +8,7 @@ use admin\models\Tag;
 use yii\widgets\LinkPager;
 use admin\modules\sale\models\Sale as SaleModel;
 
-class Sale extends \admin\components\API {
+class Sale extends \admin\base\Api {
 
     private $_adp;
     private $_items;

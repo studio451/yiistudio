@@ -5,7 +5,6 @@ namespace admin\modules\catalog\controllers;
 use Yii;
 use admin\behaviors\StatusController;
 use yii\helpers\Html;
-use admin\components\Controller;
 use admin\modules\catalog\models\Category;
 use admin\modules\catalog\models\Item;
 use admin\behaviors\SortableController;
@@ -17,7 +16,7 @@ use admin\modules\catalog\models\Brand;
 use admin\models\Setting;
 use yii\helpers\Json;
 
-class ItemController extends Controller {
+class ItemController extends \admin\base\admin\Controller {
 
     public function behaviors() {
         return [

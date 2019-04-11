@@ -1,7 +1,7 @@
 <?
 namespace admin\modules\gallery;
 
-class GalleryModule extends \admin\components\Module
+class GalleryModule extends \admin\base\Module
 {
     public $settings = [
         'categoryThumb' => true,

@@ -12,34 +12,6 @@ $sentUrl = Url::to(['/admin/'.$module.'/a/sent']);
 $completedUrl = Url::to(['/admin/'.$module.'/a/completed']);
 $failsUrl = Url::to(['/admin/'.$module.'/a/fails']);
 $blankUrl = Url::to(['/admin/'.$module.'/a/blank']);
-
-if($action === 'edit')
-{
-    $returnUrl = $this->context->getReturnUrl($indexUrl);
-
-    if(strpos($returnUrl, 'pending') !== false){
-        $backTo = 'pending';
-        $processedUrl = $returnUrl;
-    } elseif(strpos($returnUrl, 'processed') !== false) {
-        $backTo = 'processed';
-        $sentUrl = $returnUrl;
-    } elseif(strpos($returnUrl, 'sent') !== false) {
-        $backTo = 'sent';
-        $sentUrl = $returnUrl;
-    } elseif(strpos($returnUrl, 'completed') !== false) {
-        $backTo = 'completed';
-        $completedUrl = $returnUrl;
-    } elseif(strpos($returnUrl, 'fails') !== false) {
-        $backTo = 'fails';
-        $failsUrl = $returnUrl;
-    } elseif(strpos($returnUrl, 'blank') !== false) {
-        $backTo = 'blank';
-        $blankUrl = $returnUrl;
-    } else {
-        $backTo = 'index';
-        $indexUrl = $returnUrl;
-    }
-}
 ?>
 <ul class="nav nav-pills">
     <li <?= ($action === 'index') ? 'class="active"' : '' ?>>

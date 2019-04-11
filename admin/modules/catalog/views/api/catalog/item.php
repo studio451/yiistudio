@@ -87,7 +87,7 @@ $settings = Yii::$app->getModule('admin')->activeModules['catalog']->settings;
                 </div>
                 <div class="row mb-10">
                     <div class="col-md-7 col-sm-7 col-xs-5 fs-22">
-                        <strong><?= $item->price ?> <i class="fa fa-rub"></i>
+                        <strong><?= $item->price ?> <i class="fas fa-ruble-sign"></i>
                             <? if ($item->discount) : ?>
                                 <del class="small"><?= $item->oldPrice ?></del>
                             <? endif; ?>
@@ -119,7 +119,7 @@ $settings = Yii::$app->getModule('admin')->activeModules['catalog']->settings;
                                 <span id="help_price"><?= $item->price ?></span> x
                                 <span id="help_count">1</span> =
                                 <span id="help_total_price"><?= $item->price ?></span>
-                                <i class="fa fa-rub"></i>
+                                <i class="fas fa-ruble-sign"></i>
                             </div>
                             <?= $form->field($addToCartForm, 'count')->label(false)->hiddenInput(['id' => 'count_input']) ?>
                         </div>

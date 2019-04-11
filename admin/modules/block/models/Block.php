@@ -5,7 +5,7 @@ namespace admin\modules\block\models;
 use Yii;
 use admin\behaviors\CacheFlush;
 
-class Block extends \admin\components\ActiveRecord {
+class Block extends \admin\base\ActiveRecord {
 
     const CACHE_KEY = 'admin_module_block';
 

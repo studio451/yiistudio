@@ -4,7 +4,7 @@ namespace admin\modules\seo\models;
 use Yii;
 use admin\validators\EscapeValidator;
 
-class SeoText extends \admin\components\ActiveRecord
+class SeoText extends \admin\base\ActiveRecord
 {
     public static function tableName()
     {

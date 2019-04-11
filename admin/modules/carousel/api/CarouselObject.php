@@ -1,20 +1,20 @@
 <?
 namespace admin\modules\carousel\api;
 
-use admin\components\API;
+use admin\base\Api;
 use yii\helpers\Url;
 
-class CarouselObject extends \admin\components\ApiObject
+class CarouselObject extends \admin\base\ApiObject
 {
     public $image;
     public $link;   
     
     public function getTitle(){
-            return LIVE_EDIT ? API::liveEdit($this->model->title, $this->editLink, 'div') : $this->model->title;
+            return LIVE_EDIT ? Api::liveEdit($this->model->title, $this->editLink, 'div') : $this->model->title;
     }
     
     public function getText(){
-            return LIVE_EDIT ? API::liveEdit($this->model->text, $this->editLink, 'div') : $this->model->text; 
+            return LIVE_EDIT ? Api::liveEdit($this->model->text, $this->editLink, 'div') : $this->model->text; 
     }
     
     public function getEditLink(){

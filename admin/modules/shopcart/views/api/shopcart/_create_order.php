@@ -89,11 +89,11 @@ if (count($deliveries)) {
                                                }
                                                ?>>
                                         <?= $delivery->title ?> - <?= $free_delivery ? '<del class="text-muted"><small>' . $delivery->price . '</small></del> 0' : $delivery->price ?>
-                                        <i class="fa fa-rub"></i>
+                                        <i class="fas fa-ruble-sign"></i>
 
                                         <? if ($delivery->free_from > 0) {
                                             ?>
-                                            (<?= Yii::t('admin/shopcart', "бесплатно при стоимости заказа от "); ?> <?= $delivery->free_from; ?> <i class="fa fa-rub"></i>)
+                                            (<?= Yii::t('admin/shopcart', "бесплатно при стоимости заказа от "); ?> <?= $delivery->free_from; ?> <i class="fas fa-ruble-sign"></i>)
                                         <? } ?>                                        
                                     </label>
                                     <div class="text-muted">
@@ -195,7 +195,7 @@ if (count($deliveries)) {
     </div>
     <div class="row">
         <div class="col-md-12 text-right">
-            <h3><?= Yii::t('admin/shopcart', 'Итого стоимость заказа: ') ?> <span id="shopcart_total_cost"><?= Shopcart::cost() + $delivery_price ?></span> <i class="fa fa-rub"></i></h3>
+            <h3><?= Yii::t('admin/shopcart', 'Итого стоимость заказа: ') ?> <span id="shopcart_total_cost"><?= Shopcart::cost() + $delivery_price ?></span> <i class="fas fa-ruble-sign"></i></h3>
         </div>
     </div>
     <div class="row">

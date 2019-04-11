@@ -6,7 +6,7 @@ use admin\models\Tag;
 use yii\helpers\Html;
 use yii\web\Response;
 
-class TagsController extends \admin\components\Controller
+class TagsController extends \admin\base\admin\Controller
 {
     public function actionList($query)
     {

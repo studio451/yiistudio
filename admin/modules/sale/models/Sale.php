@@ -9,7 +9,7 @@ use admin\models\Photo;
 use admin\behaviors\Taggable;
 use admin\behaviors\CacheFlush;
 
-class Sale extends \admin\components\ActiveRecord {
+class Sale extends \admin\base\ActiveRecord {
 
     const STATUS_OFF = 0;
     const STATUS_ON = 1;

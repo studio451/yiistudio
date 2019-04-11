@@ -6,14 +6,13 @@ use yii\data\ActiveDataProvider;
 use yii\widgets\ActiveForm;
 use yii\web\UploadedFile;
 
-use admin\components\Controller;
 use admin\modules\carousel\models\Carousel;
 use admin\helpers\Image;
 use admin\behaviors\SortableController;
 use admin\behaviors\StatusController;
 
 
-class AController extends Controller
+class AController extends \admin\base\admin\Controller
 {
     public function behaviors()
     {

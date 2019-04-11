@@ -7,7 +7,7 @@ use admin\helpers\Data;
 use admin\behaviors\CacheFlush;
 use admin\behaviors\SortableModel;
 
-class Module extends \admin\components\ActiveRecord {
+class Module extends \admin\base\ActiveRecord {
 
     const STATUS_OFF = 0;
     const STATUS_ON = 1;

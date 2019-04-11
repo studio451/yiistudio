@@ -6,7 +6,7 @@ use Yii;
 use admin\modules\seo\behaviors\SeoTextBehavior;
 use admin\behaviors\CacheFlush;
 
-class Page extends \admin\components\ActiveRecord {
+class Page extends \admin\base\ActiveRecord {
 
     const CACHE_KEY = 'admin_module_page';
 

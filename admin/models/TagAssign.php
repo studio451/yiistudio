@@ -1,7 +1,7 @@
 <?
 namespace admin\models;
 
-class TagAssign extends \admin\components\ActiveRecord
+class TagAssign extends \admin\base\ActiveRecord
 {
     public static function tableName()
     {

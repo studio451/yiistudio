@@ -6,11 +6,11 @@ use Yii;
 use admin\modules\delivery\models\Delivery as DeliveryModel;
 
 /**
- * Delivery module API
+ * Delivery module Api
  * @package admin\modules\delivery\api
  *
  */
-class Delivery extends \admin\components\API {
+class Delivery extends \admin\base\Api {
 
     private $_items;
 

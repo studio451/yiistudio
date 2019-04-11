@@ -11,7 +11,7 @@ use yii\web\Response;
 use admin\helpers\Image;
 use admin\models;
 
-class RedactorController extends \admin\components\Controller
+class RedactorController extends \admin\base\admin\Controller
 {
     public $controllerNamespace = 'yii\redactor\controllers';
     public $defaultRoute = 'upload';

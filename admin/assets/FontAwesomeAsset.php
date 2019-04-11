@@ -10,13 +10,13 @@ class FontAwesomeAsset extends \yii\web\AssetBundle
 
     public $sourcePath = '@vendor/fortawesome/font-awesome';
     public $css = [
-        'css/font-awesome.min.css',
+        'css/all.min.css'
     ];    
     
     public function iconsFromYaml()
     {
-        $arr = Yaml::parseFile($this->sourcePath. '/src/icons.yml');
-        return isset($arr['icons'])?$arr['icons']:[];       
+        $arr = Yaml::parseFile($this->sourcePath. '/metadata/categories.yml');
+        return $arr;       
     }  
 
 }

@@ -5,14 +5,12 @@ use Yii;
 use admin\behaviors\SortableDateController;
 use admin\behaviors\StatusController;
 use yii\web\UploadedFile;
-
-use admin\components\Controller;
 use admin\modules\article\models\Category;
 use admin\modules\article\models\Item;
 use admin\helpers\Image;
 use yii\widgets\ActiveForm;
 
-class ItemController extends Controller
+class ItemController extends \admin\base\admin\Controller
 {
     public function behaviors()
     {
@@ -145,7 +143,7 @@ class ItemController extends Controller
                 $this->flash('error', Yii::t('admin', 'Ошибка при обновлении записи. {0}', $model->formatErrors()));
             }
         }
-        return $this->back();
+        return $this->goBack();
     }
 
     public function actionDelete($id)

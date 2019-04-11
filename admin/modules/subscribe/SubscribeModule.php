@@ -1,7 +1,7 @@
 <?
 namespace admin\modules\subscribe;
 
-class SubscribeModule extends \admin\components\Module
+class SubscribeModule extends \admin\base\Module
 {
     public $settings = [
         'templateNotifyUser' => '@admin/modules/subscribe/mail/ru/notify_user',

@@ -7,13 +7,13 @@ use admin\modules\faq\models\Faq as FaqModel;
 
 
 /**
- * FAQ module API
+ * FAQ module Api
  * @package admin\modules\faq\api
  *
  * @method static array items() list of all FAQ as FaqObject objects
  */
 
-class Faq extends \admin\components\API
+class Faq extends \admin\base\Api
 {
     public function api_items()
     {

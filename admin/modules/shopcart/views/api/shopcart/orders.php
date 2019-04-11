@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = Yii::t('admin/shopcart', 'Заказы');
                             <td><span class="label label-primary"><?= $order->status ?></span></td>
                             <td>
                             </td>
-                            <td><?= $order->cost ?> <i class="fa fa-rub"></td>                            
+                            <td><?= $order->cost ?> <i class="fas fa-ruble-sign"></td>                            
                             <td><span class="label label-primary"><?= $order->paidStatus ?></span></td>
                         </tr>
                     <? endforeach; ?>

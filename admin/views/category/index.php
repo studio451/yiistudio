@@ -1,5 +1,5 @@
 <?
-use admin\components\CategoryModel;
+use admin\base\CategoryModel;
 use yii\helpers\Url;
 
 \yii\bootstrap\BootstrapPluginAsset::register($this);
@@ -31,7 +31,7 @@ $baseUrl = '/admin/'.$this->context->moduleName;
                         <div class="dropdown actions">
                             <i id="dropdownMenu<?= $category->id ?>" data-toggle="dropdown" aria-expanded="true" title="<?= Yii::t('admin', 'Операции с категориями') ?>" class="fa fa-bars"></i>
                             <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu<?= $category->id ?>">
-                                <li><a href="<?= Url::to([$baseUrl.'/a/edit', 'id' => $category->id, 'parent' => $category->parent]) ?>"><i class="fa fa-pencil fs-12"></i> <?= Yii::t('admin', 'Редактировать') ?></a></li>
+                                <li><a href="<?= Url::to([$baseUrl.'/a/edit', 'id' => $category->id, 'parent' => $category->parent]) ?>"><i class="fa fa-pen fs-12"></i> <?= Yii::t('admin', 'Редактировать') ?></a></li>
                                 <li><a href="<?= Url::to([$baseUrl.'/a/create', 'parent' => $category->id]) ?>"><i class="fa fa-plus fs-12"></i> <?= Yii::t('admin', 'Добавить подкатегорию') ?></a></li>
                                 <li role="presentation" class="divider"></li>
                                 <li><a href="<?= Url::to([$baseUrl.'/a/up', 'id' => $category->id]) ?>"><i class="fa fa-arrow-up fs-12"></i> <?= Yii::t('admin', 'Переместить вверх') ?></a></li>

@@ -2,7 +2,7 @@
 
 namespace admin\modules\catalog;
 
-class CatalogModule extends \admin\components\Module {
+class CatalogModule extends \admin\base\Module {
 
     public $settings = [
         'categoryThumb' => true,

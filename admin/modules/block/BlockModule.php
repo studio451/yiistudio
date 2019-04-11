@@ -1,7 +1,7 @@
 <?
 namespace admin\modules\block;
 
-class BlockModule extends \admin\components\Module
+class BlockModule extends \admin\base\Module
 {
    
     public static $installConfig = [

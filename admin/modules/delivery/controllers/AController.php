@@ -5,13 +5,11 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\widgets\ActiveForm;
 
-use admin\components\Controller;
 use admin\modules\delivery\models\Delivery;
-
 use admin\behaviors\SortableController;
 use admin\behaviors\StatusController;
 
-class AController extends Controller
+class AController extends \admin\base\admin\Controller
 {
     public function behaviors()
     {

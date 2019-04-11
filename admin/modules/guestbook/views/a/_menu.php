@@ -8,18 +8,6 @@ $backTo = null;
 $indexUrl = Url::to(['/admin/'.$module]);
 $noanswerUrl = Url::to(['/admin/'.$module.'/a/noanswer']);
 
-if($action === 'view')
-{
-    $returnUrl = $this->context->getReturnUrl(['/admin/'.$module]);
-
-    if(strpos($returnUrl, 'noanswer') !== false){
-        $backTo = 'noanswer';
-        $noanswerUrl = $returnUrl;
-    } else {
-        $backTo = 'index';
-        $indexUrl = $returnUrl;
-    }
-}
 ?>
 <ul class="nav nav-pills">
     <li <?= ($action === 'index') ? 'class="active"' : '' ?>>
@@ -45,7 +33,7 @@ if($action === 'view')
         <? if($action === 'view') : ?>
             <a href="<?= Url::to(['/admin/'.$module.'/a/setnew', 'id' => Yii::$app->request->get('id')]) ?>" class="text-warning"><span class="glyphicon glyphicon-eye-close"></span> <?= Yii::t('admin/guestbook', 'Пометить как новое') ?></a>
         <? else : ?>
-            <a href="<?= Url::to(['/admin/'.$module.'/a/viewall']) ?>" class="text-warning"><span class="glyphicon glyphicon-eye-open"></span> <?= Yii::t('admin/guestbook', 'Отметить все как прочитанные') ?></a>
+            <a href="<?= Url::to(['/admin/'.$module.'/a/viewall']) ?>" class="text-warning"><span class="fa fa-eye"></span> <?= Yii::t('admin/guestbook', 'Отметить все как прочитанные') ?></a>
         <? endif; ?>
     </li>
 </ul>

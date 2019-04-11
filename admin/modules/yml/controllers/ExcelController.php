@@ -3,12 +3,13 @@
 namespace admin\modules\yml\controllers;
 
 use Yii;
-use admin\components\Controller;
-use admin\modules\yml\models\Import;
-use admin\modules\yml\helpers\WebConsole;
 use yii\web\UploadedFile;
 
-class ExcelController extends Controller {
+use admin\modules\yml\models\Import;
+use admin\modules\yml\helpers\WebConsole;
+
+
+class ExcelController extends \admin\base\admin\Controller {
 
     public function actionIndex() {
         $model = new Import(['scenario' => 'import']);

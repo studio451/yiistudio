@@ -9,7 +9,7 @@ use admin\modules\catalog\api\Catalog;
 use admin\modules\shopcart\api\Shopcart;
 use admin\models\User;
 
-class ShopcartController extends \admin\components\APIController {
+class ShopcartController extends \admin\base\api\Controller {
 
     public function actionIndex() {
 

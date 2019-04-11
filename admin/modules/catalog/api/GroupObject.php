@@ -3,11 +3,11 @@
 namespace admin\modules\catalog\api;
 
 use Yii;
-use admin\components\API;
+use admin\base\Api;
 use admin\modules\catalog\models\Item;
 use yii\helpers\Url;
 
-class GroupObject extends \admin\components\ApiObject {
+class GroupObject extends \admin\base\ApiObject {
 
     public $category_id;
     public $time;
@@ -15,11 +15,11 @@ class GroupObject extends \admin\components\ApiObject {
     private $_items;
 
     public function getTitle() {
-        return LIVE_EDIT ? API::liveEdit($this->model->title, $this->editLink) : $this->model->title;
+        return LIVE_EDIT ? Api::liveEdit($this->model->title, $this->editLink) : $this->model->title;
     }
 
     public function getDescription() {
-        return LIVE_EDIT ? API::liveEdit($this->model->description, $this->editLink, 'div') : $this->model->description;
+        return LIVE_EDIT ? Api::liveEdit($this->model->description, $this->editLink, 'div') : $this->model->description;
     }
 
     public function getCategory() {

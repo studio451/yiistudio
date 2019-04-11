@@ -3,7 +3,7 @@ namespace admin\modules\gallery\models;
 
 use admin\models\Photo;
 
-class Category extends \admin\components\CategoryModel
+class Category extends \admin\base\CategoryModel
 {
     public static function tableName()
     {

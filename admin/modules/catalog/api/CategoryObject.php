@@ -4,7 +4,7 @@ namespace admin\modules\catalog\api;
 
 use Yii;
 use yii\data\ActiveDataProvider;
-use admin\components\API;
+use admin\base\Api;
 use admin\modules\catalog\models\Category;
 use admin\modules\catalog\models\Group;
 use admin\modules\catalog\models\Brand;
@@ -12,7 +12,7 @@ use admin\modules\catalog\models\Item;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 
-class CategoryObject extends \admin\components\ApiObject {
+class CategoryObject extends \admin\base\ApiObject {
 
     public $slug;
     public $image;
@@ -32,7 +32,7 @@ class CategoryObject extends \admin\components\ApiObject {
     }
 
     public function getDescription() {
-        return LIVE_EDIT ? API::liveEdit($this->model->description, $this->editLink, 'div') : $this->model->description;
+        return LIVE_EDIT ? Api::liveEdit($this->model->description, $this->editLink, 'div') : $this->model->description;
     }
 
     public function getEditLink() {

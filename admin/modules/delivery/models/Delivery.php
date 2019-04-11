@@ -7,7 +7,7 @@ use admin\behaviors\SluggableBehavior;
 use admin\behaviors\SortableModel;
 use admin\modules\payment\models\Payment;
 
-class Delivery extends \admin\components\ActiveRecord {
+class Delivery extends \admin\base\ActiveRecord {
 
     const STATUS_OFF = 0;
     const STATUS_ON = 1;

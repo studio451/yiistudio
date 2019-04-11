@@ -5,7 +5,7 @@ namespace admin\modules\article\controllers\api;
 use Yii;
 use admin\modules\article\api\Article;
 
-class ArticleController extends \admin\components\APIController {
+class ArticleController extends \admin\base\api\Controller {
 
     public function actionIndex($slug, $tag = null, $page = 1) {
         $category = Article::category($slug);

@@ -4,11 +4,10 @@ namespace admin\modules\feedback\controllers;
 use Yii;
 use yii\data\ActiveDataProvider;
 
-use admin\components\Controller;
 use admin\models\Setting;
 use admin\modules\feedback\models\Feedback;
 
-class AController extends Controller
+class AController extends \admin\base\admin\Controller
 {
     public $new = 0;
     public $noAnswer = 0;
@@ -33,8 +32,6 @@ class AController extends Controller
 
     public function actionNoanswer()
     {
-        $this->setReturnUrl();
-
         $data = new ActiveDataProvider([
             'query' => Feedback::find()->status(Feedback::STATUS_VIEW)->desc(),
         ]);
@@ -45,8 +42,6 @@ class AController extends Controller
 
     public function actionAll()
     {
-        $this->setReturnUrl();
-
         $data = new ActiveDataProvider([
             'query' => Feedback::find()->desc(),
         ]);
@@ -119,7 +114,7 @@ class AController extends Controller
                 $this->flash('error', Yii::t('admin', 'Ошибка при обновлении записи. {0}', $model->formatErrors()));
             }
         }
-        return $this->back();
+        return $this->goBack();
     }
 
     public function actionDelete($id)

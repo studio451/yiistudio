@@ -8,22 +8,6 @@ $backTo = null;
 $indexUrl = Url::to(['/admin/'.$module]);
 $noanswerUrl = Url::to(['/admin/'.$module.'/a/noanswer']);
 $allUrl = Url::to(['/admin/'.$module.'/a/all']);
-
-if($action === 'view')
-{
-    $returnUrl = $this->context->getReturnUrl($indexUrl);
-
-    if(strpos($returnUrl, 'noanswer') !== false){
-        $backTo = 'noanswer';
-        $noanswerUrl = $returnUrl;
-    } elseif(strpos($returnUrl, 'all') !== false) {
-        $backTo = 'all';
-        $allUrl = $returnUrl;
-    } else {
-        $backTo = 'index';
-        $indexUrl = $returnUrl;
-    }
-}
 ?>
 <ul class="nav nav-pills">
     <li <?= ($action === 'index') ? 'class="active"' : '' ?>>

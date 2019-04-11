@@ -1,7 +1,7 @@
 <?
 namespace admin\modules\article\models;
 
-class Category extends \admin\components\CategoryModel
+class Category extends \admin\base\CategoryModel
 {
     public static function tableName()
     {

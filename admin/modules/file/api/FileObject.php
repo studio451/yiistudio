@@ -2,18 +2,18 @@
 namespace admin\modules\file\api;
 
 use Yii;
-use admin\components\API;
+use admin\base\Api;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-class FileObject extends \admin\components\ApiObject
+class FileObject extends \admin\base\ApiObject
 {
     public $slug;
     public $downloads;
     public $time;
 
     public function getTitle(){
-        return LIVE_EDIT ? API::liveEdit($this->model->title, $this->editLink) : $this->model->title;
+        return LIVE_EDIT ? Api::liveEdit($this->model->title, $this->editLink) : $this->model->title;
     }
 
     public function getFile(){

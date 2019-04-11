@@ -3,10 +3,9 @@ namespace admin\modules\shopcart\controllers;
 
 use Yii;
 
-use admin\components\Controller;
 use admin\modules\shopcart\models\Good;
 
-class GoodsController extends Controller
+class GoodsController extends \admin\base\admin\Controller
 {
     public function actionDelete($id)
     {

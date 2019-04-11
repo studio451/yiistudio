@@ -2,12 +2,12 @@
 
 namespace admin\modules\delivery\api;
 
-use admin\components\API;
+use admin\base\Api;
 use yii\helpers\Url;
 use admin\modules\payment\api\PaymentObject;
 use admin\modules\payment\models\Payment;
 
-class DeliveryObject extends \admin\components\ApiObject {
+class DeliveryObject extends \admin\base\ApiObject {
 
     public $slug;
     public $price;    
@@ -18,7 +18,7 @@ class DeliveryObject extends \admin\components\ApiObject {
     private $_payments;
 
     public function getTitle() {
-        return LIVE_EDIT ? API::liveEdit($this->model->title, $this->editLink) : $this->model->title;
+        return LIVE_EDIT ? Api::liveEdit($this->model->title, $this->editLink) : $this->model->title;
     }
 
     public function getEditLink() {

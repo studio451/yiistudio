@@ -3,7 +3,7 @@ namespace admin\modules\sitemap;
 
 use Yii;
 
-class SitemapModule extends \admin\components\Module
+class SitemapModule extends \admin\base\Module
 {      
     public static $installConfig = [
         'title' => [

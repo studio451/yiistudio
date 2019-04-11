@@ -2,7 +2,7 @@
 
 namespace admin\assets;
 
-class AdminAsset extends \admin\components\Asset {
+class AdminAsset extends \admin\base\Asset {
 
     public $sourcePath = '@admin/media';
     public $css = [

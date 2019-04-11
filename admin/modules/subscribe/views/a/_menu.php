@@ -5,12 +5,7 @@ $action = $this->context->action->id;
 $module = $this->context->module->id;
 
 $historyUrl = Url::to(['/admin/'.$module.'/a/history']);
-if($action === 'view'){
-    $returnUrl = $this->context->getReturnUrl();
-    if(strpos($returnUrl, 'history') !== false){
-        $historyUrl = $returnUrl;
-    }
-}
+
 ?>
 <ul class="nav nav-pills">
     <li <?= ($action === 'index') ? 'class="active"' : '' ?>>

@@ -5,10 +5,9 @@ use Yii;
 use yii\data\ActiveDataProvider;
 
 use admin\behaviors\StatusController;
-use admin\components\Controller;
 use admin\modules\guestbook\models\Guestbook;
 
-class AController extends Controller
+class AController extends \admin\base\admin\Controller
 {
     public $new = 0;
     public $noAnswer = 0;
@@ -44,8 +43,6 @@ class AController extends Controller
 
     public function actionNoanswer()
     {
-        $this->setReturnUrl();
-
         $data = new ActiveDataProvider([
             'query' => Guestbook::find()->where(['answer' => ''])->desc(),
         ]);
@@ -107,7 +104,7 @@ class AController extends Controller
 
         $this->flash('success', Yii::t('admin/guestbook', 'Запись обновлена'));
 
-        return $this->back();
+        return $this->goBack();
     }
 
     public function actionSetnew($id)
@@ -126,7 +123,7 @@ class AController extends Controller
                 $this->flash('error', Yii::t('admin', 'Ошибка при обновлении записи. {0}', $model->formatErrors()));
             }
         }
-        return $this->redirect($this->getReturnUrl(['/admin/'.$this->module->id]));
+        return $this->goBack();
     }
 
     public function actionOn($id)

@@ -8,8 +8,8 @@ use admin\models\Setting;
 use admin\helpers\Upload;
 use yii\helpers\FileHelper;
 
-class SystemController extends \admin\components\Controller {
-
+class SystemController extends \admin\base\admin\Controller {
+   
     public function actionIndex() {
         return $this->render('index');
     }
@@ -49,7 +49,7 @@ class SystemController extends \admin\components\Controller {
         Yii::$app->db->createCommand()->truncateTable('admin_module_catalog_group')->execute();
 
         $this->flash('success', Yii::t('admin', 'Элементы каталога удалены'));
-        return $this->back();
+        return $this->goBack();
     }
 
     public function actionClearPhotos() {
@@ -66,7 +66,7 @@ class SystemController extends \admin\components\Controller {
         }
 
         $this->flash('success', Yii::t('admin', 'Фотографии удалены'));
-        return $this->back();
+        return $this->goBack();
     }
 
     public function actionClearTmp() {
@@ -81,7 +81,7 @@ class SystemController extends \admin\components\Controller {
         }
 
         $this->flash('success', Yii::t('admin', 'Tmp директория очищена'));
-        return $this->back();
+        return $this->goBack();
     }
 
     public function actionClearThumbs() {
@@ -96,13 +96,13 @@ class SystemController extends \admin\components\Controller {
         }
 
         $this->flash('success', Yii::t('admin', 'Thumbs директория очищена'));
-        return $this->back();
+        return $this->goBack();
     }
 
     public function actionFlushCache() {
         Yii::$app->cache->flush();
         $this->flash('success', Yii::t('admin', 'Кэш очищен'));
-        return $this->back();
+        return $this->goBack();
     }
 
     public function actionClearAssets() {
@@ -116,12 +116,12 @@ class SystemController extends \admin\components\Controller {
             }
         }
         $this->flash('success', Yii::t('admin', 'Файлы ресурсов (.js, .css) обновлены'));
-        return $this->back();
+        return $this->goBack();
     }
 
     public function actionLiveEdit($id) {
         Yii::$app->session->set('admin_live_edit', $id);
-        $this->back();
+        $this->goBack();
     }
 
     public function actionRecreateGroups() {

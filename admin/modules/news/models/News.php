@@ -9,7 +9,7 @@ use admin\behaviors\Taggable;
 use admin\models\Photo;
 use yii\helpers\StringHelper;
 
-class News extends \admin\components\ActiveRecord {
+class News extends \admin\base\ActiveRecord {
 
     const STATUS_OFF = 0;
     const STATUS_ON = 1;
