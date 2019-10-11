@@ -9,18 +9,7 @@ $fontAwesomeAsset = FontAwesomeAsset::register($this);
 $this->title = Yii::t('admin', 'Система');
 ?>
 
-<h4 class="mb-40"><?= Yii::t('admin', 'Версия') ?>: <b><?= Setting::get('admin_version') ?></b></h4>
-<?
-if (\admin\AdminModule::VERSION > floatval(Setting::get('admin_version'))) {
-    ?>
-    <div class="row mb-20">
-        <div class="col-md-2">
-            <a href="<?= Url::to(['/admin/system/update']) ?>" class="btn btn-success"><?= Yii::t('admin', 'Обновить') ?></a>
-        </div>
-    </div>
-    <?
-}
-?>
+<h4 class="mb-40"><?= Yii::t('admin', 'Версия') ?>: <b><?= (string)Setting::get('admin_version') ?></b></h4>
 
 <div class="row mb-20">
     <div class="col-md-4">

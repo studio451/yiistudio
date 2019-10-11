@@ -10,7 +10,7 @@ use yii\web\AssetBundle;
  */
 class DatePickerAsset extends AssetBundle {
 
-    public $sourcePath = '@vendor/bower/bootstrap-datepicker';
+    public $sourcePath = '@vendor/bower-asset/bootstrap-datepicker';
     public $css = [
         'dist/css/bootstrap-datepicker3.min.css',
     ];

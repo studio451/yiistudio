@@ -15,7 +15,7 @@ class FontAwesomeAsset extends \yii\web\AssetBundle
     
     public function iconsFromYaml()
     {
-        $arr = Yaml::parseFile($this->sourcePath. '/metadata/categories.yml');
+        $arr = Yaml::parse(file_get_contents($this->sourcePath. '/metadata/categories.yml'));
         return $arr;       
     }  
 

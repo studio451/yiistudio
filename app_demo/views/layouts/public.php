@@ -21,7 +21,7 @@ $shopCart = '<a href="' . Url::to(['/shopcart']) . '" id="shopcart" title="' . Y
                         <i class="fa fa-shopping-cart"></i> ';
 
 if ($goodsCount > 0) {
-    $shopCart .= ' ' . Shopcart::cost() . ' <i class="fa fa-rub"></i>';
+    $shopCart .= ' ' . Shopcart::cost() . ' <i class="fas fa-ruble-sign"></i>';
 } else {
     $shopCart .= ' ' . Yii::t('app', 'Корзина');
 }

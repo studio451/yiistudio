@@ -324,7 +324,7 @@ class Excel extends \yii\base\Widget {
 
     /**
      * (non-PHPdoc)
-     * @see \yii\base\Object::init()
+     * @see \yii\base\BaseObject::init()
      */
     public function init() {
         parent::init();

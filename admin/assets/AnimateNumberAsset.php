@@ -9,7 +9,7 @@ use yii\web\AssetBundle;
  */
 class AnimateNumberAsset extends AssetBundle {
 
-    public $sourcePath = '@vendor/bower/jquery-animatenumber';   
+    public $sourcePath = '@vendor/bower-asset/jquery-animatenumber';   
 
     public $js = [
         'jquery.animateNumber.min.js',

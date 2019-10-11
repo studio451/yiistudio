@@ -10,7 +10,7 @@ use admin\modules\seo\models\SeoTemplate;
  * Class ApiObject
  * @package admin\base
  */
-class ApiObject extends \yii\base\Object {
+class ApiObject extends \yii\base\BaseObject {
 
     /** @var \yii\base\Model  */
     public $model;

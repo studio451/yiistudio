@@ -2,7 +2,7 @@
 
 namespace admin\assets;
 
-class AdminAsset extends \admin\base\Asset {
+class AdminAsset extends \yii\web\AssetBundle {
 
     public $sourcePath = '@admin/media';
     public $css = [

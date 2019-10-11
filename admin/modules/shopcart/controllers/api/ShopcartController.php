@@ -71,6 +71,12 @@ class ShopcartController extends \admin\base\api\Controller {
                 } else {
                     Yii::$app->session->setFlash('error', $result['error']);
                 }
+            } else {
+                $error = "";
+                foreach ($orderForm->errors as $key => $value) {
+                    $error .= $key . ': ' . $value[0] . '<br/>';
+                }
+                Yii::$app->session->setFlash('error', $error);
             }
         }
         return $this->redirect(Yii::$app->request->referrer);

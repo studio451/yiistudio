@@ -9,6 +9,7 @@
 - ReCaptcha - Google ReCaptcha [https://www.google.com/recaptcha/](https://www.google.com/recaptcha/)
 - Photos - элемент просмотра изображений (слайды, зум, автоматическое создание эскизов thumb)
 - Текстовый редактор [http://imperavi.com/redactor/](http://imperavi.com/redactor/)
+- Nav - расширяет `\yii\bootstrap\Nav` для отрисовки элементов меню (dropdown, dropdown-toggle)
 
 Виджеты располагаются в папке `admin/widgets/`.
 

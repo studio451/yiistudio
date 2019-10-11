@@ -179,7 +179,7 @@ if (count($deliveries)) {
                         <td>
                             <?
                             echo $form->field($orderForm, 'name')->label(Yii::t('admin/shopcart', 'Ваше имя'));
-                            echo $form->field($orderForm, 'phone');
+                            echo $form->field($orderForm, 'phone')->label(Yii::t('admin/shopcart', 'Телефон'));;
                             if ($need_address) {
                                 echo $form->field($orderForm, 'address')->label(Yii::t('admin/shopcart', 'Адрес (можно не заполнять)'), ['id' => 'address_label']);
                             } else {

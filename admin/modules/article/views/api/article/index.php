@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $category->model->title;
     <? foreach ($items as $item) : ?>
         <div class="row">
             <div class="col-md-10">
-                <?= Html::a($item->title, ['/article/item', 'category' => $category->slug, 'slug' => $item->slug]) ?>
+                <h4><?= Html::a($item->title, ['/article/item', 'category' => $category->slug, 'slug' => $item->slug]) ?></h4>
                 <p><?= $item->short ?></p>
                 <p>
                     <? foreach ($item->tags as $tag) : ?>

@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'buttons' =>
                 [
                     'update' => function ($url, $model) {
-                        return Html::a('<span class="glyphicon glyphicon-pen"></span>', Url::toRoute(['role-update', 'name' => $model->name]), [
+                        return Html::a('<span class="fa fa-pen"></span>', Url::toRoute(['role-update', 'name' => $model->name]), [
                                     'title' => Yii::t('admin', 'Обновить'),
                                     'data-pjax' => '0',
                         ]);

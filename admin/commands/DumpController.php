@@ -40,7 +40,7 @@ class DumpController extends \admin\console\Controller {
         $model->isArchive = $this->isArchive;
         $model->schemaOnly = $this->schemaOnly;
 
-        $this->stdout("Начало создания дампа БД...\n", 94);
+        $this->stdout("Start creating a database dump...\n", 94);
         $dbInfo = $this->getDbInfo();
         $dumpOptions = $model->makeDumpOptions();
         $manager = $this->createManager($dbInfo);
@@ -111,12 +111,12 @@ class DumpController extends \admin\console\Controller {
         }
 
         if (!$return_var) {
-            $msg = (!$isRestore) ? Yii::t('admin', "Дамп БД успешно создан!") . "\n" : Yii::t('admin', "Восстановление из бэкапа успешно завершено!") . "\n";
+            $msg = (!$isRestore) ? Yii::t('admin', "Database dump successfully created!") . "\n" : Yii::t('admin', "Restore from backup completed successfully!") . "\n";
             $this->stdout($msg, 92);
             return true;
         } else {
-            $msg = (!$isRestore) ? Yii::t('admin', "Ошибка при создании дампа БД!") . "\n" : Yii::t('admin', "Ошибка при восстановлении из бэкапа!") . "\n";
-            $this->stdout($msg . "Команда: " . $command . "\n" . $str_output, 91);
+            $msg = (!$isRestore) ? Yii::t('admin', "Error creating database dump!") . "\n" : Yii::t('admin', "Error restoring from backup!") . "\n";
+            $this->stdout($msg . "Command: " . $command . "\n" . $str_output, 91);
             return false;
         }
     }
@@ -164,10 +164,10 @@ class DumpController extends \admin\console\Controller {
             $this->path .= '/';
         }
         if (!is_dir($this->path)) {
-            throw new InvalidConfigException(Yii::t('admin', 'Не найден путь'));
+            throw new InvalidConfigException(Yii::t('admin', 'Path not found!'));
         }
         if (!is_writable($this->path)) {
-            throw new InvalidConfigException(Yii::t('admin', 'Отстутствуют права на запись! Проверить chmod!'));
+            throw new InvalidConfigException(Yii::t('admin', 'No write permissions!'));
         }
         $this->fileList = FileHelper::findFiles($this->path, ['only' => ['*.sql', '*.gz']]);
     }
@@ -207,7 +207,7 @@ class DumpController extends \admin\console\Controller {
         } elseif ($dbInfo['driverName'] === 'pgsql') {
             return new \admin\models\storage\PostgresManagerClass();
         } else {
-            throw new NotSupportedException(Yii::t('admin', 'Драйвер БД не поддерживается!'));
+            throw new NotSupportedException(Yii::t('admin', 'The database driver is not supported!'));
         }
     }
 

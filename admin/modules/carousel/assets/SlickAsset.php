@@ -10,7 +10,7 @@ use yii\web\AssetBundle;
 
 class SlickAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/bower/slick-carousel/slick/';
+    public $sourcePath = '@vendor/bower-asset/slick-carousel/slick/';
 
     public $css = [
         'slick.css',

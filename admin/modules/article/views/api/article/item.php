@@ -6,6 +6,8 @@ use admin\modules\carousel\api\SlickLightbox;
 $this->title = $item->seo('title', $item->model->title);
 $this->params['breadcrumbs'][] = ['label' => $item->category->title, 'url' => ['article/', 'slug' => $item->category->slug]];
 $this->params['breadcrumbs'][] = $item->model->title;
+
+$settings = Yii::$app->getModule('admin')->activeModules['article']->settings;
 ?>
 <h1 class="page-header"><?= $item->seo('h1', $item->title) ?></h1>
 
@@ -21,12 +23,37 @@ $this->params['breadcrumbs'][] = $item->model->title;
     <? endforeach; ?>
     <? SlickLightbox::end(); ?>
     <br/>
-    <? endif; ?>
-    <br>
+<? endif; ?>
+<br>
 <p>
     <? foreach ($item->tags as $tag) : ?>
         <a rel="nofollow" href="<?= Url::to(['/article', 'slug' => $item->category->slug, 'tag' => $tag]) ?>" class="label label-info"><?= $tag ?></a>
-<? endforeach; ?>
+    <? endforeach; ?>
 </p>
-
-<small class="text-muted"><?= Yii::t('admin/article', 'Просмотров') ?>: <?= $item->views ?></small>
+<?
+if ($settings['enableViews']) {
+    ?>
+    <small class="text-muted"><?= Yii::t('admin/article', 'Просмотров') ?>: <?= $item->views ?></small>
+    <?
+}
+?>
+<?
+if ($settings['enableComment']) {
+    ?>
+    <div class="row">		
+        <div class="col-md-12">
+            <?
+            echo admin\modules\comment\widgets\Comment::widget([
+                'model' => $item,
+                'dataProviderConfig' => [
+                    'pagination' => [
+                        'pageSize' => 20
+                    ],
+                ]
+            ]);
+            ?>
+        </div>
+    </div>  
+    <?
+}
+?>

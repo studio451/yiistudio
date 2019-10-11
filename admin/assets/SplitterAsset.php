@@ -6,7 +6,7 @@ use yii\web\AssetBundle;
 
 class SplitterAsset extends AssetBundle {
 
-    public $sourcePath = '@vendor/bower/jquery.splitter/js';   
+    public $sourcePath = '@vendor/bower-asset/jquery.splitter/js';   
 
     public $js = [
         'jquery.splitter-0.14.0.js',

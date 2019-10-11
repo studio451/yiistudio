@@ -1,7 +1,7 @@
 function shopcartCost(data)
 {
     if (data.cost) {
-        $('#shopcart').html('<i class="fa fa-shopping-cart"></i> ' + data.cost + ' <i class="fa fa-rub"></i>');
+        $('#shopcart').html('<i class="fa fa-shopping-cart"></i> ' + data.cost + ' <i class="fas fa-ruble-sign"></i>');
         notify.success('Товар добавлен в <b><a href="/shopcart" class="text-success"><u>корзину</u></a></b>');
     } else
     {

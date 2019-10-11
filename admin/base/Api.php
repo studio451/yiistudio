@@ -7,7 +7,7 @@ use Yii;
  * Base Api component. Used by all modules
  * @package admin\base
  */
-class Api extends \yii\base\Object
+class Api extends \yii\base\BaseObject
 {
     /** @var  array */
     static $classes;

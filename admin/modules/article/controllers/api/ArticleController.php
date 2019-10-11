@@ -31,11 +31,17 @@ class ArticleController extends \admin\base\api\Controller {
         if (!$item) {
             throw new NotFoundHttpException(Yii::t('admin/article', 'Статья не найдена.'));
         }
-
-        return $this->render('@admin/modules/article/views/api/article/item', [
-                    'category' => $category,
-                    'item' => $item
-        ]);
+        if (Yii::$app->request->isAjax) {
+             return $this->renderAjax('@admin/modules/article/views/api/article/item', [
+                        'category' => $category,
+                        'item' => $item
+            ]);
+        } else {
+            return $this->render('@admin/modules/article/views/api/article/item', [
+                        'category' => $category,
+                        'item' => $item
+            ]);
+        }
     }
 
 }

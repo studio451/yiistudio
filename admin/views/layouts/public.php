@@ -1,7 +1,4 @@
 <?
-/* @var $this \yii\web\View */
-/* @var $content string */
-
 use admin\assets\AdminLteAsset;
 use admin\assets\PublicAsset;
 

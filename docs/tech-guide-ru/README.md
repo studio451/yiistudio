@@ -19,12 +19,12 @@
 * [Структура системы](structure-overview.md)
 * [Входной скрипт](structure-entry-script.md)
 * [Приложение](structure-application.md)
-* [Компоненты системы](structure-components.md)
+* [Базовые классы](structure-base-classes.md)
 * [Модули системы](structure-modules.md)
 * [Встроенные хелперы](structure-helpers.md)
 * [Встроенные виджеты](structure-widgets.md)
 * [Встроенные комплекты ресурсов](structure-assets.md)
-
+* [Компоненты системы](structure-components.md)
 
 Настройки 
 --------------------

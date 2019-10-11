@@ -269,7 +269,7 @@ class Import extends \admin\base\ActiveRecord {
                     //Доп.параметры
                     foreach (YmlModule::getAdditionalFields(true) as $field) {
                         if ($row[$field['header']]) {
-                            $item->data->$field['attribute'] = trim($row[$field['header']]);
+                            $item->data->{$field['attribute']} = trim($row[$field['header']]);
                         }
                     }
 
@@ -426,7 +426,7 @@ class Import extends \admin\base\ActiveRecord {
                     //Доп.параметры
                     foreach (YmlModule::getAdditionalFields(true) as $field) {
                         if ($row[$field['header']]) {
-                            $item->data->$field['attribute'] = trim($row[$field['header']]);
+                            $item->data->{$field['attribute']} = trim($row[$field['header']]);
                         }
                     }
 
@@ -478,7 +478,7 @@ class Import extends \admin\base\ActiveRecord {
                 //Доп.параметры   *
                 foreach (YmlModule::getAdditionalFields(true) as $field) {
                     if ($row[$field['header']]) {
-                        $item->data->$field['attribute'] = trim($row[$field['header']]);
+                        $item->data->{$field['attribute']} = trim($row[$field['header']]);
                     }
                 }
                 if (!$item->save()) {

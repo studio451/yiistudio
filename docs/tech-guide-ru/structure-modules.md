@@ -124,7 +124,7 @@ shopcart/                   корневая папка модуля
 Классы модулей
 ------------------------------------------
 
-Каждый модуль объявляется с помощью уникального класса, который наследуется от [[\admin\components\Module]].
+Каждый модуль объявляется с помощью уникального класса, который наследуется от [[\admin\base\Module]].
 
 Пример класса модуля Корзина:
 
@@ -132,7 +132,7 @@ shopcart/                   корневая папка модуля
 <?
 namespace admin\modules\shopcart;
 
-class ShopcartModule extends \admin\components\Module
+class ShopcartModule extends \admin\base\Module
 {
     public $settings = [
         'notifyAdmin' => true,

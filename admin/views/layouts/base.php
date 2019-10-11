@@ -3,9 +3,11 @@
 use yii\helpers\Html;
 use admin\helpers\AjaxModalPopup;
 
-$appAssetPath = '\\' . Yii::$app->id . '\assets\AppAsset';
-$appAsset = $appAssetPath::register($this);
-
+if($this->context->module->id != 'admin')
+{
+    $appAssetPath = '\\' . Yii::$app->id . '\assets\AppAsset';
+    $appAsset = $appAssetPath::register($this);
+}
 ?>
 <? $this->beginPage() ?>
 <!DOCTYPE html>
@@ -21,7 +23,7 @@ $appAsset = $appAssetPath::register($this);
         <link rel="icon" href="<?= $appAsset->baseUrl ?>/favicon.ico" type="image/x-icon">        
         <? $this->head() ?>
     </head>
-    <body class="hold-transition skin-blue sidebar-mini <? if (Yii::$app->getSession()->has('sidebar_collapse')) { ?>sidebar-collapse<? } ?>">
+    <body>
         <? $this->beginBody() ?>
         <?= $content ?>
         <? $this->endBody() ?>

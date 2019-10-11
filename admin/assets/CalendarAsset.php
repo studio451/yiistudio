@@ -10,7 +10,7 @@ use yii\web\AssetBundle;
  */
 class CalendarAsset extends AssetBundle {
 
-    public $sourcePath = '@vendor/bower/fullcalendar';
+    public $sourcePath = '@vendor/bower-asset/fullcalendar';
     public $css = [
         'dist/fullcalendar.min.css',
     ];

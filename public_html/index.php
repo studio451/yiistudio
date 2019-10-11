@@ -15,6 +15,7 @@ defined('APP_NAME') or define('APP_NAME', 'app_demo');
 //...
 //defined('APP_NAME') or define('APP_NAME', 'app_n');
 
+defined('DEMO') or define('DEMO', false);
 defined('APP_CONSOLE') or define('APP_CONSOLE', false);//Если приложение консольное
 defined('YII_DEBUG') or define('YII_DEBUG', true);//Включить/выключить отладку
 defined('YII_ENV') or define('YII_ENV', 'dev');//Переключение окружения (разработка - 'dev', прод - 'prod')

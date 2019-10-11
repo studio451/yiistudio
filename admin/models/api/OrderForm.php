@@ -9,7 +9,7 @@ use admin\validators\EscapeValidator;
 class OrderForm extends Model {
 
     public $phone;
-    public $name;
+    public $name;     
     public $address;
     public $comment;
 

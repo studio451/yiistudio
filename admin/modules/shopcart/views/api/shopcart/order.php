@@ -9,7 +9,7 @@ $module = $this->context->module->id;
 
 $this->title = Yii::t('admin/shopcart', 'Заказ №') . $order->id;
 
-$page = Page::get('page-shopcart-orders');
+$page = Page::get('page-shopcart-order');
 $this->params['description'] = $page->seo('description');
 $this->params['keywords'] = $page->seo('keywords');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('admin/shopcart', 'Заказы'), 'url' => ['orders']];

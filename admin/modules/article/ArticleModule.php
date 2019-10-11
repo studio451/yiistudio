@@ -7,11 +7,11 @@ class ArticleModule extends \admin\base\Module
         'categoryThumb' => true,
         'articleThumb' => true,
         'enablePhotos' => true,
-
+        'enableComment' => false,
+        'enableViews' => true,
         'enableShort' => true,
         'shortMaxLength' => 255,
         'enableTags' => true,
-
         'itemsInFolder' => false,
     ];
 

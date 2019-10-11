@@ -9,17 +9,13 @@
         "wiki": "https://github.com/studio451/yiistudio/wiki",
         "source": "https://github.com/studio451/yiistudio"
     },
-    "minimum-stability": "stable",    
+    "minimum-stability": "stable",
     "require": {
-        "php": ">=5.4.0",
-        "yiisoft/yii2": "~2.0.15",
+        "php": "^7.0",
+        "yiisoft/yii2": "~2.0.20",
         "yiisoft/yii2-bootstrap": "~2.0.0",
-        "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
-        "yiisoft/yii2-sphinx": "^2.0.0",
-        "yiisoft/yii2-httpclient": "^2.0.3",
+        "yiisoft/yii2-swiftmailer": "~2.1.2",
         "yiisoft/yii2-apidoc": "~2.1.0",
-        "2amigos/yii2-selectize-widget": "^1.0",
-        "nnnick/chartjs": "^2.4.0",
         "kartik-v/yii2-krajee-base": "^2.0.5",
         "kartik-v/yii2-date-range": "^1.6.7",
         "kartik-v/yii2-grid": "^3.1.3",
@@ -30,33 +26,42 @@
         "kartik-v/yii2-widget-timepicker": "^1.0.1",
         "kartik-v/yii2-widget-datetimepicker": "^1.4.8",
         "fortawesome/font-awesome": "~5.8.0",
-        "creocoder/yii2-nested-sets": "^0.9.0",
-        "phpoffice/phpexcel": "^1.8.1",
+        "creocoder/yii2-nested-sets": "^0.9.0",              
         "cwspear/bootstrap-hover-dropdown": "^2.2.1",
-        "paulzi/yii2-adjacency-list": "^2.0",
         "bower-asset/slick-carousel": "^1.6.0",
+        "bower-asset/scrollup": "^2.4.1",        
+        "phpoffice/phpexcel": "^1.8.1",
+        "paulzi/yii2-adjacency-list": "^2.0",
+        "2amigos/yii2-selectize-widget": "~1.0",
         "bower-asset/animate.css": "^3.5.1",
         "bower-asset/jquery-animatenumber": "^0.0.14",
         "bower-asset/fullcalendar": "^3.1",
         "bower-asset/jquery.splitter": "^0.14",
-        "bower-asset/spritely": "^0.6.8",
         "bower-asset/moment": "^2.0",
-        "bower-asset/scrollup": "^2.4.1"
+        "bower-asset/spritely": "^0.6.8",       
+        "workerman/workerman": "^3.5",
+        "workerman/mqtt": "^1.0",
+        "studio451/yii2-json-rpc-2.0-api": "^1.0"
     },
     "require-dev": {
-        "yiisoft/yii2-debug": "~2.0.0",
-        "yiisoft/yii2-gii": "~2.0.0",
+        "yiisoft/yii2-debug": "~2.1.0",
+        "yiisoft/yii2-gii": "~2.1.0",
         "yiisoft/yii2-faker": "~2.0.0",
-        "codeception/base": "^2.2.3",
-        "codeception/verify": "~0.3.1"
+        "codeception/base": "^2.4.0",
+        "phpunit/phpunit": "~6.5.5",
+        "codeception/verify": "~1.0.0",
+        "symfony/browser-kit": ">=2.7 <=4.2.4"
     },
     "config": {
-        "process-timeout": 1800     
-    },    
-    "extra": {
-        "asset-installer-paths": {
-            "npm-asset-library": "vendor/npm",
-            "bower-asset-library": "vendor/bower"
+        "process-timeout": 1800,
+        "fxp-asset": {
+            "enabled": false
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
 }
