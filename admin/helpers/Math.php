@@ -19,4 +19,3 @@ class Math extends Model {
     }
 
 }
-?>

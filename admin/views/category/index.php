@@ -6,7 +6,7 @@ use yii\helpers\Url;
 
 $this->title = Yii::$app->getModule('admin')->activeModules[$this->context->module->id]->title;
 
-$baseUrl = '/admin/'.$this->context->moduleName;
+$baseUrl = '/admin/'.$this->context->module->id;
 ?>
 
 <?= $this->render('_menu') ?>

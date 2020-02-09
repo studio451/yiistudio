@@ -14,6 +14,7 @@ $config = [
         '@admin' => ADMIN_PATH,
         '@webroot' => BASE_PATH . '/public_html',   
         '@web' => BASE_PATH . '/public_html',
+        '@runtime' => BASE_PATH . '/runtime',
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
     ],
@@ -88,6 +89,7 @@ $config = [
         ],
         'user' => [
             'identityClass' => 'admin\models\User',
+            'loginUrl' => ['user/login'],
             'enableAutoLogin' => false,
             'authTimeout' => 86400,
             'identityCookie' => ['name' => '_identity-' . APP_NAME, 'httpOnly' => true],
@@ -106,11 +108,6 @@ $config = [
                 'app' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'sourceLanguage' => 'ru-RU',
-                    'basePath' => '@app/messages'
-                ],
-                'yii' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                    'sourceLanguage' => 'en-US',
                     'basePath' => '@app/messages'
                 ],
             ],

@@ -61,14 +61,15 @@ class ApiObject extends \yii\base\BaseObject {
         }
         return '';
     }
-       
-    public function getEditLink(){
+
+    public function getEditLink() {
         return '';
     }
 
-    public function getCreateLink(){
+    public function getCreateLink() {
         return '';
     }
+
     /**
      * Get seo text or parse seo template attached to object
      * @param string $attribute name of seo attribute can be h1, title, description, keywords
@@ -77,11 +78,10 @@ class ApiObject extends \yii\base\BaseObject {
     public function seo($attribute, $value = '') {
 
         $title = $this->model->title;
-        if($value)
-        {
-           $title = $value; 
+        if ($value) {
+            $title = $value;
         }
-        
+
         //Если установлен SeoText
         if ($this->model->getBehavior('seoText')) {
             if (!empty($this->model->seoText->{$attribute})) {
@@ -92,7 +92,7 @@ class ApiObject extends \yii\base\BaseObject {
         if (empty($result)) {
             //Если установлен SeoTemplate
             if ($this->model->getBehavior('seoTemplate')) {
-                if ($this->model->seoTemplate->template_id) {                    
+                if ($this->model->seoTemplate->template_id) {
                     $result = SeoTemplate::parse($this->model->seoTemplate->template_id, $attribute, ['title' => $title]);
                 }
             } else {
@@ -114,9 +114,10 @@ class ApiObject extends \yii\base\BaseObject {
         if ($attribute == 'h1') {
             if (empty($result)) {
                 $result = $this->createLink;
-            }
-            if (LIVE_EDIT) {
+            } else {
+                if (LIVE_EDIT) {
                     $result = Api::liveEdit($result, $this->editLink);
+                }
             }
         }
         return $result;

@@ -45,20 +45,24 @@ class WebConsole {
         return self::$_console;
     }
 
-    public static function migrate($moduleName) {
+    public static function migrate($type = 'ADMIN', $moduleName = '') {
         ob_start();
-
-
-        $erer = Yii::getAlias('@' . APP_NAME . '/migrations/');
-        $erer1 = Yii::getAlias('@app/migrations/');
-        $eeqweqwe1 = Yii::getAlias('@admin/migrations/');
-        if ($moduleName == 'admin') {
-            self::console()->runAction('migrate', ['migrationPath' => '@admin/migrations/', 'migrationTable' => 'admin_migration', 'interactive' => false]);
-        } elseif ($moduleName == 'app') {
-            self::console()->runAction('migrate', ['migrationPath' => '@app/migrations/', 'migrationTable' => 'admin_migration_app', 'interactive' => false]);
-        } else {
-            self::console()->runAction('migrate', ['migrationPath' => '@admin/modules/' . $moduleName . '/migrations/', 'migrationTable' => 'admin_migration_' . $moduleName, 'interactive' => false]);
+        
+        if ($type == 'ADMIN') {
+            if ($moduleName == '') {
+                self::console()->runAction('migrate', ['migrationPath' => '@admin/migrations/', 'migrationTable' => 'admin_migration', 'interactive' => false]);
+            } else {
+                self::console()->runAction('migrate', ['migrationPath' => '@admin/modules/' . $moduleName . '/migrations/', 'migrationTable' => 'admin_migration_' . $moduleName, 'interactive' => false]);
+            }
         }
+        if ($type == 'APP') {
+            if ($moduleName == '') {
+                self::console()->runAction('migrate', ['migrationPath' => '@app/migrations/', 'migrationTable' => APP_NAME . '_migration', 'interactive' => false]);
+            } else {
+                self::console()->runAction('migrate', ['migrationPath' => '@app/modules/' . $moduleName . '/migrations/', 'migrationTable' => APP_NAME . '_migration_' . $moduleName, 'interactive' => false]);
+            }
+        }
+
         $result = file_get_contents(self::$logFile) . "\n" . ob_get_clean();
 
         Yii::$app->cache->flush();
@@ -66,16 +70,24 @@ class WebConsole {
         return $result;
     }
 
-    public static function migrateDown($moduleName) {
+    public static function migrateDown($type = 'ADMIN', $moduleName = '') {
         ob_start();
 
-        if ($moduleName == 'admin') {
-            self::console()->runAction('migrate/down', ['migrationPath' => '@admin/migrations/', 'migrationTable' => 'admin_migration', 'interactive' => false]);
-        } elseif ($moduleName == 'app') {
-            self::console()->runAction('migrate/down', ['migrationPath' => '@app/migrations/', 'migrationTable' => 'admin_migration_app', 'interactive' => false]);
-        } else {
-            self::console()->runAction('migrate/down', ['migrationPath' => '@admin/modules/' . $moduleName . '/migrations/', 'migrationTable' => 'admin_migration_' . $moduleName, 'interactive' => false]);
+        if ($type == 'ADMIN') {
+            if ($moduleName == '') {
+                self::console()->runAction('migrate/down', ['migrationPath' => '@admin/migrations/', 'migrationTable' => 'admin_migration', 'interactive' => false]);
+            } else {
+                self::console()->runAction('migrate/down', ['migrationPath' => '@admin/modules/' . $moduleName . '/migrations/', 'migrationTable' => 'admin_migration_' . $moduleName, 'interactive' => false]);
+            }
         }
+        if ($type == 'APP') {
+            if ($moduleName == '') {
+                self::console()->runAction('migrate/down', ['migrationPath' => '@app/migrations/', 'migrationTable' => APP_NAME . '_migration', 'interactive' => false]);
+            } else {
+                self::console()->runAction('migrate/down', ['migrationPath' => '@app/modules/' . $moduleName . '/migrations/', 'migrationTable' => APP_NAME . '_migration_' . $moduleName, 'interactive' => false]);
+            }
+        }        
+
         $result = file_get_contents(self::$logFile) . "\n" . ob_get_clean();
 
         Yii::$app->cache->flush();
@@ -141,6 +153,19 @@ class WebConsole {
         ob_start();
 
         self::console()->runAction('rbac/init', ['user_id' => $user_id, 'interactive' => false]);
+
+        $result = file_get_contents(self::$logFile) . "\n" . ob_get_clean();
+
+        Yii::$app->cache->flush();
+
+        return $result;
+    }
+    
+    public static function rbacInitApp($user_id) {
+        
+        ob_start();        
+       
+        self::console(APP_NAME .'\commands')->runAction('rbac/init', ['user_id' => $user_id, 'interactive' => false]);
 
         $result = file_get_contents(self::$logFile) . "\n" . ob_get_clean();
 

@@ -24,21 +24,24 @@ class InstallController extends \yii\web\Controller {
             } else {
                 $configFile = str_replace(Yii::getAlias('@webroot'), '', Yii::getAlias('@app')) . '/config/db_dev.php';
             }
-            
+
             $dbName = \admin\AdminModule::getDsnAttribute('dbname', Yii::$app->db->dsn);
-            
-            return $this->showError(Yii::t('admin', 'Нет соединения с базой данных <b>'. $dbName.'</b>!<br> Если база данных <b>'. $dbName.'</b> не создана, создайте ее.<br> Также проверьте правильность настроек подключения к базе данных: <b>' . $configFile . '</b>' ));
+
+            return $this->showError(Yii::t('admin', 'Нет соединения с базой данных <b>' . $dbName . '</b>!<br> Если база данных <b>' . $dbName . '</b> не создана, создайте ее.<br> Также проверьте правильность настроек подключения к базе данных: <b>' . $configFile . '</b>'));
         }
         if (INSTALLED) {
-            return $this->showError(Yii::t('admin', \admin\AdminModule::NAME . ' уже установлена.<br> Если вы хотите переустановить ' . \admin\AdminModule::NAME . ' установите значение константы INSTALLED в '. Yii::getAlias('@webroot/index.php') .' равным false!'));
+            return $this->showError(Yii::t('admin', \admin\AdminModule::NAME . ' уже установлена.<br> Если вы хотите переустановить ' . \admin\AdminModule::NAME . ' установите значение константы INSTALLED в ' . Yii::getAlias('@webroot/index.php') . ' равным false!'));
         }
         $installForm = new InstallForm();
 
         if ($installForm->load(Yii::$app->request->post())) {
             $this->createUploadsDir();
 
-            WebConsole::migrate('admin');
+            WebConsole::migrate('ADMIN');
+
             $this->insertSettings($installForm);
+
+            WebConsole::migrate('APP');
 
             $this->installModules();
 
@@ -59,7 +62,7 @@ class InstallController extends \yii\web\Controller {
 
             WebConsole::rbacMigrate();
             WebConsole::rbacInit(Yii::$app->user->identity->id);
-           
+
             Yii::$app->cache->flush();
 
             return $this->redirect(['/admin/api/install/finish']);
@@ -84,7 +87,7 @@ class InstallController extends \yii\web\Controller {
 
     public function actionFinish() {
         return $this->render('finish');
-    }    
+    }
 
     private function showError($text) {
         return $this->render('error', ['error' => $text]);
@@ -120,26 +123,45 @@ class InstallController extends \yii\web\Controller {
     }
 
     private function installModules() {
+        //Установка системных модулей
+        foreach (glob(ADMIN_PATH . DIRECTORY_SEPARATOR . 'modules/*') as $module) {
+            $moduleName = basename($module);
+            $this->installModule('ADMIN',$moduleName);
+        }
+        //Установка модулей приложения
+        foreach (glob(APP_PATH . DIRECTORY_SEPARATOR . 'modules/*') as $module) {
+            $moduleName = basename($module);
+
+            $this->installModule('APP',$moduleName);
+        }
+    }
+
+    private function installModule($type, $moduleName) {
+
         $language = Data::getLocale();
 
-        foreach (glob(Yii::getAlias('@admin') . DIRECTORY_SEPARATOR . 'modules/*') as $module) {
-            $moduleName = basename($module);
+        WebConsole::migrate($type, $moduleName);
+      
+        if ($type == 'ADMIN') {
             $moduleClass = 'admin\modules\\' . $moduleName . '\\' . ucfirst($moduleName) . 'Module';
-            $moduleConfig = $moduleClass::$installConfig;
-
-            WebConsole::migrate($moduleName);
-
-            $module = new Module([
-                'name' => $moduleName,
-                'class' => $moduleClass,
-                'title' => !empty($moduleConfig['title'][$language]) ? $moduleConfig['title'][$language] : $moduleConfig['title']['en'],
-                'icon' => $moduleConfig['icon'],
-                'settings' => Yii::createObject($moduleClass, [$moduleName])->settings,
-                'order_num' => $moduleConfig['order_num'],
-                'status' => Module::STATUS_ON,
-            ]);
-            $module->save();
         }
+        if ($type == 'APP') {
+            $moduleClass = APP_NAME . '\modules\\' . $moduleName . '\\' . ucfirst($moduleName) . 'Module';
+        }
+        
+        $moduleConfig = $moduleClass::$installConfig;
+        
+        $module = new Module([
+            'name' => $moduleName,
+            'class' => $moduleClass,
+            'title' => !empty($moduleConfig['title'][$language]) ? $moduleConfig['title'][$language] : $moduleConfig['title']['en'],
+            'type' => $type,
+            'icon' => $moduleConfig['icon'],
+            'settings' => Yii::createObject($moduleClass, [$moduleName])->settings,
+            'order_num' => $moduleConfig['order_num'],
+            'status' => Module::STATUS_ON,
+        ]);
+        $module->save();
     }
 
 }

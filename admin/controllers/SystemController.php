@@ -22,24 +22,24 @@ class SystemController extends \admin\base\admin\Controller {
     }
 
     public function actionMigrate() {
-        $result = WebConsole::migrate('admin');
+        $result = WebConsole::migrate('ADMIN');
 
         return $this->formatResponse($result, true, true);
     }
 
     public function actionMigrateDown() {
-        $result = WebConsole::migrateDown('admin');
+        $result = WebConsole::migrateDown('ADMIN');
         return $this->formatResponse($result, true, true);
     }
     
     public function actionMigrateApp() {
-        $result = WebConsole::migrate('app');
+        $result = WebConsole::migrate('APP');
 
         return $this->formatResponse($result, true, true);
     }
 
     public function actionMigrateAppDown() {
-        $result = WebConsole::migrateDown('app');
+        $result = WebConsole::migrateDown('APP');
         return $this->formatResponse($result, true, true);
     }
 

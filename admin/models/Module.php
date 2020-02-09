@@ -21,11 +21,11 @@ class Module extends \admin\base\ActiveRecord {
         return [
             [['name', 'class', 'title'], 'required'],
             [['name', 'class', 'title', 'icon'], 'trim'],
-            ['name', 'match', 'pattern' => '/^[a-z]+$/'],
+            ['name', 'match', 'pattern' => '/^[a-zA-Z0-9_-]+$/'],
             ['name', 'unique'],
             ['class', 'match', 'pattern' => '/^[\w\\\]+$/'],
             ['class', 'checkExists'],
-            ['icon', 'string'],
+            [['icon','type'], 'string'],
             ['status', 'in', 'range' => [0, 1]],
         ];
     }
@@ -36,6 +36,7 @@ class Module extends \admin\base\ActiveRecord {
             'class' => Yii::t('admin', 'Класс'),
             'title' => Yii::t('admin', 'Название'),
             'icon' => Yii::t('admin', 'Иконка'),
+            'type' => Yii::t('admin', 'Тип (ADMIN, APP)'),
             'order_num' => Yii::t('admin', 'Порядок'),
         ];
     }

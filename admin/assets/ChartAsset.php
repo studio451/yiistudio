@@ -9,7 +9,7 @@ use yii\web\AssetBundle;
  */
 class ChartAsset extends AssetBundle {
 
-    public $sourcePath = '@vendor/nnnick/chartjs/dist';    
+    public $sourcePath = '@vendor/bower-asset/chartjs/dist';    
     public $js = [
         'Chart.min.js',        
     ];
@@ -19,4 +19,4 @@ class ChartAsset extends AssetBundle {
         'yii\bootstrap\BootstrapPluginAsset',
     ];
 
-}
+    }

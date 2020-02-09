@@ -10,7 +10,7 @@ use admin\models\Module as ModuleModel;
  * @package admin\base
  */
 class Module extends \yii\base\Module {
-
+   
     /** @var string  */
     public $defaultRoute = 'a';
 
@@ -30,6 +30,7 @@ class Module extends \yii\base\Module {
         'title' => [
             'en' => 'Custom Module',
         ],
+        'type' => 'ADMIN',
         'icon' => 'asterisk',
         'order_num' => 0,
     ];
@@ -56,5 +57,6 @@ class Module extends \yii\base\Module {
     
     public function getSubmenu() {
         return [];
-    }
+    }   
+
 }

@@ -153,7 +153,7 @@ class SluggableBehavior extends \yii\behaviors\SluggableBehavior {
         if ($lowercase) {
             $str = strtolower($str);
         }
-        $str = preg_replace('/[^\s0-9a-z\-]/', '', $str);
+        $str = preg_replace('/[^\s0-9a-z\-_]/', '', $str);
         $str = preg_replace('|([-]+)|s', $replacement, $str);
         $str = str_replace(' ', $replacement, $str);
         $str = trim($str, $replacement);

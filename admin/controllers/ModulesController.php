@@ -49,7 +49,7 @@ class ModulesController extends \admin\base\admin\Controller {
                     $this->flash('success', Yii::t('admin', 'Модуль создан'));
                     return $this->redirect(['/admin/modules']);
                 } else {
-                    $this->flash('error', Yii::t('Ошибка. {0}', $model->formatErrors()));
+                    $this->flash('error', Yii::t('admin', 'Ошибка. {0}', $model->formatErrors()));
                     return $this->refresh();
                 }
             }
@@ -274,7 +274,7 @@ class ModulesController extends \admin\base\admin\Controller {
     public function actionMigrate($id) {
 
         if (($model = Module::findOne($id))) {
-            $result = WebConsole::migrate($model->name);
+            $result = WebConsole::migrate($model->type,$model->name);
         } else {
             $this->error = Yii::t('admin', 'Запись не найдена');
         }
@@ -284,7 +284,7 @@ class ModulesController extends \admin\base\admin\Controller {
     public function actionMigrateDown($id) {
 
         if (($model = Module::findOne($id))) {
-            $result = WebConsole::migrateDown($model->name);
+            $result = WebConsole::migrateDown($model->type,$model->name);
         } else {
             $this->error = Yii::t('admin', 'Запись не найдена');
         }

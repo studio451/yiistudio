@@ -13,7 +13,7 @@ use creocoder\nestedsets\NestedSetsBehavior;
 
 /**
  * Base CategoryModel. Shared by categories
-* @package admin\base
+ * @package admin\base
  */
 class CategoryModel extends \admin\base\ActiveRecord {
 
@@ -35,7 +35,7 @@ class CategoryModel extends \admin\base\ActiveRecord {
 
     public function attributeLabels() {
         return [
-            'title' => Yii::t('admin', 'Описание'),
+            'title' => Yii::t('admin', 'Название'),
             'image' => Yii::t('admin', 'Изображение'),
             'slug' => Yii::t('admin', 'Код'),
             'description' => Yii::t('admin', 'Описание'),
@@ -148,7 +148,7 @@ class CategoryModel extends \admin\base\ActiveRecord {
                     $item['icon'] = 'fa fa-circle';
                 }
                 if (count($brunch->children) > 0) {
-                    $item['children'] = self::generateMenu($brunch->children, $url_root, $icon = '');
+                    $item['children'] = self::generateMenu($brunch->children, $icon = '');
                 }
                 $menu[] = $item;
             }
@@ -185,7 +185,7 @@ class CategoryModel extends \admin\base\ActiveRecord {
                     continue;
                 }
                 if ($depth != -1) {
-                    if ($category->depth == $depth) {
+                    if ($category->depth <= $depth) {
                         break;
                     } else {
                         $categories[] = $category;
@@ -262,12 +262,12 @@ class CategoryModel extends \admin\base\ActiveRecord {
         $flat = [];
 
         if (count($collection) > 0) {
-            
-            
+
+
             $depth = 0;
             $lastId = 0;
             foreach ($collection as $node) {
-               
+
                 $node = (object) $node;
                 $id = $node->id;
                 $node->parent = '';
@@ -307,5 +307,4 @@ class CategoryModel extends \admin\base\ActiveRecord {
 
         return $flat;
     }
-
 }

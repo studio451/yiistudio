@@ -34,17 +34,24 @@ class RbacController extends \admin\console\Controller {
         $auth->add($shopcartOrderRule);
         //End rules
         //Permissions
+        //Добавление стандартных разрешений
         $auth->add($auth->createPermission('admin'));
         $auth->add($auth->createPermission('admin/api'));
-        foreach (glob(Yii::getAlias('@admin') . DIRECTORY_SEPARATOR . 'modules/*') as $module) {
-            $moduleName = basename($module);
-            //Module permissions
-            $auth->add($auth->createPermission('admin/' . $moduleName));
-        }
         $auth->add($auth->createPermission('admin/photos'));
         $auth->add($auth->createPermission('admin/yml/excel/update-items-from-excel-file'));
         $auth->add($auth->createPermission('admin/system/live-edit'));
 
+        //Добавление разрешений для системных модулей
+        foreach (glob(ADMIN_PATH . DIRECTORY_SEPARATOR . 'modules/*') as $module) {
+            $moduleName = basename($module);
+            $auth->add($auth->createPermission('admin/' . $moduleName));
+        }
+        //Добавление разрешений для модулей приложения
+        foreach (glob(APP_PATH . DIRECTORY_SEPARATOR . 'modules/*') as $module) {
+            $moduleName = basename($module);
+            $auth->add($auth->createPermission('admin/' . $moduleName));
+        }
+        
         $userShopcartOrderPermission = $auth->createPermission('UserShopcartOrderPermission');
         $userShopcartOrderPermission->ruleName = $shopcartOrderRule->name;
         $auth->add($userShopcartOrderPermission);

@@ -70,8 +70,6 @@ $photoTemplate = str_replace('&nbsp;\\', '&nbsp;', $photoTemplate);
         <button id="photo-upload" class="btn btn-primary btn-block"><span class="fa fa-upload"></span> <?= Yii::t('admin', 'Загрузить фото') ?></button>
         <small id="uploading-text" class="text-muted"><?= Yii::t('admin', 'Загрузка... Пожалуйста, ждите...') ?><span></span></small>
     </div>
-    <div class="col-md-6">
-    </div>
 </div>
 <p class="empty" style="display: <?= count($photos) ? 'none' : 'block' ?>;"><?= Yii::t('admin', 'Нет фото') ?>.</p>
 <?= Html::beginForm(Url::to(['/admin/photos/upload'] + $linkParams), 'post', ['enctype' => 'multipart/form-data']) ?>

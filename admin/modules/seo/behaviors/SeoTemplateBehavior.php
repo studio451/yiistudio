@@ -36,21 +36,24 @@ class SeoTemplateBehavior extends \yii\base\Behavior {
     }
 
     public function afterInsert() {
-        if ($this->_seoTemplate->load(Yii::$app->request->post())) {
-            if (!$this->_seoTemplate->isEmpty()) {
-                $this->_seoTemplate->save();
+        if (!APP_CONSOLE) {
+            if ($this->_seoTemplate->load(Yii::$app->request->post())) {
+                if (!$this->_seoTemplate->isEmpty()) {
+                    $this->_seoTemplate->save();
+                }
             }
         }
     }
 
     public function afterUpdate() {
-        if ($this->_seoTemplate->load(Yii::$app->request->post())) {
-            if (!$this->_seoTemplate->isEmpty()) {
-                $this->_seoTemplate->save();                               
-                
-            } else {
-                if (!$this->_seoTemplate->isNewRecord) {
-                    $this->_seoTemplate->delete();
+        if (!APP_CONSOLE) {
+            if ($this->_seoTemplate->load(Yii::$app->request->post())) {
+                if (!$this->_seoTemplate->isEmpty()) {
+                    $this->_seoTemplate->save();
+                } else {
+                    if (!$this->_seoTemplate->isNewRecord) {
+                        $this->_seoTemplate->delete();
+                    }
                 }
             }
         }

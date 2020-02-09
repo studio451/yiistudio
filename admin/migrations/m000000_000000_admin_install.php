@@ -16,7 +16,7 @@ class m000000_000000_admin_install extends \yii\db\Migration {
             'id' => 'pk',
             'email' => Schema::TYPE_STRING . '(255) NOT NULL',
             'password_hash' => Schema::TYPE_STRING . '(255) NOT NULL',
-            'password_reset_token' => Schema::TYPE_STRING . '(255) NOT NULL',
+            'password_reset_token' => Schema::TYPE_STRING . '(255) DEFAULT NULL',
             'auth_key' => Schema::TYPE_STRING . '(32) NOT NULL',
             'access_token' => Schema::TYPE_STRING . '(128) DEFAULT NULL',
             'data' => Schema::TYPE_TEXT . ' NOT NULL',
@@ -31,7 +31,6 @@ class m000000_000000_admin_install extends \yii\db\Migration {
         $this->createTable(models\api\LoginForm::tableName(), [
             'id' => 'pk',
             'email' => Schema::TYPE_STRING . '(128) NOT NULL',
-            'password' => Schema::TYPE_STRING . '(128) NOT NULL',
             'ip' => Schema::TYPE_STRING . '(16) NOT NULL',
             'user_agent' => Schema::TYPE_STRING . '(1024) NOT NULL',
             'time' => Schema::TYPE_INTEGER . " DEFAULT '0'",

@@ -11,7 +11,7 @@ class AboutController extends \admin\base\api\Controller {
         if ($slug) {
             $item = Article::get($slug);
             if (!$item) {
-                throw new NotFoundHttpException(Yii::t('admin/article', 'Статья не найдена.'));
+                throw new \yii\web\NotFoundHttpException(Yii::t('admin/article', 'Статья не найдена.'));
             }
 
             return $this->render('@admin/modules/article/views/api/article/item', [

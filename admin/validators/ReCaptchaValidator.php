@@ -23,7 +23,7 @@ class ReCaptchaValidator extends Validator
 
 
         if ($this->message === null) {
-            $this->message = Yii::t('yii', 'Неверный проверочный код');
+            $this->message = Yii::t('admin', 'Неверный проверочный код');
         }
     }
 

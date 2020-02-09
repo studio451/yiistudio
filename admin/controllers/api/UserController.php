@@ -10,6 +10,7 @@ use admin\models\Setting;
 
 class UserController extends \yii\web\Controller {
     
+    public $setReturnUrl = false;
     public $layout = 'public';
     public $enableCsrfValidation = false;
 

@@ -24,6 +24,7 @@ class UsersController extends \admin\base\admin\Controller {
 
             if ($action->id == 'delete' ||
                     $action->id == 'rbac-init' ||
+                    $action->id == 'rbac-init-app' ||
                     ($action->id == 'edit' && Yii::$app->request->isPost) ||
                     $action->id == 'delete-json' ||
                     $action->id == 'off') {
@@ -169,6 +170,12 @@ class UsersController extends \admin\base\admin\Controller {
         $result = WebConsole::rbacInit(Yii::$app->user->identity->id);
         return $this->formatResponse($result, true, true);
     }
+    
+    public function actionRbacInitApp() {        
+        
+        $result = WebConsole::rbacInitApp(Yii::$app->user->identity->id);
+        return $this->formatResponse($result, true, true);
+    }
 
     public function actionLogin($id) {
         if (($model = User::findOne($id))) {
@@ -190,11 +197,11 @@ class UsersController extends \admin\base\admin\Controller {
 
         if (is_array(Yii::$app->request->post('User'))) {
             if (is_array(Yii::$app->request->post('User')[data])) {
-            $model->data = Yii::$app->request->post('User')[data];
-            if ($model->save()) {
-                $this->flash('success', Yii::t('admin', 'Дополнительные данные пользователя обновлены'));
-                return $this->redirect(['/admin/users/edit', 'id' => $model->id]);
-            }
+                $model->data = Yii::$app->request->post('User')[data];
+                if ($model->save()) {
+                    $this->flash('success', Yii::t('admin', 'Дополнительные данные пользователя обновлены'));
+                    return $this->redirect(['/admin/users/edit', 'id' => $model->id]);
+                }
             }
         }
         $this->flash('error', Yii::t('admin', 'Ошибка при обновлении записи. {0}', $model->formatErrors()));
@@ -215,7 +222,7 @@ class UsersController extends \admin\base\admin\Controller {
         if (isset($data)) {
             if (!is_array($data)) {
                 return Json::encode([
-                    'status' => 'error'
+                            'status' => 'error'
                 ]);
                 return;
             }
@@ -227,11 +234,11 @@ class UsersController extends \admin\base\admin\Controller {
             }
 
             return Json::encode([
-                'status' => 'success'
+                        'status' => 'success'
             ]);
         } else {
             return Json::encode([
-                'status' => 'error'
+                        'status' => 'error'
             ]);
         }
     }

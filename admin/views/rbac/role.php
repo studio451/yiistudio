@@ -33,36 +33,36 @@ $this->params['breadcrumbs'][] = $this->title;
     GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            [
+                ['class' => 'yii\grid\SerialColumn'],
+                [
                 'class' => DataColumn::className(),
                 'attribute' => 'name',
                 'label' => Yii::t('admin', 'Роль')
             ],
-            [
+                [
                 'class' => DataColumn::className(),
                 'label' => Yii::t('admin', 'Разрешения'),
                 'format' => ['html'],
                 'value' => function($data) {
-            return implode('<br>', array_keys(ArrayHelper::map(Yii::$app->authManager->getPermissionsByRole($data->name), 'name', 'name')));
-        }
+                    return implode('<br>', array_keys(ArrayHelper::map(Yii::$app->authManager->getPermissionsByRole($data->name), 'name', 'name')));
+                }
             ],
-            [
+                [
                 'class' => DataColumn::className(),
                 'attribute' => 'description',
                 'label' => Yii::t('admin', 'Описание')
             ],
-            ['class' => 'yii\grid\ActionColumn',
+                ['class' => 'yii\grid\ActionColumn',
                 'template' => '{update} {delete}',
                 'buttons' =>
-                [
+                    [
                     'update' => function ($url, $model) {
                         return Html::a('<span class="fa fa-pen"></span>', Url::toRoute(['role-update', 'name' => $model->name]), [
                                     'title' => Yii::t('admin', 'Обновить'),
                                     'data-pjax' => '0',
                         ]);
                     },
-                            'delete' => function ($url, $model) {
+                    'delete' => function ($url, $model) {
                         return Html::a('<span class="fa fa-times"></span>', Url::toRoute(['role-delete', 'name' => $model->name]), [
                                     'title' => Yii::t('admin', 'Удалить'),
                                     'data-confirm' => Yii::t('admin', 'Вы уверены, что хотите удалить этот элемент?'),
@@ -70,16 +70,21 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'data-pjax' => '0',
                         ]);
                     }
-                        ]
-                    ],
                 ]
-            ]);
-            ?>
-        </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <p>
-            <a href="<?= Url::to(['/admin/users/rbac-init']) ?>" class="btn btn-danger"><?= Yii::t('admin', 'Инициализация RBAC по-умолчанию. Внимание! Будут удалены все данные о ролях и разрешениях пользователей!') ?></a>
-</p>
+            ],
+        ]
+    ]);
+    ?>
+</div>
+<br>
+<br>
+<br>
+<br>
+<div class="row">
+    <div class="col-md-6">
+        <a href="<?= Url::to(['/admin/users/rbac-init']) ?>" class="btn btn-danger btn-block"><?= Yii::t('admin', 'Инициализация RBAC по-умолчанию. Внимание! Будут удалены все данные о ролях и разрешениях пользователей!') ?></a>
+    </div>
+    <div class="col-md-6">
+        <a href="<?= Url::to(['/admin/users/rbac-init-app']) ?>" class="btn btn-danger btn-block"><?= Yii::t('admin', 'Инициализация RBAC приложения. Внимание! Будут удалены все данные о ролях и разрешениях пользователей!') ?></a>
+    </div>
+</div>

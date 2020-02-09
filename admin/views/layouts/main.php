@@ -197,7 +197,7 @@ $moduleName = $this->context->module->id;
                 </section>               
             </div>
             <footer class="main-footer">                
-                <?= date('Y') ?> <a href="https://yiistudio.ru" target="_blank" title="https://yiistudio.ru"><?= \admin\AdminModule::NAME ?></a> v<?= \admin\AdminModule::VERSION ?> 
+                2017 - <?= date('Y') ?> <a href="https://yiistudio.ru" target="_blank" title="https://yiistudio.ru"><?= \admin\AdminModule::NAME ?></a> v<?= \admin\AdminModule::VERSION ?> 
             </footer>
         </div>
         <? $this->endBody() ?>

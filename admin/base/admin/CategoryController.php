@@ -24,6 +24,10 @@ class CategoryController extends \admin\base\admin\Controller {
     /** @var string  */
     public $viewRoute = '/item';
 
+    public $viewAdminCategoryIndexFile = '@admin/views/category/index';
+    public $viewAdminCategoryCreateFile = '@admin/views/category/create';
+    public $viewAdminCategoryEditFile = '@admin/views/category/edit';
+    
     /**
      * Categories list
      *
@@ -31,7 +35,7 @@ class CategoryController extends \admin\base\admin\Controller {
      */
     public function actionIndex() {
         $class = $this->categoryClass;
-        return $this->render('@admin/views/category/index', [
+        return $this->render($this->viewAdminCategoryIndexFile, [
                     'categories' => $class::flat('',true)
         ]);
     }
@@ -81,7 +85,7 @@ class CategoryController extends \admin\base\admin\Controller {
                 }
             }
         } else {
-            return $this->render('@admin/views/category/create', [
+            return $this->render($this->viewAdminCategoryCreateFile, [
                         'model' => $model,
                         'parent' => $parent
             ]);
@@ -151,7 +155,7 @@ class CategoryController extends \admin\base\admin\Controller {
             }
         } else {
 
-            return $this->render('@admin/views/category/edit', [
+            return $this->render($this->viewAdminCategoryEditFile, [
                         'model' => $model,
                         'parent' => $parent
             ]);

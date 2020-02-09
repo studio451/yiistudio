@@ -14,7 +14,7 @@ use admin\behaviors\AccessBehavior;
 
 class AdminModule extends \yii\base\Module implements BootstrapInterface {
 
-    const VERSION = '1.0.0';
+    const VERSION = '1.0.1';
     const NAME = 'Yii Studio';
 
     public $settings;
@@ -109,7 +109,7 @@ class AdminModule extends \yii\base\Module implements BootstrapInterface {
     }
 
     public static function renderPromo() {
-        echo Yii::t('admin', 'Мы используем') . ' <a href="https://yiistudio.ru" target="_blank" title="https://yiistudio.ru">' . self::NAME . '</a>';
+        echo '<span class="yiistudio-promo">'.Yii::t('admin', 'Мы используем') . ' <a href="https://yiistudio.ru" target="_blank" title="https://yiistudio.ru">' . self::NAME . '</a><span>';
     }
 
     public static function getDsnAttribute($name, $dsn) {

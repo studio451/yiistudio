@@ -68,7 +68,7 @@ class AController extends \admin\base\admin\Controller
                     }
                 }
                 else {
-                    $this->flash('error', Yii::t('yii', '"{attribute}" не может быть пустым', ['attribute' => $model->getAttributeLabel('image')]));
+                    $this->flash('error', Yii::t('admin', '"{attribute}" не может быть пустым', ['attribute' => $model->getAttributeLabel('image')]));
                 }
                 return $this->refresh();
             }

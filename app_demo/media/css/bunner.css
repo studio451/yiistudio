@@ -1,7 +1,7 @@
 .banner {
     width: 100%;
-    background-color: #f36b00;
-    border: 1px solid #d15c00;
+    background-color: #337ab7;
+    border: 1px solid #2e6da4;
     padding:15px 0 10px 0;
 }
 .banner-small
@@ -23,7 +23,6 @@
     line-height: 20px;
 }
 .banner .banner-title span {
-    /*    font-family: Arial;*/
     display: inline-block;
     vertical-align: top;
 }
@@ -88,8 +87,8 @@
 
 .nav>li>a.banner {
     width: 100%;
-    background-color: #f36b00;
-    border: 1px solid #d15c00;
+    background-color: #337ab7;
+    border: 1px solid #2e6da4;
     padding: 1px 9px;
     color: #fff;
     margin-top: 7px;

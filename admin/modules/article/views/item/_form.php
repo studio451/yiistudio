@@ -28,14 +28,7 @@ $form = ActiveForm::begin([
 <? endif; ?>
 
 <? if ($this->context->module->settings['enableShort']) : ?>
-    <?=
-    $form->field($model, 'short')->widget(Redactor::className(), [
-        'options' => [
-            'imageUpload' => Url::to(['/admin/redactor/upload', 'dir' => 'article'], true),
-            'fileUpload' => Url::to(['/admin/redactor/upload', 'dir' => 'article'], true),
-        ]
-    ])
-    ?>
+    <?= $form->field($model, 'short')->textarea() ?>
 <? endif; ?>
 
 <?=

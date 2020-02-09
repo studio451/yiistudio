@@ -18,6 +18,7 @@ class RbacController extends \admin\base\admin\Controller
 
     public function actionRole()
     {
+        Yii::$app->user->setReturnUrl(Yii::$app->request->url);
         return $this->render('role');
     }
 
@@ -105,6 +106,7 @@ class RbacController extends \admin\base\admin\Controller
 
     public function actionPermission()
     {
+        Yii::$app->user->setReturnUrl(Yii::$app->request->url);
         return $this->render('permission');
     }
 

@@ -13,8 +13,11 @@ class Upload {
 
     public static $UPLOADS_DIR = 'uploads';
 
-    public static function file(UploadedFile $fileInstance, $dir = '', $namePostfix = true) {
-        $fileName = Upload::getUploadPath($dir) . DIRECTORY_SEPARATOR . Upload::getFileName($fileInstance, $namePostfix);
+    public static function file(UploadedFile $fileInstance, $dir = '', $namePostfix = true, $fileName = null) {
+        if (!$fileName) {
+            $fileName = Upload::getFileName($fileInstance, $namePostfix);
+        }
+        $fileName = Upload::getUploadPath($dir) . DIRECTORY_SEPARATOR . $fileName;
 
         if (!$fileInstance->saveAs($fileName)) {
             throw new HttpException(500, 'Cannot upload file "' . $fileName . '". Please check write permissions.');
